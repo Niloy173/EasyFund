@@ -8,6 +8,8 @@ async function GetSupportPage(req, res, next) {
       .split("/")
       .reverse()[1];
 
+    // get the user information if he/she logged in
+
     // get the title and coverpicture
     const CurrentProjectData = await Project.findOne({ _id: curentProject_Id });
 

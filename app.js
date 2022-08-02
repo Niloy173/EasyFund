@@ -34,7 +34,6 @@ const homeRoute = require("./routes/home.route");
 const discoverRoute = require("./routes/discover.route");
 const registerRoute = require("./routes/register.route");
 const loginRoute = require("./routes/login.route");
-const protectedRoute = require("./routes/protected.route");
 const resetPasswordRoute = require("./routes/resetPassword.route");
 const generalRoute = require("./routes/formRoute/general.route");
 const coverRoute = require("./routes/formRoute/coverPicture.route");
@@ -43,6 +42,7 @@ const previewRoute = require("./routes/formRoute/preview.route");
 const userAccountRoute = require("./routes/userend/account.route");
 const personalIdentityRoute = require("./routes/userend/personalIdentity.route");
 const mainStoryRoute = require("./routes/mainStory/story.route");
+const userProjectRoute = require("./routes/userend/userProject.route");
 const BusinessRoute = require("./routes/categories/business.route");
 /*---------------*/
 
@@ -82,7 +82,6 @@ app.use("/discover", discoverRoute.router);
 app.use("/register", registerRoute.router);
 app.use("/login", loginRoute.router);
 app.use("/resetpassword", resetPasswordRoute.router);
-app.use("/protected", protectedRoute.router);
 app.use("/general", generalRoute.router);
 app.use("/cover", coverRoute.router);
 app.use("/story", writeStoryRoute.router);
@@ -90,6 +89,7 @@ app.use("/preview", previewRoute.router);
 app.use("/user", userAccountRoute.router);
 app.use("/personal", personalIdentityRoute.router);
 app.use("/project", mainStoryRoute.router);
+app.use("/user-project", userProjectRoute.router);
 /*-----------------*/
 
 /* category route path goes here */

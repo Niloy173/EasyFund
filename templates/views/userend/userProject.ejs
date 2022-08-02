@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/css/userProject.css" />
+    <link rel="stylesheet" href="/css/usernavbar.css" />
+  </head>
+  <body>
+    <%- include("../../partials/navbar.ejs") %>
+     <div class="project">
+        <p>Project Details</p>
+      </div>
+
+    
+    <div class="create-your-project">
+      <button>
+        <a href="/general">Create your own project</a>
+      </button>
+    </div>
+
+    <!-- <div class="horizontal-line"></div> -->
+
+    <% if(Object.keys(data).length != 0) { %> 
+     
+    
+      <% data.forEach(element => { %>
+      <div class="main-project">
+        <div class="project-container">
+          <div class="project-cover">
+            <img
+              alt="coverpicture"
+              src="data:image/<%=element.CoverPicture.contentType%>;base64,
+  <%=element.CoverPicture.data.toString('base64')%>"
+              width="150px"
+              height="100px"
+            />
+          </div>
+          <div class="project-details">
+            <h3><%=element["StoryTitle"] %></h3>
+            <p class="small-status">Category: <label ><%= element["Category"] %></label>  <!--<button is="btn-click" onclick="openDialog()" style="margin-left: 5px; padding : 0px 5px; cursor : pointer"> remove</button>--></p>
+          
+          </div>
+
+          <div class="project-amount-details">
+            <h4>Target Amount: ৳ <%=element["TargetAmount"] %></h4>
+            <p class="small-status">Current Amount: ৳ <%= element["CurrentAmount"] %> <!--<button is="btn-click" onclick="openDialog()" style="margin-left: 5px; padding : 0px 5px; cursor : pointer"> remove</button>--></p>
+          
+          </div>
+        </div>
+        <div class="project_lookup">
+          <a href="/project/<%= element["_id"] %>"> click here to check out </a>
+        </div>
+      </div>
+   
+      <!-- <div id="dialog-msg" class="dialog-box">
+        <div class="header">
+         <h2>Do you want to delete this project ?</h2>
+        </div>
+         <div class="decision">
+           <a href="/user/my-project/<%= element['_id']  %>">Yes</a>
+           <a id="reply-no" href="/user/my-project/no">No</a>
+         </div>
+       </div> -->
+    <% }); %> <% } %>
+
+ 
+  </body>
+</html>

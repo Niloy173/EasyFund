@@ -135,45 +135,13 @@
 
     </div>
 
-   
+    <script defer src="/js/validation/WriteStory.js"></script>
     <script>
-
       sessionStorage.setItem("CurrentURL",window.location.href);
-
-     
-      
-      const title = document.getElementById("title");
-      const story = document.getElementById("content-story");
-      const Form = document.getElementById("storyForm");
-      const submitBtn = document.getElementById("next");
-
       document.getElementById("charnum").innerHTML = title.value.length +"/"+60;
-
-
-     
-      const checkEnableButton = () => {
-
-      submitBtn.disabled = !(
-        title.value &&
-        story.value &&
-        title.value.length <=60 &&
-        story.value.length > 0
-      )
-
-      };
-
-
-    title.addEventListener("change",checkEnableButton);
-    story.addEventListener("change",checkEnableButton);
-
-    
-
-
-
-  
     </script>
 
-    <script defer src="/js/validation/WriteStory.js"></script>
+   
 
   
   </body>

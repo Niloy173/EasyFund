@@ -159,8 +159,8 @@
           </span>
         </div>
         <% if( OtherUser != undefined) { %>
-        <div class="support_section">
-          <div class="support_option">
+        <div id="support-box" class="support_section">
+          <div  class="support_option">
             <p>
               <a
                 style="text-decoration: none; color: aliceblue"
@@ -212,9 +212,9 @@
     <div id="Help_by_sharing" class="help_by_sharing">
       <p>Help by sharing</p>
       <div class="social_icon">
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-facebook"></i>
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-twitter"></i>
       </div>
       <div class="copy_link">
         <input readonly id="project-link" type="links/" value="<%= RequestedUrl
@@ -222,19 +222,20 @@
         <button id="copy-btn" onclick="CopyLink()">copy</button>
       </div>
     </div>
-    <script defer>
+    <script>
+
+      const Days = document.getElementById("project_validity");
       window.setTimeout(function () {
         document.getElementById("mainStory").style.height =
           document.getElementById("mainStory").scrollHeight + "px";
       });
+
       function ScrollDown() {
         window.scrollTo(0, document.body.scrollHeight);
       }
 
       function CopyLink() {
-        const checker = document
-          .getElementById("copy-btn")
-          .innerHTML.toLowerCase.toString();
+        const checker = document.getElementById("copy-btn").innerHTML.toLowerCase.toString();
 
         let link_box = document.getElementById("project-link");
         link_box.select();
@@ -246,18 +247,39 @@
       }
 
       /* this functionality determines how much amount the selected project already gained */
-
       const target_amount = parseInt(document.getElementById("goal").innerHTML);
-      //  console.log(target_amount)// 1100
       const curr_amount = parseInt(document.getElementById("curr_amount").innerHTML);
-      //  console.log(curr_amount) // 560
-
       const Getting_percentage = (curr_amount / target_amount) * 100;
       document.getElementById("progress").value += Getting_percentage;
 
-      //  console.log(Getting_percentage);
-    </script>
 
-    <script src="/js/navbarSlide.js"></script>
+
+      // I want to decrease the days count in every 1 second;
+      
+
+      const Timer = setInterval(DecrementTime,60000);
+      function DecrementTime(){
+
+        let d = parseInt(Days.innerText);
+        d--;
+        
+        if(d == 0)
+        {
+          // clear the interval
+          Days.innerHTML="0";
+          document.getElementById("support-box").style.display = "none";
+          clearInterval(Timer);
+        }
+
+        
+        Days.innerHTML = d.toString();
+        console.log(d);
+      }
+
+
+   
+
+    </script>
+   
   </body>
 </html>

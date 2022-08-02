@@ -177,8 +177,6 @@
 
     <% } %>
 
-    <script src="/js/navbarSlide.js"></script>
-
     <script>
       const form = document.querySelector("#personal");
 
@@ -243,6 +241,10 @@
             });
           } else {
             SuccessFulToast.showToast();
+
+            setTimeout(() => {
+              window.location.href = "/general";
+            }, 1000);
           }
         };
       } catch (error) {

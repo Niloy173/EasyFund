@@ -86,12 +86,6 @@
         let form = document.querySelector("#cover-picture-form");
         let reader = new FileReader();
 
-        // window.onload = function (event) {
-        //   form.onsubmit = function (e) {
-        //     e.preventDefault();
-        //   };
-        // };
-
         image_input.addEventListener("change", function () {
           if (this.files && this.files[0]) {
             let display_image = document.querySelector("#display_img");
@@ -113,18 +107,6 @@
             this.parentNode.remove();
           });
         }
-
-        function opennav() {
-          document.getElementById("mySidenav").style.width = "250px";
-          document.getElementById("mySidenav").style.right = "0";
-        }
-        function closeUserNav() {
-          document.getElementById("mySidenav").style.right = "-250px";
-        }
-
-        window.onbeforeunload = (e) => {
-          e.preventDefault();
-        };
       </script>
     </body>
   </html>

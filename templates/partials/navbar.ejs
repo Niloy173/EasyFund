@@ -14,16 +14,16 @@
   <div class="nav_menu_item">
     <ul id="nav_menu_item">
       <li>
-        <a href="/general">Start a project</a>
+        <a href="/user-project/all-listed">Project list</a>
       </li>
-      <li onclick="opennav()" id="box_sign">
+      <li class="image" onclick="opennav()" id="box_sign">
         <img
           src="data:image/<%=profileImage.contentType%>;base64,
         <%=profileImage.data.toString('base64')%>"
           alt="user-profile"
         />
 
-        <div class="menu-bar">
+        <div id="menu-bar" class="menu-bar">
           <div class="bar1"></div>
           <div class="bar2"></div>
           <div class="bar3"></div>
@@ -34,10 +34,9 @@
 </nav>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeUserNav()"
-    >&times;</a
-  >
-
+  <a href="javascript:void(0)" class="closebtn" onclick="closeUserNav()">
+    &times;
+  </a>
   <% if(username != ""){ %>
 
   <p><%= username %></p>
@@ -54,7 +53,7 @@
 
   <a href="/discover/all-projects">Discover All Project</a>
 
-  <a href="/user/my-project">Project List</a>
+  <a href="/user-project/all-listed">Project List</a>
 
   <a href="/user/account"> Account Settings</a>
 
@@ -124,4 +123,24 @@
       window.location.replace("/");
     }, 1000);
   }
+
+  function opennav() {
+    document.getElementById("mySidenav").classList.toggle("openNavbar");
+  }
+  function closeUserNav() {
+    document.getElementById("mySidenav").classList.remove("openNavbar");
+  }
+
+  let nav_menu_item = document.getElementById("nav_menu_item");
+  let show_nav = document.getElementById("show_nav");
+
+  show_nav.addEventListener("click", function (e) {
+    timecount += 1;
+    if (timecount % 2 == 0) {
+      nav_menu_item.style.right = "-100%";
+    } else {
+      nav_menu_item.style.right = "0";
+    }
+    console.log(timecount);
+  });
 </script>

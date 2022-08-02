@@ -9,7 +9,7 @@ const submitBtn = document.getElementById("next");
 function fixDate() {
   let dateobj = new Date();
   let CurrDate = dateobj.getDate() + 1;
-  let currMonth = dateobj.getMonth() + 1;
+  let currMonth = dateobj.getMonth() + 2;
   let currYear = dateobj.getUTCFullYear();
 
   if (CurrDate < 10) {
@@ -47,11 +47,4 @@ for (let index = 0; index < error_div.length; index++) {
   error_div[index].addEventListener("click", function () {
     this.parentNode.remove();
   });
-}
-function opennav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("mySidenav").style.right = "0";
-}
-function closeUserNav() {
-  document.getElementById("mySidenav").style.right = "-250px";
 }

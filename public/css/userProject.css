@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.create-your-project {
+  width: 700px;
+  margin: 50px auto;
+  padding: 30px 40px;
+}
+
+.create-your-project button {
+  padding: 30px 80px;
+  background: #fff;
+  border: 3px solid cyan;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+}
+
+.create-your-project button:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(128, 137, 146, 0.15);
+}
+
+.create-your-project a {
+  text-align: center;
+  text-decoration: none;
+  font-size: 28px;
+  color: black;
+}
+
+.horizontal-line {
+  border: 1px solid rgb(149, 149, 149);
+  width: 90%;
+  display: block;
+  margin: 0 auto 30px auto;
+}
+
+.project {
+  display: block;
+  margin: 0 auto 15px auto;
+  background: #a8a4a8;
+  opacity: 0.7;
+}
+
+.project p {
+  font-size: 23px;
+  font-weight: bold;
+  padding: 20px 0;
+  text-align: center;
+  color: #000000;
+}
+
+.main-project {
+  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%); */
+  transition: 0.3s;
+  border-radius: 5px;
+  background-color: white;
+  width: 90%;
+  display: block;
+  margin: 20px auto 25px auto;
+}
+
+.main-project .project-container {
+  display: flex;
+  /* margin: 20px 15px 0 15px; */
+}
+.project-container .project-cover {
+  width: 20%;
+  padding-bottom: 15px;
+}
+
+.project-cover img {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.project-container .project-details {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.project-container .project-amount-details {
+  width: 20%;
+  margin: 20px auto;
+}
+
+.project-details h3 {
+  font-size: 1.5333rem;
+  margin: 10px 0 0 0;
+  font-weight: bold;
+  text-align: center;
+}
+.project-details label {
+  border: 1px solid black;
+  padding: 5px;
+  background: tomato;
+  color: #000000;
+}
+
+.project-amount-details h4 {
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+.small-status {
+  font-size: 1rem;
+  margin: 10px 0 0 0;
+  color: #5e5c5e;
+  text-align: center;
+  font-weight: bold;
+}
+.main-project hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.main-project .project_lookup {
+  background: #00b3bd;
+  opacity: 0.7;
+  font-weight: bold;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.project_lookup a {
+  padding-bottom: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.22rem;
+  color: #000000;
+  font-weight: bold;
+}
+.project_lookup:hover {
+  opacity: 1;
+}
+.project_lookup a:hover {
+  color: aliceblue;
+}
+
+.dialog-box {
+  width: 400px;
+  margin: 0 auto;
+  border: 2px solid black;
+  position: absolute;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  display: none;
+}
+
+.dialog-box .header {
+  padding: 12px 20px;
+  width: 100%;
+  background-color: rgb(76, 218, 76);
+}
+
+.header h2 {
+  font-size: 22px;
+}
+
+.dialog-box .decision {
+  display: flex;
+}
+
+.decision a {
+  width: 50%;
+  font-size: 18px;
+  padding: 8px 12px;
+  color: #000000;
+  background-color: #fff;
+  text-align: center;
+  border: 1px groove #ccc;
+  text-decoration: none;
+}
+
+.decision a:hover {
+  background: #a8a4a8;
+  color: #000000;
+  font-weight: bold;
+  cursor: pointer;
+}
