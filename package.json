@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=developemnt nodemon app.js",
+    "start": "NODE_ENV=development nodemon app.js",
     "production": "NODE_ENV=production nodemon app.js"
   },
   "keywords": [],
