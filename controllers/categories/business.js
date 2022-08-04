@@ -9,7 +9,7 @@ async function GetMeBusinessProjects(req, res, next) {
       data,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw CreateError(error);
   }
 }

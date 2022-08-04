@@ -14,7 +14,7 @@ async function GetMeAllProjectCard(req, res, next) {
       ProjectData,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw CreateError(error.message);
   }
 }
