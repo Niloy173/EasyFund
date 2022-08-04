@@ -301,6 +301,10 @@ input.text.w3lpass {
   color: #fff;
 }
 
+input[type="submit"] {
+  cursor: no-drop;
+}
+
 input[type="submit"],
 input[type="button"] {
   font-size: 0.9em;
@@ -308,7 +312,6 @@ input[type="button"] {
   background: #76b852;
   outline: none;
   border: 1px solid #76b852;
-  cursor: pointer;
   padding: 0.9em;
   -webkit-appearance: none;
   width: 100%;

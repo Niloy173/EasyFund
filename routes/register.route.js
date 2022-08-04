@@ -74,7 +74,13 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                   let message =
                     "Clearing user with expired unique string failed";
                   res.redirect(
-                    `/register/verified/error=true&message=${message}`
+                    url.format({
+                      pathname: "/register/verified/",
+                      query: {
+                        error: true,
+                        message: message,
+                      },
+                    })
                   );
                 });
             })
@@ -82,7 +88,15 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
               console.log(error);
               let message =
                 "An error occured while clearing expired user verification record";
-              res.redirect(`/register/verified/error=true&message=${message}`);
+              res.redirect(
+                url.format({
+                  pathname: "/register/verified/",
+                  query: {
+                    error: true,
+                    message: message,
+                  },
+                })
+              );
             });
         } else {
           // valid record exits so we validate the user
@@ -108,7 +122,13 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                         let message =
                           "An error occured while finalizing succssful verification.";
                         res.redirect(
-                          `/register/verified/error=true&message=${message}`
+                          url.format({
+                            pathname: "/register/verified/",
+                            query: {
+                              error: true,
+                              message: message,
+                            },
+                          })
                         );
                       });
                   })
@@ -117,7 +137,13 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                     let message =
                       "An error occured while updating the user record";
                     res.redirect(
-                      `/register/verified/error=true&message=${message}`
+                      url.format({
+                        pathname: "/register/verified/",
+                        query: {
+                          error: true,
+                          message: message,
+                        },
+                      })
                     );
                   });
               } else {
@@ -125,13 +151,27 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
                 let message =
                   "Invalid verification details passed. Check your inbox.";
                 res.redirect(
-                  `/register/verified/error=true&message=${message}`
+                  url.format({
+                    pathname: "/register/verified/",
+                    query: {
+                      error: true,
+                      message: message,
+                    },
+                  })
                 );
               }
             })
             .catch((error) => {
               let message = "An error occured while comparing unique strings";
-              res.redirect(`/register/verified/error=true&message=${message}`);
+              res.redirect(
+                url.format({
+                  pathname: "/register/verified/",
+                  query: {
+                    error: true,
+                    message: message,
+                  },
+                })
+              );
             });
         }
       } else {
@@ -154,7 +194,16 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
       console.log(error);
       let message =
         "An error occured while checkig for existing user verification record";
-      res.redirect(`/register/verified/error=true&message=${message}`);
+
+      res.redirect(
+        url.format({
+          pathname: "/register/verified/",
+          query: {
+            error: true,
+            message: message,
+          },
+        })
+      );
     });
 });
 
@@ -219,7 +268,7 @@ router.post("/", decorateHtmlResponse("register"), async (req, res) => {
 
 const sendVerificationEmail = ({ _id, email }, res) => {
   // url to be used in the email
-  const currenturl = "http://localhost:3000/";
+  const currenturl = `${process.env.APP_URL}`;
 
   const uniqueString = uuidv4() + _id;
 
@@ -265,19 +314,21 @@ const sendVerificationEmail = ({ _id, email }, res) => {
             .catch((error) => {
               console.log(error);
               res.json({
-                message: "Verification email failed!",
+                message: "Verification email failed! Please try again later.",
               });
             });
         })
         .catch(() => {
           res.json({
-            message: "An error occured while saving verification email data !",
+            message:
+              "An error occured while saving verification email data! Please try again later.",
           });
         });
     })
     .catch(() => {
       res.json({
-        message: "An error occured while hashing email data !",
+        message:
+          "An error occured while hashing email data! Please try again later.",
       });
     });
 };

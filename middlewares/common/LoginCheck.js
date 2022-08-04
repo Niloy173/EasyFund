@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const DecodeInformation = (req, res, next) => {
-  const token = req.signedCookies["easyfund"];
+  const token = req.signedCookies[process.env.COOKIE_NAME];
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_TOKEN);
@@ -25,7 +25,7 @@ const DecodeInformation = (req, res, next) => {
 const AuthCheck = (req, res, next) => {
   // // console.log(req.headers);
   // console.log(req.cookies)
-  const token = req.signedCookies["easyfund"];
+  const token = req.signedCookies[process.env.COOKIE_NAME];
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_TOKEN);

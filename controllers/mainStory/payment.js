@@ -17,7 +17,8 @@ function RenderThePaymentGateWay(req, res, next) {
     userId = "annonymous";
   }
 
-  const url = `${process.env.APP_URL}` + req.originalUrl;
+  const url = `${process.env.APP_URL}`.replace(/\/+$/, "") + req.originalUrl;
+  // console.log(url);
 
   const data = {
     total_amount: amount,
@@ -70,11 +71,12 @@ function RenderThePaymentGateWay(req, res, next) {
 
 async function SuccessFulPaymentTrans(req, res, next) {
   try {
-    const url = `${process.env.APP_URL}` + req.originalUrl;
+    const url = `${process.env.APP_URL}`.replace(/\/+$/, "") + req.originalUrl;
     const transac_id = req.body.tran_id;
 
-    // find projectID && UserID
+    // find projectID projectURL && UserID
     const projectId = url.split("/").reverse()[2];
+    const projectURL = `${process.env.APP_URL}project/${projectId}`;
     const userId = transac_id.split("-").reverse()[0];
 
     // Update New Amount && add UserId for co-responding Project
@@ -152,18 +154,18 @@ async function SuccessFulPaymentTrans(req, res, next) {
       { new: true, useFindAndModify: false }
     );
 
-    // send a thanking note
-    res.send("success");
+    // send back to the project
+    res.redirect(projectURL);
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     throw createError(error);
   }
 }
 
-// async function NotificationAfterTrans(req, res, next) {
-//   console.log(req.body);
-//   res.status(200).send("valid");
-// }
+async function NotificationAfterTrans(req, res, next) {
+  console.log(req.body);
+  res.status(200).send("valid");
+}
 
 async function FailedPaymentTrans(req, res, next) {
   // console.log(req.body);
@@ -172,13 +174,16 @@ async function FailedPaymentTrans(req, res, next) {
 
 async function CancelPaymentTrans(req, res, next) {
   // console.log(req.body);
-  res.status(200).send("Cancel");
+  const url = `${process.env.APP_URL}`.replace(/\/+$/, "") + req.originalUrl;
+  const projectId = url.split("/").reverse()[2];
+  const projectURL = `${process.env.APP_URL}project/${projectId}`;
+  res.redirect(projectURL);
 }
 
 module.exports = {
   RenderThePaymentGateWay,
   SuccessFulPaymentTrans,
-  // NotificationAfterTrans,
+  NotificationAfterTrans,
   FailedPaymentTrans,
   CancelPaymentTrans,
 };

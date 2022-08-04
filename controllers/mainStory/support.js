@@ -18,7 +18,7 @@ async function GetSupportPage(req, res, next) {
       StoryTitle: CurrentProjectData.StoryTitle,
     });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     throw createError(error);
   }
 }

@@ -3,10 +3,8 @@ function CheckEmail(obj) {
     document.getElementById("msg").innerText =
       "please provide vaild email address";
     document.getElementById("msg").style.display = "block";
-    document.getElementById("submit-form").style.cursor = "no-drop";
   } else {
     document.getElementById("msg").style.display = "none";
-    document.getElementById("submit-form").style.cursor = "pointer";
   }
 }
 
@@ -16,10 +14,8 @@ function CheckUsername(obj) {
     document.getElementById("msg").innerText =
       "username should be less then 20 character";
     document.getElementById("msg").style.display = "block";
-    document.getElementById("submit-form").style.cursor = "no-drop";
   } else {
     document.getElementById("msg").style.display = "none";
-    document.getElementById("submit-form").style.cursor = "pointer";
   }
 }
 
@@ -29,10 +25,8 @@ function CheckPassword(obj) {
     document.getElementById("msg").innerText =
       "please provide atleast 8 digit password";
     document.getElementById("msg").style.display = "block";
-    document.getElementById("submit-form").style.cursor = "no-drop";
   } else {
     document.getElementById("msg").style.display = "none";
-    document.getElementById("submit-form").style.cursor = "pointer";
   }
 }
 
@@ -42,8 +36,10 @@ function ConfirmPassword(obj) {
     document.getElementById("msg").innerText = "password didn't match properly";
     document.getElementById("msg").style.display = "block";
     document.getElementById("submit-form").style.cursor = "no-drop";
+    document.getElementById("submit-form").disabled = true;
   } else {
     document.getElementById("msg").style.display = "none";
+    document.getElementById("submit-form").disabled = false;
     document.getElementById("submit-form").style.cursor = "pointer";
   }
 }

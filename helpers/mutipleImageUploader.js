@@ -3,27 +3,24 @@ const fs = require("fs");
 const multer = require("multer");
 const createError = require("http-errors");
 
-// File upload folder
-const UPLOADS_FOLDER = `${__dirname}/../public/attachments/`;
-
-function check() {
-  fs.readdir(UPLOADS_FOLDER, (err, files) => {
+function check(upload_path) {
+  fs.readdir(upload_path, (err, files) => {
     for (const file of files) {
-      fs.unlink(path.join(UPLOADS_FOLDER, file), (err) => {
+      fs.unlink(path.join(upload_path, file), (err) => {
         if (err) createError("File Error"); // Not efficient
       });
     }
   });
 }
 
-function uploader(allowed_file_types, max_file_size, error_msg) {
+function uploader(allowed_file_types, max_file_size, error_msg, upload_path) {
   // first empty the uploads file if there is any file exits
-  check();
+  check(upload_path);
 
   // define the storage
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, UPLOADS_FOLDER);
+      cb(null, upload_path);
     },
     filename: (req, file, cb) => {
       const fileExt = path.extname(file.originalname);

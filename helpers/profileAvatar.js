@@ -1,4 +1,5 @@
 const { User } = require("../models/UserSchema");
+const createError = require("http-errors");
 
 async function GetProfileAvatar(req, res, next) {
   try {
@@ -15,6 +16,7 @@ async function GetProfileAvatar(req, res, next) {
     // console.log(CurrentUser.profileImage);
   } catch (error) {
     console.log(error.message); // encountered when user tried to logout
+    throw createError(error);
   }
 }
 

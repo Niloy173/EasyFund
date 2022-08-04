@@ -14,7 +14,7 @@ const { GetSupportPage } = require("../../controllers/mainStory/support");
 const {
   RenderThePaymentGateWay,
   SuccessFulPaymentTrans,
-  // NotificationAfterTrans,
+  NotificationAfterTrans,
   FailedPaymentTrans,
   CancelPaymentTrans,
 } = require("../../controllers/mainStory/payment");
@@ -41,11 +41,11 @@ router.post(
   DecodeInformation,
   RenderThePaymentGateWay
 );
-// router.post(
-//   "/:id/payment-information/ssl-payment-notification",
-//   DecodeInformation,
-//   NotificationAfterTrans
-// );
+router.post(
+  "/:id/payment-information/ssl-payment-notification",
+  DecodeInformation,
+  NotificationAfterTrans
+);
 router.post(
   "/:id/payment-information/ssl-payment-success",
   DecodeInformation,
