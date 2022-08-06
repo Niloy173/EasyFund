@@ -147,7 +147,7 @@ hr {
   z-index: 1;
   top: 0;
   right: -260px;
-  background-color: #111;
+  background-color: #22303c;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -155,7 +155,7 @@ hr {
 
 .sidenav p {
   font-size: 18px;
-  color: #f1f1f1;
+  color: #ffffff;
   padding: 8px 8px 8px 32px;
 }
 
@@ -163,12 +163,9 @@ hr {
   padding: 18px 26px;
   text-decoration: none;
   font-size: 18px;
-  color: #818181;
+  color: #ffffff;
   display: block;
   transition: 0.3s;
-}
-.sidenav a:hover {
-  color: #f1f1f1;
 }
 
 .sidenav .closebtn {
@@ -198,4 +195,13 @@ hr {
 
 .openNavbar {
   right: 0px;
+}
+.bold {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(194, 194, 194);
+}
+.sidenav a:hover {
+  background: #8899a6;
+  color: #000;
 }
