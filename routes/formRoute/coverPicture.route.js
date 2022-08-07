@@ -3,7 +3,6 @@ const express = require("express");
 
 /* internal imports */
 const { AuthCheck } = require("../../middlewares/common/LoginCheck");
-const { avatarUpload } = require("../../middlewares/userend/avatarUpload");
 const {
   decorateHtmlResponse,
 } = require("../../middlewares/common/decorateHtmlResponse");
@@ -30,7 +29,6 @@ router.post(
   decorateHtmlResponse("Select a picture"),
   AuthCheck,
   GetProfileAvatar,
-  avatarUpload,
   PostRenderCover
 );
 

@@ -176,7 +176,7 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
         }
       } else {
         let message = encodeURIComponent(
-          "Account record doesn't exist or has been verified already. Please sign up or log in."
+          "Account record doesn't exist or has been verified already. Please sign up or log in. "
         );
 
         res.redirect(
@@ -236,7 +236,7 @@ router.post("/", decorateHtmlResponse("register"), async (req, res) => {
 
       if (SingleUser) {
         res.render("register", {
-          message: `User already exists`,
+          message: `User already exists.please check your email`,
         });
       } else {
         const newUser = new User({

@@ -7,6 +7,7 @@ const {
 } = require("../../middlewares/common/decorateHtmlResponse");
 
 const { AuthCheck } = require("../../middlewares/common/LoginCheck");
+const { RemoveData } = require("../../controllers/userend/removedata");
 
 const {
   GetRenderPreview,
@@ -29,6 +30,8 @@ router.post(
   AuthCheck,
   PostPreviewProject
 );
+
+router.get("/back", AuthCheck, RemoveData); // when back pressed
 module.exports = {
   router,
 };
