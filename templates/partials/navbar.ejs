@@ -34,20 +34,22 @@
 </nav>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeUserNav()">
+  <a href="javascript:void(0)" class="closebtn bold" onclick="closeUserNav()">
     &times;
   </a>
   <% if(username != ""){ %>
 
-  <p><%= username %></p>
+  <p style="font-size: 20px; font-weight: bold"><%= username %></p>
 
   <% } %>
 
   <hr />
 
-  <a class="article" href="/article/how_it_works.html">How it works</a>
-  <a class="article" href="/article/write_a_story.html">How to write a Story</a>
-  <a class="article" href="/article/category_tips.html">Category Tips</a>
+  <a class="article bold" href="/article/how_it_works.html">How it works</a>
+  <a class="article bold" href="/article/write_a_story.html"
+    >How to write a Story</a
+  >
+  <a class="article bold" href="/article/category_tips.html">Category Tips</a>
 
   <hr />
 

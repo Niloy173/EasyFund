@@ -39,17 +39,6 @@
       <% } %> <% CurrentUser.forEach((user) => { %>
 
       <div class="imgcontainer">
-        <% if (user.profileImage == "nophoto.png") { %>
-
-        <img
-          id="display_img"
-          src="/img/<%= user.profileImage%>"
-          alt="Avatar"
-          class="avatar"
-        />
-
-        <% }else{ %>
-
         <img
           id="display_img"
           src="data:image/<%=profileImage.contentType%>;base64,
@@ -57,8 +46,6 @@
           alt="Avatar"
           class="avatar"
         />
-
-        <% } %>
       </div>
       <div class="change-option">
         <input

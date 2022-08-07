@@ -94,6 +94,12 @@
         
                 </div>
 
+                <div class="short-note">
+                  <p class="important-paragraph"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
+                     maxime saepe ipsum laudantium necessitatibus suscipit!</p>
+                     <a class="important-msg" href="#"">How to write a good story ?</a>
+                </div>
+
                 <div class="images">
 
                     <p class="sub_head">Images</p>
@@ -115,17 +121,25 @@
                          <div class="vertical-line"></div>
 
                     </div>
+
+                    <div class="category">
+
+                      <span>Select some pictures at once for the support of this project.</span>
+                    </div>
                     
-                    <div  contenteditable="true" id="content-image" class="image-area" > 
+                    <div  contenteditable="true"  
+                    id="content-image" class="image-area" > 
                     </div> 
 
                 </div>
+
+             
 
                 <div class="next-page">
                     <button disabled  id="next" type="submit" >Next</button>
                   </div>
             
-                  <div onclick="BackPressed()" class="back-page">
+                  <div  class="back-page">
                     <a style="text-decoration: none;" href="#">
                       <button type="button" >back</button>
                     </a>
@@ -139,6 +153,7 @@
     <script>
       sessionStorage.setItem("CurrentURL",window.location.href);
       document.getElementById("charnum").innerHTML = title.value.length +"/"+60;
+
     </script>
 
    
