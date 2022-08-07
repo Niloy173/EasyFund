@@ -14,8 +14,8 @@ function check(upload_path) {
 }
 
 function uploader(allowed_file_types, max_file_size, error_msg, upload_path) {
-  // first empty the uploads file if there is any file exits
-  check(upload_path);
+  // // first empty the uploads file if there is any file exits
+  // check(upload_path);
 
   // define the storage
   const storage = multer.diskStorage({
