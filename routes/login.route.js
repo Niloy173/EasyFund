@@ -70,18 +70,16 @@ router.post("/", decorateHtmlResponse("login"), (req, res) => {
                   //create a ownerId in projectVerificaion Schema
                   ProjectVerificationModel.find({ OwnerId: data[0]._id }).then(
                     (userdata) => {
-                      if (userdata.length) {
-                        console.log("User Exists");
-                      } else {
+                      if (userdata.length < 1) {
                         const CreateIdentity = new ProjectVerificationModel({
                           OwnerId: data[0]._id,
                         });
                         CreateIdentity.save();
-
-                        res.redirect("/");
                       }
                     }
                   );
+
+                  res.redirect("/");
                 } else {
                   res.render("login", {
                     message: "password is incorrect!",
