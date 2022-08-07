@@ -25,19 +25,18 @@
     />
   </head>
   <body>
-    <% if(typeof StoryTitle === 'undefined' || typeof Amount === 'undefined' ||
-    typeof MainStory === 'undefined' || typeof Validity === 'undefined' ||
-    StoryTitle =='' || typeof CoverPicture === 'undefined' || Amount =='' ||
-    Validity =='' || MainStory =='' || CoverPicture =='') { %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <p>Information Error -------------</p>
-      <a style="color: #000" href="/general">
-        Go Fill Up The Information First
-      </a>
+    <% if( StoryTitle =='' || Amount =='' || Validity =='' || MainStory =='' ||
+    CoverPicture =='') { %>
+    <div class="show_middle" role="alert">
+      <img src="/img/error.png" alt="error" />
+      <p>Information Error</p>
+      <a href="/general"> Go Fill Up The Information First </a>
     </div>
     <% } else { %> <%- include('../../partials/story.ejs') %> <% } %>
 
+    <script defer src="/js/validation/preview.js"></script>
     <script>
+      sessionStorage.setItem("CurrentURL", window.location.href);
       window.setTimeout(function () {
         document.getElementById("mainStory").style.height =
           document.getElementById("mainStory").scrollHeight + "px";
