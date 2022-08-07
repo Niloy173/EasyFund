@@ -379,3 +379,22 @@ div.gallery img {
   width: 100%;
   height: auto;
 }
+
+.show_middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.show_middle p {
+  font-size: 22px;
+  color: red;
+}
+.show_middle a {
+  border: 2px solid teal;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
