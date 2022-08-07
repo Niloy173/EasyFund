@@ -10,10 +10,17 @@ const content_image = document.getElementById("content-image"); // image Gallery
 //   e.preventDefault();
 // };
 
+// const message = document.createElement("span");
+// message.id = "important-msg";
+// message.innerHTML = `[Select Multiple Picture At Once For the Support of this Project]`;
+
+// content_image.append(message);
+
 const checkEnableButton = () => {
   submitBtn.disabled = !(
     title.value &&
     story.value &&
+    file_input.files[0] &&
     title.value.length <= 60 &&
     story.value.length > 0
   );
@@ -21,24 +28,7 @@ const checkEnableButton = () => {
 
 title.addEventListener("change", checkEnableButton);
 story.addEventListener("change", checkEnableButton);
-
-// backpressed
-function BackPressed() {
-  if (sessionStorage.getItem("CurrentURL").split("/").pop() === "story") {
-    if (
-      confirm(
-        "Are you sure you want to leave this page? You will lost all the contents you are editing & have to start form the Begining"
-      )
-    ) {
-      const response = fetch("/story/back", {
-        method: "GET",
-      });
-
-      window.location.href = "/general";
-    } else {
-    }
-  }
-}
+file_input.addEventListener("change", checkEnableButton);
 
 /* Live character count for title */
 
@@ -76,6 +66,7 @@ function charDecrease(obj) {
 /* put the images inside the container */
 
 function preview() {
+  content_image.innerHTML = "";
   for (let i of file_input.files) {
     let reader = new FileReader();
     let figure = document.createElement("figure");
@@ -84,13 +75,7 @@ function preview() {
       let img = document.createElement("img");
       img.setAttribute("src", reader.result);
       img.className = "uploaded_img";
-      img.onclick = function () {
-        if (confirm("Do you want to remove it")) {
-          this.remove();
-        } else {
-          // nothing to do here
-        }
-      };
+
       figure.appendChild(img);
     };
 
