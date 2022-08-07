@@ -23,7 +23,6 @@ class ImageUploader {
 
   storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      this.check();
       cb(null, this.upload_folder);
     },
 
