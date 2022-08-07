@@ -11,13 +11,17 @@ async function doRenderAccount(req, res, next) {
 }
 
 async function UpdateAccountInformation(req, res, next) {
+  const UPLAOD_FOLDER_FOR_PROFILE = path.join(
+    __dirname + "/../" + "/../public/profilePicture/"
+  );
   if (req.file) {
     // read the file first which is profile picture
+    //console.log(req.file.filename);
     const FullPath = fs.readdirSync(
       path.join(__dirname + "/../" + "/../public/profilePicture/")
     )[0];
 
-    const ext_name = path.extname(FullPath);
+    const ext_name = path.extname(req.file.filename);
 
     const UserUpdate = await User.updateOne(
       { _id: req.user.userId },
@@ -26,7 +30,10 @@ async function UpdateAccountInformation(req, res, next) {
           profileImage: {
             data: fs.readFileSync(
               path.join(
-                __dirname + "/../" + "/../public/profilePicture/" + FullPath
+                __dirname +
+                  "/../" +
+                  "/../public/profilePicture/" +
+                  req.file.filename
               )
             ),
             contentType: ext_name.replace(".", ""),
@@ -36,9 +43,23 @@ async function UpdateAccountInformation(req, res, next) {
       { new: true, useFindAndModify: false }
     );
 
-    setTimeout(() => {
-      res.redirect("/");
-    }, 1000);
+    fs.readdir(UPLAOD_FOLDER_FOR_PROFILE, (err, files) => {
+      for (let file of files) {
+        if (file === req.file.filename) {
+          fs.unlink(path.join(UPLAOD_FOLDER_FOR_PROFILE, file), (err) => {
+            if (err) {
+              console.log(err.message);
+            } else {
+              // redirect to home page
+              //console.log("success");
+              setTimeout(() => {
+                res.redirect("/");
+              }, 1000);
+            }
+          });
+        }
+      }
+    });
   } else {
     res.redirect("/user/account");
   }
