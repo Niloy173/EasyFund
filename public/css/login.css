@@ -302,7 +302,7 @@ input.text.w3lpass {
 }
 
 input[type="submit"] {
-  cursor: no-drop;
+  cursor: pointer;
 }
 
 input[type="submit"],
