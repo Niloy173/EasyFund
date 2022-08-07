@@ -3,41 +3,32 @@ const path = require("path");
 const lodash = require("lodash");
 const { User } = require("../../models/UserSchema");
 const { Project } = require("../../models/ProjectSchema");
-
-function ReadDataAttachment() {
-  let attach = [];
-
-  const AttachmentPath = fs.readdirSync(
-    path.join(__dirname + "/../../public/attachments/")
-  );
-
-  AttachmentPath.forEach((file) => {
-    attach.push(file);
-  });
-
-  return attach;
-}
+const {
+  ProjectVerificationModel,
+} = require("../../models/ProjectVerificationSchema");
 
 async function GetRenderPreview(req, res, next) {
   // console.log(req.query);
   //current User information
   const CurrentUser = await User.find({ _id: req.user.userId });
-  const attachment = ReadDataAttachment();
+
+  const CurrentProjectData = await ProjectVerificationModel.findOne({
+    OwnerId: req.user.userId,
+  });
 
   // console.log(attachment.length);
-
   res.render("Forms/Preview", {
     // project related information
-    Amount: req.query.Amount,
-    Validity: req.query.Validity,
-    Catgory: req.query.Category,
-    CoverPicture: req.query.Filename,
-    StoryTitle: req.query.StoryTitle,
-    MainStory: req.query.MainStory,
-    Attachment: attachment,
-    AttachmentLength: lodash.isEmpty(attachment)
+    Amount: CurrentProjectData.TargetAmount,
+    Validity: CurrentProjectData.Validity,
+    Catgory: CurrentProjectData.Category,
+    CoverPicture: CurrentProjectData.CoverPictureFilename,
+    StoryTitle: CurrentProjectData.StoryTitle,
+    MainStory: CurrentProjectData.MainStory,
+    Attachment: CurrentProjectData.AttachmentsFileName,
+    AttachmentLength: lodash.isEmpty(CurrentProjectData.AttachmentsFileName)
       ? undefined
-      : attachment.length,
+      : CurrentProjectData.AttachmentsFileName.length,
 
     // user related Information
     fullname: CurrentUser[0].fullname,
@@ -49,52 +40,86 @@ async function GetRenderPreview(req, res, next) {
 async function PostPreviewProject(req, res, next) {
   try {
     const ProjectInfo = {};
-    const Attachments = [];
-    const attachments = ReadDataAttachment();
-    const attachmentLength = attachments.length;
+    const UPLAOD_FOLDER_FOR_COVER = path.join(
+      __dirname + "/../" + "/../public/coverPicture/"
+    );
 
-    if (attachmentLength) {
-      attachments.forEach((filename) => {
-        const Object = {
-          data: fs.readFileSync(
-            path.join(__dirname + "/../" + "../public/attachments/" + filename)
-          ),
-          contentType: path.extname(filename).replace(".", ""),
-        };
+    const ATTACHMENT_PATH = path.join(
+      __dirname + "/../" + "/../public/attachments/"
+    );
 
-        Attachments.push(Object);
-      });
-    }
+    const CurrentProjectData = await ProjectVerificationModel.findOne({
+      OwnerId: req.user.userId,
+    });
+
+    const AttachmentArray = CurrentProjectData.AttachmentsFileName;
+    const CoverPictureFilename = CurrentProjectData.CoverPictureFilename;
+
     // console.log(Attachments);
 
-    ProjectInfo.OwnerId = req.user.userId; // coming directly from token
+    ProjectInfo.OwnerId = CurrentProjectData.OwnerId; // coming directly from token
     // project information
     ProjectInfo.CreationDate = new Date().toLocaleDateString();
-    ProjectInfo.Category = req.query.Category;
-    ProjectInfo.TargetAmount = req.query.Amount;
+    ProjectInfo.Category = CurrentProjectData.Category;
+    ProjectInfo.TargetAmount = CurrentProjectData.TargetAmount;
     ProjectInfo.CurrentAmount = 0;
     ProjectInfo.Supporter = [];
-    ProjectInfo.Validity = req.query.Validity;
-    ProjectInfo.StoryTitle = req.query.StoryTitle;
-    ProjectInfo.MainStory = req.query.MainStory;
-    ProjectInfo.CoverPicture = {
-      data: fs.readFileSync(
-        path.join(
-          __dirname + "/../" + "../public/coverPicture/" + req.query.Filename
-        )
-      ),
-      contentType: path.extname(req.query.Filename).replace(".", ""),
-    };
+    ProjectInfo.Validity = CurrentProjectData.Validity;
+    ProjectInfo.StoryTitle = CurrentProjectData.StoryTitle;
+    ProjectInfo.MainStory = CurrentProjectData.MainStory;
+    ProjectInfo.CoverPicture = CurrentProjectData.CoverPicture;
 
-    ProjectInfo.Attachments = Attachments;
+    ProjectInfo.Attachments = CurrentProjectData.Attachments;
 
     const newProjectDocument = new Project().InsertProject(ProjectInfo);
+
+    // delete the attachments & coverpicture file data
+    fs.readdir(UPLAOD_FOLDER_FOR_COVER, (err, files) => {
+      for (let file of files) {
+        if (file === CoverPictureFilename) {
+          fs.unlink(path.join(UPLAOD_FOLDER_FOR_COVER, file), (err) => {
+            if (err) {
+              console.log(err.message);
+            }
+          });
+        }
+      }
+    });
+
+    if (AttachmentArray.length > 0) {
+      for (let file of AttachmentArray) {
+        fs.unlink(path.join(ATTACHMENT_PATH, file), (err) => {
+          if (err) {
+            console.log(err.message);
+          }
+        });
+      }
+    }
+
+    const ProjectVerificationModelUpdate =
+      await ProjectVerificationModel.updateOne(
+        { OwnerId: req.user.userId },
+        {
+          $set: {
+            TargetAmount: "",
+            Validity: "",
+            Category: "",
+            CoverPicture: [],
+            Attachments: [],
+            CoverPictureFilename: "",
+            AttachmentsFileName: [],
+            MainStory: "",
+            StoryTitle: "",
+          },
+        },
+        { new: true, useFindAndModify: false }
+      );
 
     newProjectDocument.save();
 
     setTimeout(() => {
       res.status(200).redirect("/");
-    }, 1000);
+    }, 2000);
   } catch (error) {
     // console.log(error);
     res.redirect("/general");

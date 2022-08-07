@@ -1,6 +1,9 @@
 const { GetDays } = require("../../helpers/GetDays");
 const { User } = require("../../models/UserSchema");
-let GeneralInformation = {};
+const lodash = require("lodash");
+const {
+  ProjectVerificationModel,
+} = require("../../models/ProjectVerificationSchema");
 
 async function GetRenderGeneral(req, res, next) {
   const result = await User.find({ email: req.user.useremail });
@@ -13,16 +16,26 @@ async function GetRenderGeneral(req, res, next) {
   }
 }
 
-function PostRenderGeneral(req, res, next) {
-  GeneralInformation.CreationDate = req.body.date;
-  GeneralInformation.DaysRemaining = GetDays(GeneralInformation.CreationDate);
-  GeneralInformation.Category = req.body.option;
-  GeneralInformation.Amount = req.body.taka;
+async function PostRenderGeneral(req, res, next) {
+  const { option, taka, date } = req.body;
+  // update everytime ProjectVerificationSchema when it's post request
+  const UpdateSchema = await ProjectVerificationModel.updateOne(
+    { OwnerId: req.user.userId },
+    {
+      $set: {
+        Category: option,
+        TargetAmount: taka,
+        Validity: GetDays(date),
+      },
+    },
+    { new: true, useFindAndModify: false }
+  );
 
-  res.redirect("/cover");
+  setTimeout(() => {
+    res.redirect("/cover");
+  }, 2000);
 }
 module.exports = {
-  GeneralInformation,
   GetRenderGeneral,
   PostRenderGeneral,
 };

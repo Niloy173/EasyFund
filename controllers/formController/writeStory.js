@@ -5,8 +5,8 @@ const fs = require("fs");
 const { User } = require("../../models/UserSchema");
 
 const {
-  GeneralInformation,
-} = require("../../controllers/formController/general");
+  ProjectVerificationModel,
+} = require("../../models/ProjectVerificationSchema");
 
 async function GetRenderStory(req, res, next) {
   const result = await User.find({ email: req.user.useremail });
@@ -19,27 +19,21 @@ async function GetRenderStory(req, res, next) {
   }
 }
 
-function PostRenderStory(req, res, next) {
-  let FullPath = fs.readdirSync(
-    path.join(__dirname + "/../../public/coverPicture/")
-  );
-
-  const filename = FullPath[0];
-
-  res.redirect(
-    url.format({
-      pathname: "/preview",
-
-      query: {
+async function PostRenderStory(req, res, next) {
+  const UpdateStoryData = await ProjectVerificationModel.updateOne(
+    { OwnerId: req.user.userId },
+    {
+      $set: {
         StoryTitle: req.body.title,
         MainStory: req.body.story,
-        Amount: GeneralInformation.Amount,
-        Validity: GeneralInformation.DaysRemaining,
-        Category: GeneralInformation.Category,
-        Filename: filename,
       },
-    })
+    },
+    { new: true, useFindAndModify: false }
   );
+
+  setTimeout(() => {
+    res.redirect("/preview");
+  }, 2000);
 }
 
 module.exports = {
