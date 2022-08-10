@@ -33,7 +33,9 @@ const doValidatePersonal = [
     .isMobilePhone("bn-BD", {
       strictMode: true,
     })
-    .withMessage("Mobile number must be a valid Bangladeshi mobile number")
+    .withMessage(
+      "Mobile number must be a valid Bangladeshi mobile number (+880)"
+    )
     .custom(async (value) => {
       try {
         const user = await User.findOne({ mobile: value });

@@ -3,7 +3,7 @@ const CreateError = require("http-errors");
 
 async function GetMeBusinessProjects(req, res, next) {
   try {
-    const data = await Project.FindByCategoryName("Business");
+    const data = await Project.FindByCategoryName("Business Study");
 
     res.status(200).render("categories/business", {
       data,

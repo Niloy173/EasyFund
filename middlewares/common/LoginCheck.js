@@ -59,8 +59,17 @@ const redirectLoggedIn = function (req, res, next) {
   }
 };
 
+const RoleBaseAuthorize = function (req, res, next) {
+  if (req.user.role === "admin") {
+    next();
+  } else {
+    res.send("You're not authorized to access this url");
+  }
+};
+
 module.exports = {
   redirectLoggedIn,
   AuthCheck,
   DecodeInformation,
+  RoleBaseAuthorize,
 };

@@ -84,7 +84,7 @@ body {
 .sub_head {
   font-size: 1.25rem;
   font-weight: bold;
-  padding: 0.675rem 0;
+  padding: 0.675rem 0 0 0;
 }
 .title-field input {
   width: 100%;
@@ -216,4 +216,8 @@ figure {
 .image-area:empty:before {
   content: attr(data-placeholder);
   color: gray;
+}
+/* for the navbar */
+#navbar .nav_menu_item {
+  display: none;
 }

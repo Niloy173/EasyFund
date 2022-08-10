@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const lodash = require("lodash");
 const { User } = require("../../models/UserSchema");
-const { Project } = require("../../models/ProjectSchema");
+const { PendingProject } = require("../../models/PendingProject");
 const {
   ProjectVerificationModel,
 } = require("../../models/ProjectVerificationSchema");
@@ -71,7 +71,7 @@ async function PostPreviewProject(req, res, next) {
 
     ProjectInfo.Attachments = CurrentProjectData.Attachments;
 
-    const newProjectDocument = new Project().InsertProject(ProjectInfo);
+    const newProjectDocument = new PendingProject().InsertProject(ProjectInfo);
 
     // delete the attachments & coverpicture file data
     fs.readdir(UPLAOD_FOLDER_FOR_COVER, (err, files) => {

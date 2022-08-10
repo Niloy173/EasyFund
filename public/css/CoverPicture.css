@@ -128,3 +128,7 @@ input[type="file"] {
 #sub-id {
   cursor: no-drop;
 }
+/* for the navbar */
+#navbar .nav_menu_item {
+  display: none;
+}

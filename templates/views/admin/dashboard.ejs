@@ -5,38 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css"
-  />
-
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <link rel="stylesheet" href="/css/usernavbar.css" />
-    <link rel="stylesheet" href="/css/discover.css"/>
-    <link rel="stylesheet" href="/css/card.css" />
-    <link rel="stylesheet" href="/css/category.css" />
-
-
-    <script defer src="https://unpkg.com/phosphor-icons%22%3E"></script>
   </head>
+  <style>
+    body{
+
+      margin: 120px 0;
+    }
+
+    .message{
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border: 1px groove wheat;
+      box-shadow: 8px 3px 15px rgba(255, 186, 186, 0.5);
+      padding: 30px 18px;
+    }
+
+    .message p{
+
+      text-align: center;
+      font-size: 22px;
+    }
+  </style>
+   <link rel="stylesheet" href="/css/admin.css" />
+   <link rel="stylesheet" href="/css/card.css" />
+
+
+   <script defer src="https://unpkg.com/phosphor-icons%22%3E"></script>
   <body>
 
-    <%- include("../partials/navbar.ejs") %>
-    <div class="heading_part_discover">
-      <div class="content_header">
-        <h2>Discover projects</h2>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet placeat
-          cum adipisci!
-        </p>
-      </div>
+    <div class="topnav">
+      <a  href="/admin-pannel/dashboard">EasyFund</a>
+      <a href="/all-projects">All projects</a>
+      <a onclick="logout()" href="#">Logout</a>
     </div>
 
     <section class="second-container">
@@ -46,7 +49,7 @@
         <div class="card-list flex">
         
           <% data.forEach(element => { %>
-          <a href="/project/<%= element["_id"] %>">
+          <a href="/admin-pannel/project/<%= element["_id"] %>">
             <div class="card-container">
               <img
               src="data:image/<%=element.CoverPicture.contentType%>;base64,
@@ -78,26 +81,30 @@
           </a>
             <% }); %>
         </div>
-        <% } %>
+        <% } else{ %>
+
+          <div class="message">
+            <p >Currently There is no pending project Available.</p>
+
+
+          </div>
+          
+
+       <%  } %>
     
     
     </section>
-
-    <%- include('../partials/category.ejs') %> 
-
-
-    <div class="Summery">
-      <p class="Ques">Why Don't You Try Easy Fund Now ?</p>
-
-      <div class="Go_to_project">
-        <button class="project_btn">
-          <a href="/general">Create Project</a>
-        </button>
-      </div>
-    </div>
-
-    
-   
-   
   </body>
+  <script defer src="/js/homepage/percentage.js"></script>
+  <script>
+    function logout() {
+    fetch("/admin-pannel/dashboard", {
+      method: "DELETE",
+    });
+
+    setTimeout(() => {
+    window.location.replace("/");
+  }, 1000);
+  }
+  </script>
 </html>

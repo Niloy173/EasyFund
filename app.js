@@ -30,6 +30,9 @@ const port_number = process.env.PORT || 5000; // process.env working through .en
 /*--------------------------*/
 
 /* all route require object goes here */
+const adminRoute = require("./routes/admin/admin.route");
+const projectFromadminRoute = require("./routes/admin/singleStory.route");
+const ShowingAllProjectRoute = require("./routes/admin/allProjects.route");
 const homeRoute = require("./routes/home.route");
 const discoverRoute = require("./routes/discover.route");
 const registerRoute = require("./routes/register.route");
@@ -44,6 +47,7 @@ const personalIdentityRoute = require("./routes/userend/personalIdentity.route")
 const mainStoryRoute = require("./routes/mainStory/story.route");
 const userProjectRoute = require("./routes/userend/userProject.route");
 const BusinessRoute = require("./routes/categories/business.route");
+
 /*---------------*/
 
 /* middleware */
@@ -94,6 +98,11 @@ app.use("/user-project", userProjectRoute.router);
 
 /* category route path goes here */
 app.use("/business", BusinessRoute.router);
+
+/* admin route goes here */
+app.use("/admin-pannel", adminRoute.router);
+app.use("/admin-pannel/project", projectFromadminRoute.router);
+app.use("/admin-pannel", ShowingAllProjectRoute.router);
 
 // for the error handler
 app.use(NotFoundHandler);

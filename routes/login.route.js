@@ -52,6 +52,7 @@ router.post("/", decorateHtmlResponse("login"), (req, res) => {
                     {
                       useremail: data[0].email,
                       userId: data[0]._id,
+                      role: data[0].role,
                     },
                     process.env.JWT_TOKEN,
                     {
@@ -67,19 +68,24 @@ router.post("/", decorateHtmlResponse("login"), (req, res) => {
                     signed: true,
                   });
 
-                  //create a ownerId in projectVerificaion Schema
-                  ProjectVerificationModel.find({ OwnerId: data[0]._id }).then(
-                    (userdata) => {
+                  if (data[0].role === "user") {
+                    //create a ownerId in projectVerificaion Schema
+                    ProjectVerificationModel.find({
+                      OwnerId: data[0]._id,
+                    }).then((userdata) => {
                       if (userdata.length < 1) {
                         const CreateIdentity = new ProjectVerificationModel({
                           OwnerId: data[0]._id,
                         });
                         CreateIdentity.save();
                       }
-                    }
-                  );
+                    });
 
-                  res.redirect("/");
+                    res.redirect("/");
+                  } else {
+                    // redirect to admin pannel
+                    res.redirect("/admin-pannel/dashboard");
+                  }
                 } else {
                   res.render("login", {
                     message: "password is incorrect!",

@@ -30,6 +30,10 @@ const UserSchema = mongoose.Schema(
       contentType: String,
     },
 
+    aboutMe: {
+      type: String,
+    },
+
     university_Name: {
       type: String,
     },
@@ -49,6 +53,12 @@ const UserSchema = mongoose.Schema(
     InformationCollected: {
       type: Boolean,
       required: true,
+    },
+
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
     },
   },
   {

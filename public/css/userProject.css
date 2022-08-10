@@ -186,3 +186,8 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+/* close one of the menu in navabar */
+#navbar ul li:nth-child(1) {
+  display: none;
+}

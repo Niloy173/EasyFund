@@ -94,17 +94,16 @@
   }
 }
 
+@media screen and (max-width: 1400px) {
+  .top-right_ {
+    right: 10%;
+  }
+}
 @media screen and (max-width: 500px) {
   .top-left_ {
     padding: 0 20px;
   }
   .top-right_ {
-    height: 350px;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  .top-right_ {
-    right: 10%;
+    height: 300px;
   }
 }

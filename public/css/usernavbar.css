@@ -23,12 +23,12 @@ hr {
   flex-wrap: wrap;
   background-color: transparent;
   box-shadow: 0 3px 4px rgba(146, 161, 175, 0.15);
-  padding: 0 100px;
+  padding: 0 50px;
 }
 #navbar .logo {
   font-size: 30px;
   font-weight: 600;
-  width: 55%;
+  width: 65%;
   cursor: pointer;
 }
 .logo a {
@@ -37,7 +37,7 @@ hr {
 }
 
 #navbar .nav_menu_item {
-  width: 45%;
+  width: 35%;
 }
 
 #navbar ul {
@@ -45,7 +45,7 @@ hr {
   flex-wrap: wrap;
   cursor: pointer;
   list-style-type: none;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 #navbar ul li:nth-child(1),

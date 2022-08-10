@@ -11,8 +11,9 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/account.css" />
+
     <link rel="stylesheet" href="/css/usernavbar.css" />
+    <link rel="stylesheet" href="/css/account.css" />
   </head>
   <body>
     <%- include("../../partials/navbar.ejs") %>
@@ -61,43 +62,50 @@
       </div>
 
       <% }) %>
+
+      <div class="container">
+        <label for="psw"><b>About Me</b></label>
+        <% if( aboutMeData) { %>
+
+        <textarea
+          class="about-me"
+          name="aboutMe"
+          id="about-me"
+          onkeyup="charCount(this)"
+        >
+ <%= aboutMeData %>
+        </textarea>
+
+        <% } else { %>
+
+        <textarea
+          class="about-me"
+          onkeyup="charCount(this)"
+          placeholder="write something about yourself"
+          id="about-me"
+          name="aboutMe"
+        >
+        </textarea>
+
+        <% } %>
+
+        <span id="highest" class="highest">0/500</span>
+      </div>
       <div class="container">
         <label for="psw"><b>Country or Region</b></label>
-        <input type="text" value="Bangladesh" readonly />
+        <input type="text" class="country" value="Bangladesh" readonly />
 
-        <button id="btn-save" disabled type="submit">save</button>
+        <button disabled id="next" type="submit">save</button>
       </div>
 
       <div class="container">
         <button style="cursor: normal" type="button" class="cancelbtn">
-          <a style="text-decoration: none; color: #000" href="/">cancel</a>
+          <a style="text-decoration: none; color: #000" href="/user/account"
+            >cancel</a
+          >
         </button>
       </div>
     </form>
-    <script>
-      const account_form = document.querySelector("#account");
-      const image_input = document.getElementById("file");
-      const reader = new FileReader();
-
-      image_input.addEventListener("change", function () {
-        if (this.files && this.files[0]) {
-          let display_image = document.querySelector("#display_img");
-          reader.addEventListener("load", function () {
-            display_image.setAttribute("src", reader.result);
-          });
-
-          reader.readAsDataURL(this.files[0]);
-          document.getElementById("btn-save").disabled = false;
-        }
-      });
-
-      /* event click for closing the error related div */
-      const error_div = document.querySelectorAll("#error-btn");
-      for (let index = 0; index < error_div.length; index++) {
-        error_div[index].addEventListener("click", function () {
-          this.parentNode.remove();
-        });
-      }
-    </script>
+    <script defer src="/js/validation/account-page.js"></script>
   </body>
 </html>

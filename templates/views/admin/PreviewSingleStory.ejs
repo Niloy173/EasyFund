@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/css/preview.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <p>Project preview</p>
+    </div>
+
+    <div class="user_story_page">
+      <div class="user_story_left_side">
+        <div class="user_story_picture">
+          <img
+            id="ShowCover"
+            src="data:image/<%=CoverPicture.contentType%>;base64,
+            <%=CoverPicture.data.toString('base64')%>"
+            alt="CoverPhoto"
+            title="Cover Picture of The Story"
+          />
+        </div>
+
+        <div class="caption_of_story">
+          <p id="title"><%= StoryTitle %></p>
+        </div>
+
+        <p
+          style="
+            margin: 30px 0 20px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 23px;
+          "
+        >
+          Story
+        </p>
+
+        <div class="story_teller">
+          <div class="user_profile">
+            <img
+              style="border-radius: 50%; width: 80px; border: 1px solid black"
+              src="data:image/<%=picture.contentType%>;base64,
+              <%=picture.data.toString('base64')%>"
+              alt="profilePic"
+            />
+          </div>
+
+          <div class="user_identity">
+            <p class="username"><%= fullname %></p>
+            <p class="identity"><%= university %></p>
+          </div>
+        </div>
+
+        <textarea readonly id="mainStory" class="main_story">
+  <%= MainStory %></textarea
+        >
+
+        <% if(Object.keys(Attachments).length !=0) { %> <%
+        Attachments.forEach((file) => { %>
+
+        <div class="gallery">
+          <Img
+            src="data:image/<%=file.contentType%>;base64,
+          <%=file.data.toString('base64')%>"
+            alt="<%= file %>"
+            width="600"
+            height="500"
+          />
+        </div>
+
+        <% }) %> <% } %>
+      </div>
+
+      <div class="user_story_right_side">
+        <div class="collected_money_section">
+          <p class="amount_head">collected money</p>
+          <p class="amount">৳ <label style="font-size: 22px"> 0 </label></p>
+
+          <div class="progress">
+            <progress id="file" value="0" max="100">0%</progress>
+          </div>
+
+          <p
+            style="margin: 10px 0; color: rgb(134, 129, 129); font-weight: bold"
+          >
+            Goal : ৳ <label id="goal"> <%= Amount %> </label>
+          </p>
+        </div>
+
+        <div class="remaining_days">
+          <span class="days"> Remaining Days : </span>
+          <label> <%= Validity %></label>
+          <span class="count">
+            <label id="days" style="font-weight: bold; color: #000"></label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="button_container">
+      <hr />
+      <div class="flex_container">
+        <div class="left_btn_back">
+          <button onclick="RejectProject()" type="submit">
+            <a style="text-decoration: none; color: #000" href="#">REJECT</a>
+          </button>
+        </div>
+        <div class="right_btn_complete">
+          <button onclick="AcceptProject()" type="submit">ACCEPT</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    window.setTimeout(function () {
+      document.getElementById("mainStory").style.height =
+        document.getElementById("mainStory").scrollHeight + "px";
+    });
+
+    async function AcceptProject() {
+      const current_url = window.location.href.split("/");
+      const projectId = current_url[current_url.length - 1];
+
+      fetch(`/admin-pannel/project/${projectId}/accept`, {
+        method: "POST",
+      });
+
+      setTimeout(() => {
+        window.location.replace("/admin-pannel/dashboard");
+      }, 1000);
+    }
+
+    async function RejectProject() {
+      const current_url = window.location.href.split("/");
+      const projectId = current_url[current_url.length - 1];
+
+      fetch(`/admin-pannel/project/${projectId}/reject`, {
+        method: "POST",
+      });
+
+      setTimeout(() => {
+        window.location.replace("/admin-pannel/dashboard");
+      }, 1000);
+    }
+  </script>
+</html>

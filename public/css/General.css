@@ -226,3 +226,8 @@ input[type="number"] {
 .error_input {
   border: 1px solid red;
 }
+
+/* for the navbar */
+#navbar .nav_menu_item {
+  display: none;
+}

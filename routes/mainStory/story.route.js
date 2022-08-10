@@ -1,6 +1,5 @@
 /* external packages */
 const express = require("express");
-const jwt = require("jsonwebtoken");
 
 /* internal packages */
 const {
