@@ -5,52 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/card.css" />
   </head>
-  <style>
-    
-
-   
-  </style>
-   <link rel="stylesheet" href="/css/admin.css" />
-   <link rel="stylesheet" href="/css/card.css" />
-
-
-   <script defer src="https://unpkg.com/phosphor-icons"></script>
   <body>
-
     <div class="topnav">
       <a  href="/admin-pannel/dashboard">EasyFund</a>
       <a href="/admin-pannel/all-projects">All projects</a>
       <a onclick="logout()" href="#">Logout</a>
     </div>
-
-    <section class="admin-pannel">
-
-      <div class="all_card">
-
-        <div class="Pending_project card">
-
-          <p>Project Pending</p>
-          <span><%= PendingNumber %></span>
-        </div>
-
-        <div class="Runing_project card">
-
-          <p>Runing Project</p>
-          <span><%= RuningNumber %></span>
-        </div>
-
-
-        <div class="Total_transac card">
-
-          <p>Total Transaction</p>
-          <span>৳50611</span>
-        </div>
-
-      </div>
-
-    </section>
-
     <section class="second-container">
 
       <% if(Object.keys(data).length != 0){ %>
@@ -58,7 +21,7 @@
         <div class="card-list flex">
         
           <% data.forEach(element => { %>
-          <a href="/admin-pannel/project/<%= element["_id"] %>">
+          <a href="/admin-pannel/all-projects/<%= element["_id"] %>">
             <div class="card-container">
               <img
               src="data:image/<%=element.CoverPicture.contentType%>;base64,

@@ -7,8 +7,8 @@ const {
 const { AuthCheck } = require("../../middlewares/common/LoginCheck");
 
 const {
-  DiscoverAllProject,
-} = require("../../controllers/common/discoverProject");
+  RenderAllProject,
+} = require("../../controllers/admin/discover_allproject");
 
 const router = express.Router();
 
@@ -16,8 +16,10 @@ router.get(
   "/all-projects",
   decorateHtmlResponse("All Projects"),
   AuthCheck,
-  DiscoverAllProject
+  RenderAllProject
 );
+
+router.get("/all-projects/:id");
 
 module.exports = {
   router,

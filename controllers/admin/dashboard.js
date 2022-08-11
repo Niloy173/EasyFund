@@ -3,8 +3,10 @@ const fs = require("fs");
 const CreateError = require("http-errors");
 
 const { PendingProject } = require("../../models/PendingProject");
+const { Project } = require("../../models/ProjectSchema");
 
-function RenderPendingProject(req, res, next) {
+async function RenderPendingProject(req, res, next) {
+  const TotalProject = await Project.find({});
   new PendingProject().ShowAllProject((err, data) => {
     if (err) {
       console.log(err.message);
@@ -12,6 +14,8 @@ function RenderPendingProject(req, res, next) {
     } else {
       res.render("admin/dashboard", {
         data,
+        PendingNumber: Object.keys(data).length,
+        RuningNumber: Object.keys(TotalProject).length,
       });
     }
   });

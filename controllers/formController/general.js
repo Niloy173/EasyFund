@@ -33,7 +33,7 @@ async function PostRenderGeneral(req, res, next) {
 
   setTimeout(() => {
     res.redirect("/cover");
-  }, 2000);
+  }, 1000);
 }
 module.exports = {
   GetRenderGeneral,

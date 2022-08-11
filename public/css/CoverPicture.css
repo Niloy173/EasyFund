@@ -41,7 +41,7 @@ body {
 .cover-picture {
   position: relative;
   width: 500px;
-  margin: var(--mb-9) auto;
+  margin: var(--mb-6) auto;
   padding: var(--mb-5) auto;
 }
 

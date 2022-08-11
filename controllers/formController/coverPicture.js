@@ -60,7 +60,7 @@ function PostRenderCover(req, res, next) {
               if (!err) {
                 setTimeout(() => {
                   res.redirect("/story");
-                }, 2000);
+                }, 1000);
               }
             }
           );
