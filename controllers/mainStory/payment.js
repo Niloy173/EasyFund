@@ -155,6 +155,7 @@ async function SuccessFulPaymentTrans(req, res, next) {
     );
 
     // send back to the project
+    console.log(projectURL);
     res.redirect(projectURL);
   } catch (error) {
     // console.log(error.message);

@@ -1,0 +1,66 @@
+.third-section {
+  background-color: #f9f9f9;
+  margin-top: 100px;
+}
+
+.card {
+  padding: 0 10px;
+}
+
+.card i {
+  color: teal;
+  font-size: 50px;
+}
+
+.card h4 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.card span {
+  display: block;
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  color: #999;
+}
+.card p {
+  line-height: 1.8;
+}
+
+@media (max-width: 1399px) {
+  .section-container {
+    max-width: 1024px;
+  }
+}
+@media (max-width: 1199px) {
+  .section-container {
+    max-width: 991px;
+  }
+}
+@media (max-width: 991px) {
+  .section-container {
+    max-width: 767px;
+  }
+  .second-section {
+    position: relative;
+    top: 80px;
+  }
+}
+@media (max-width: 767.98px) {
+  .section-container {
+    max-width: 575px;
+  }
+  .block {
+    display: block;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card-list {
+    max-width: 100%;
+  }
+  .card-container {
+    max-width: 200px;
+  }
+}

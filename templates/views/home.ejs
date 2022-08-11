@@ -17,61 +17,108 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
     <link rel="stylesheet" href="/css/first_container.css" />
-    <!-- <link rel="stylesheet" href="/css/second_container.css" /> -->
     <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/third_container.css">
+    <script src="https://unpkg.com/phosphor-icons"></script>
 
+<<<<<<< HEAD
     <script src="https://unpkg.com/phosphor-icons"></script>
     
+=======
+>>>>>>> 23b4e456aa47c1f6db2c9a75ca4a5a6fc7291b91
   </head>
   <body>
     <%- include("../partials/navbar.ejs") %> <%-
     include("../partials/banner.ejs") %>
+    <% if(Object.keys(ProjectData).length != 0){ %>
 
-<section class="second-container">
+<section class="second-section">
+  <div class=" section-container">
+    <h1 class="section-title">All projects</h1>
+  
+  
+  <div class=" card-list flex">      
+    <% ProjectData.forEach(element => { %>
+    <a href="/project/<%= element["_id"] %>">
+      <div class="card-container">
+        <img
+        src="data:image/<%=element.CoverPicture.contentType%>;base64,
+  <%=element.CoverPicture.data.toString('base64')%>"
+            alt="Sample"
+        />
 
-  <% if(Object.keys(ProjectData).length != 0){ %>
-
-    <div class="card-list flex">
-    
-      <% ProjectData.forEach(element => { %>
-      <a href="/project/<%= element["_id"] %>">
-        <div class="card-container">
-          <img
-          src="data:image/<%=element.CoverPicture.contentType%>;base64,
-    <%=element.CoverPicture.data.toString('base64')%>"
-              alt="Sample"
-          />
-
-          <div class="title">
-            <h3>
-              <%= element["StoryTitle"] %>
-            </h3>
-          </div>
-
-          <div class="category flex">
-            <i class="ph-stack-thin"></i>
-            <span><%= element["Category"] %></span>
-          </div>
-          <div class="flex amount-percent">
-            <span class="amount">৳ <%= element["TargetAmount"] %></span>
-            <p class="percent" id="percentage"></p>
-          </div>
-          <progress
-            max="<%= element["TargetAmount"] %>"
-            value="<%= element["CurrentAmount"] %>"
-            class="progress"
-            data-v-ba5a48cc=""
-          ></progress>
+        <div class="title">
+          <h3>
+            <%= element["StoryTitle"] %>
+          </h3>
         </div>
-      </a>
-        <% }); %>
-    </div>
-    <% } %>
 
+        <div class="category flex">
+          <i class="ph-stack-thin"></i>
+          <span><%= element["Category"] %></span>
+        </div>
+        <div class="flex amount-percent">
+          <span class="amount">৳ <%= element["TargetAmount"] %></span>
+          <p class="percent" id="percentage">60%</p>
+        </div>
+        <progress
+          max="<%= element["TargetAmount"] %>"
+          value="<%= element["CurrentAmount"] %>"
+          class="progress"
+          data-v-ba5a48cc=""
+        ></progress>
+      </div>
+    </a>
+       <% }); %>
+  </div>
+  <% } %>
+</div>
 
 </section>
-   
-    <script defer src="/js/homepage/banner.js"></script>
-    <script defer src="/js/homepage/percentage.js"></script>
-  </body>
-</html>
+<section class="third-section">
+  <div class="section-container block flex">
+    <div class="card">
+      <i class="ph-monitor-bold" ></i>
+      <div>
+        <span>Scalable on Devices. </span>
+        <h4>RESPONSIVE & RETINA</h4>
+      </div>
+      <p>
+        Employment respond committed meaningful fight against oppression
+        social challenges rural legal aid governance. Meaningful work,
+        implementation, process cooperation, campaign inspire.
+      </p>
+    </div>
+    <div class="card">
+      <i class="ph-lightning-bold"></i>
+      <div>
+        <span> Smartly Coded & Maintained.</span>
+        <h4>POWERFUL PERFORMANCE</h4>
+      </div>
+      <p>
+        Medecins du Monde Jane Addams reduce child mortality challenges Ford
+        Foundation. Diversification shifting landscape advocate pathway to a
+        better life rights international. Assessment.
+      </p>
+    </div>
+    <div class="card">
+      <i class="ph-sliders-bold"></i>
+
+      <div>
+        <span>Flexible & Customizable.</span>
+        <h4>TRULY MULTI-PURPOSE</h4>
+      </div>
+      <p>
+        Democracy inspire breakthroughs, Rosa Parks; inspiration raise
+        awareness natural resources. Governance impact; transformative
+        donation philanthropy, respect reproductive.
+      </p>
+    </div>
+  </div>
+</section>
+      
+    
+        <script defer src="/js/homepage/banner.js"></script>
+        <script defer src="/js/homepage/percentage.js"></script>
+      </body>
+    </html>
