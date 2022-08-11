@@ -4,6 +4,9 @@ body {
 .flex {
   display: flex;
 }
+.title h3 {
+  font-size: 20px;
+}
 
 .section-container {
   max-width: 1324px;
@@ -121,11 +124,25 @@ progress::-webkit-progress-value {
 }
 
 @media (max-width: 575.98px) {
+  .title h3 {
+    font-size: 15px;
+  }
   .card-list {
     max-width: 100%;
   }
   .card-container {
     max-width: 200px;
+  }
+}
+@media (max-width: 456px) {
+  .card-list {
+    max-width: 100%;
+  }
+  .card-list a {
+    padding: 2px;
+  }
+  .card-container {
+    width: 180px;
   }
 }
 
