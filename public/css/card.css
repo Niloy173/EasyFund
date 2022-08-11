@@ -1,10 +1,20 @@
 body {
   margin: 0;
-  padding: 0;
 }
 .flex {
   display: flex;
 }
+
+.section-container {
+  max-width: 1324px;
+  margin: 50px auto;
+}
+
+.section-title {
+  padding: 20px 0;
+  text-align: center;
+}
+
 .card-container {
   border: 1px solid black;
   width: 250px;
@@ -66,7 +76,7 @@ progress::-webkit-progress-value {
 }
 
 .category i {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .category span {
@@ -78,28 +88,31 @@ progress::-webkit-progress-value {
 }
 
 .card-list {
-  max-width: 1324px;
-  margin: 150px auto;
   flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
 }
-@media (max-width: 1399.98px) {
-  .card-list {
+@media (max-width: 1399px) {
+  .section-container {
     max-width: 1024px;
   }
 }
-@media (max-width: 1199.98px) {
-  .card-list {
+@media (max-width: 1199px) {
+  .section-container {
     max-width: 991px;
   }
 }
-@media (max-width: 991.98px) {
-  .card-list {
+@media (max-width: 991px) {
+  .section-container {
     max-width: 767px;
+  }
+  .second-section {
+    position: relative;
+    top: 80px;
   }
 }
 @media (max-width: 767.98px) {
-  .card-list {
+  .section-container {
     max-width: 575px;
   }
   .card-container {
