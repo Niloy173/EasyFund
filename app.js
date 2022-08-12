@@ -29,10 +29,12 @@ const templatePath = path.join(__dirname, "/templates/views/");
 const port_number = process.env.PORT || 5000; // process.env working through .env file
 /*--------------------------*/
 
-/* all route require object goes here */
+/* admin route file require her */
 const adminRoute = require("./routes/admin/admin.route");
 const projectFromadminRoute = require("./routes/admin/singleStory.route");
 const ShowingAllProjectRoute = require("./routes/admin/allProjects.route");
+
+/* all route require object goes here */
 const homeRoute = require("./routes/home.route");
 const discoverRoute = require("./routes/discover.route");
 const registerRoute = require("./routes/register.route");
@@ -46,7 +48,10 @@ const userAccountRoute = require("./routes/userend/account.route");
 const personalIdentityRoute = require("./routes/userend/personalIdentity.route");
 const mainStoryRoute = require("./routes/mainStory/story.route");
 const userProjectRoute = require("./routes/userend/userProject.route");
+
+/* all cageory route file included here */
 const BusinessRoute = require("./routes/categories/business.route");
+const EngineeringRoute = require("./routes/categories/engineering.route");
 
 /*---------------*/
 
@@ -98,6 +103,7 @@ app.use("/user-project", userProjectRoute.router);
 
 /* category route path goes here */
 app.use("/business", BusinessRoute.router);
+app.use("/engineering", EngineeringRoute.router);
 
 /* admin route goes here */
 app.use("/admin-pannel", adminRoute.router);
