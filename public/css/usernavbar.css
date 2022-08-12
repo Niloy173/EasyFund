@@ -20,7 +20,7 @@ hr {
   height: 90px;
   width: 100%;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
   background-color: transparent;
   box-shadow: 0 3px 4px rgba(146, 161, 175, 0.15);
   padding: 0 50px;
@@ -28,7 +28,7 @@ hr {
 #navbar .logo {
   font-size: 30px;
   font-weight: 600;
-  width: 65%;
+  width: 40%;
   cursor: pointer;
 }
 .logo a {
@@ -37,7 +37,7 @@ hr {
 }
 
 #navbar .nav_menu_item {
-  width: 35%;
+  width: 45%;
 }
 
 #navbar ul {
@@ -54,9 +54,10 @@ hr {
 }
 
 #navbar ul li:nth-child(2) img {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  object-fit: cover;
   cursor: pointer;
   border: 1px solid black;
 }
@@ -204,4 +205,10 @@ hr {
 .sidenav a:hover {
   background: #8899a6;
   color: #000;
+}
+
+@media (max-width: 575.98px) {
+  #navbar {
+    padding: 0 10px;
+  }
 }
