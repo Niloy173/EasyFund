@@ -15,11 +15,8 @@ function BackPressed() {
     }
   }
 }
-<<<<<<< HEAD
 
 // window.addEventListener("beforeunload", function (e) {
 //   e.preventDefault();
 //   e.returnValue = `Are you sure you want to leave?`;
 // });
-=======
->>>>>>> b4cac55746840e171a05e4d0396284d851e5d4ff
