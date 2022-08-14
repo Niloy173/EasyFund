@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/usernavbar.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/category.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+  </head>
+  <body>
+
+    <%- include("../../partials/navbar.ejs") %>;
+    <div class="heading_part_discover">
+      <div class="content_header">
+        <h2>Engineering projects</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet placeat
+          cum adipisci!
+        </p>
+      </div>
+    </div>
+
+  
+      <section class="second-container">
+
+        <% if(Object.keys(data).length != 0){ %>
+      
+          <div class="card-list flex">
+          
+            <% data.forEach(element => { %>
+            <a href="/project/<%= element["_id"] %>">
+              <div class="card-container">
+                <img
+                src="data:image/<%=element.CoverPicture.contentType%>;base64,
+          <%=element.CoverPicture.data.toString('base64')%>"
+                    alt="Sample"
+                />
+      
+                <div class="title">
+                  <h3>
+                    <%= element["StoryTitle"] %>
+                  </h3>
+                </div>
+      
+                <div class="category flex">
+                  <i class="ph-stack-thin"></i>
+                  <span><%= element["Category"] %></span>
+                </div>
+                <div class="flex amount-percent">
+                  <span class="amount">৳ <%= element["TargetAmount"] %></span>
+                  <p class="percent" id="percentage"></p>
+                </div>
+                <progress
+                  max="<%= element["TargetAmount"] %>"
+                  value="<%= element["CurrentAmount"] %>"
+                  class="progress"
+                  data-v-ba5a48cc=""
+                ></progress>
+              </div>
+            </a>
+              <% }); %>
+          </div>
+          <% }  else { %>
+            <div class="second_container">
+              <p class="head"> Currently No Project Available</p>
+            </div>
+            
+            <% } %>
+      
+      
+      </section>
+
+        
+    
+
+    <%- include('../../partials/category.ejs') %>
+
+    <div class="Summery">
+      <p class="Ques">Why Don't You Try Easy Fund Now ?</p>
+
+      <div class="Go_to_project">
+        <button class="project_btn">
+          <a href="/general">Create Project</a>
+        </button>
+      </div>
+    </div>
+
+    <script src="/js/navbarSlide.js"></script>
+  </body>
+</html>
