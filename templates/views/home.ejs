@@ -21,11 +21,19 @@
     <link rel="stylesheet" href="/css/first_container.css" />
     <link rel="stylesheet" href="/css/anouncement.css "/>
     <link rel="stylesheet" href="/css/card.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/announcment.css">
     <link rel="stylesheet" href="/css/third_container.css">
     <link rel="stylesheet" href="/css/category.css" />
     <link rel="stylesheet" href="/css/discover.css">
     <link rel="stylesheet" href="/css/footer.css">
+=======
+    <link rel="stylesheet" href="/css/announcment.css"/>
+    <link rel="stylesheet" href="/css/third_container.css" />
+    <link rel="stylesheet" href="/css/discover.css" />
+    <link rel="stylesheet" href="/css/category.css" />
+    <link rel="stylesheet" href="/css/footer.css"/>
+>>>>>>> a0308e1... check medical and engineering section
     <script src="https://unpkg.com/phosphor-icons"></script>
 
 
@@ -194,7 +202,7 @@
 </section>
 
 
-<% if(Object.keys(ProjectData).length != 0){ %>
+<% if(Object.keys(MedicalData).length != 0){ %>
 
   <section class="second-section">
     <div class=" section-container">
@@ -202,7 +210,7 @@
     
     
     <div class=" card-list flex">      
-      <% ProjectData.forEach(element => { %>
+      <% MedicalData.forEach(element => { %>
       <a href="/project/<%= element["_id"] %>">
         <div class="card-container ">
           <img
@@ -238,8 +246,13 @@
     <% } %>
   </div>
   
+<<<<<<< HEAD
   </section> 
   <% if(Object.keys(ProjectData).length != 0){ %>
+=======
+  </section>
+  <% if(Object.keys(EngineeringData).length != 0){ %>
+>>>>>>> a0308e1... check medical and engineering section
 
     <section class="second-section">
       <div class=" section-container">
@@ -247,7 +260,7 @@
       
       
       <div class=" card-list flex">      
-        <% ProjectData.forEach(element => { %>
+        <% EngineeringData.forEach(element => { %>
         <a href="/project/<%= element["_id"] %>">
           <div class="card-container ">
             <img
