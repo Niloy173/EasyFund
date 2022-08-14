@@ -12,7 +12,7 @@ function Calculate_percentage(TargetMoney, currMoney) {
 const all_card = document.querySelectorAll(".card-container");
 
 for (let index = 0; index < all_card.length; index++) {
-  console.log(all_card[index].children);
+  // console.log(all_card[index].children);
 
   // console.log(all_card[index].children[3].children[0].innerHTML);
   // console.log(all_card[index].children[4].value);
