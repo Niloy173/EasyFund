@@ -40,7 +40,7 @@ body {
 
 .cover-picture {
   position: relative;
-  width: 500px;
+  max-width: 500px;
   margin: var(--mb-6) auto;
   padding: var(--mb-5) auto;
 }
@@ -53,9 +53,11 @@ body {
 }
 
 .important-notice {
+  max-width: 450px;
   background-color: var(--third-color);
   opacity: 0.6;
-  margin: 0.75rem 1.5rem;
+  margin: 10px auto;
+
   border: 1px solid #ddd;
 }
 
@@ -71,13 +73,14 @@ body {
 }
 
 .image-container img {
-  width: 450px;
+  max-width: 450px;
   height: 400px;
-  margin: 0rem 1.5rem 1rem;
+  margin: auto;
 }
 
 .select-image {
-  margin: 0rem 1.5rem;
+  max-width: 450px;
+  margin: auto;
 }
 
 input[type="file"] {
@@ -131,4 +134,16 @@ input[type="file"] {
 /* for the navbar */
 #navbar .nav_menu_item {
   display: none;
+}
+
+@media (max-width: 575.98px) {
+  .image-container img {
+    max-width: 375px;
+  }
+  .select-image {
+    max-width: 375px;
+  }
+  .important-notice {
+    max-width: 375px;
+  }
 }

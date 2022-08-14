@@ -3,7 +3,12 @@
   color: #000000;
   width: 100%;
 }
+
+.singleSlide {
+  background-color: black;
+}
 .first_container img {
+  opacity: 0.4;
   object-fit: cover;
   height: 80vh;
   background-repeat: no-repeat;
