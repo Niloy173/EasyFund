@@ -21,9 +21,10 @@
     <link rel="stylesheet" href="/css/first_container.css" />
     <link rel="stylesheet" href="/css/card.css" />
     <link rel="stylesheet" href="/css/announcment.css"/>
-    <link rel="stylesheet" href="/css/third_container.css">
-
+    <link rel="stylesheet" href="/css/third_container.css" />
+    <link rel="stylesheet" href="/css/discover.css" />
     <link rel="stylesheet" href="/css/category.css" />
+    <link rel="stylesheet" href="/css/footer.css"/>
     <script src="https://unpkg.com/phosphor-icons"></script>
 
 
@@ -190,7 +191,7 @@
 </section>
 
 
-<% if(Object.keys(ProjectData).length != 0){ %>
+<% if(Object.keys(MedicalData).length != 0){ %>
 
   <section class="second-section">
     <div class=" section-container">
@@ -198,7 +199,7 @@
     
     
     <div class=" card-list flex">      
-      <% ProjectData.forEach(element => { %>
+      <% MedicalData.forEach(element => { %>
       <a href="/project/<%= element["_id"] %>">
         <div class="card-container ">
           <img
@@ -235,7 +236,7 @@
   </div>
   
   </section>
-  <% if(Object.keys(ProjectData).length != 0){ %>
+  <% if(Object.keys(EngineeringData).length != 0){ %>
 
     <section class="second-section">
       <div class=" section-container">
@@ -243,7 +244,7 @@
       
       
       <div class=" card-list flex">      
-        <% ProjectData.forEach(element => { %>
+        <% EngineeringData.forEach(element => { %>
         <a href="/project/<%= element["_id"] %>">
           <div class="card-container ">
             <img
