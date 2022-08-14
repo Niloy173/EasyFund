@@ -10,8 +10,17 @@ async function GetMeAllProjectCard(req, res, next) {
 
     // console.log (ProjectData);
 
+    const EngineeringData = await Project.find({ Category: "Engineering" })
+      .limit(4)
+      .sort("-createdAt");
+    const MedicalData = await Project.find({ Category: "Medical" })
+      .limit(4)
+      .sort("-createdAt");
+
     res.status(200).render("home", {
       ProjectData,
+      EngineeringData,
+      MedicalData,
     });
   } catch (error) {
     // console.log(error);
