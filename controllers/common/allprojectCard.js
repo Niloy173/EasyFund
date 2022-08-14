@@ -7,14 +7,15 @@ async function GetMeAllProjectCard(req, res, next) {
       .select({})
       .limit(8)
       .sort("-createdAt");
+
+    // console.log (ProjectData);
+
     const EngineeringData = await Project.find({ Category: "Engineering" })
       .limit(4)
       .sort("-createdAt");
     const MedicalData = await Project.find({ Category: "Medical" })
       .limit(4)
       .sort("-createdAt");
-
-    // console.log (ProjectData);
 
     res.status(200).render("home", {
       ProjectData,

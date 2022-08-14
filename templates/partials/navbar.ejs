@@ -25,7 +25,7 @@
       </li>
     </ul>
   </div>
-  <label onclick="opennav()" id="show_nav" for="click" class="menu-btn">
+  <label onclick="opennav()" for="click" class="menu-btn">
     <div class="menu-bar">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -72,7 +72,7 @@
 <nav id="navbar_">
   <div class="logo"><a href="/">EasyFunD</a></div>
   <!-- <input type="checkbox" id="click" /> -->
-  <label id="show_nav" for="click" class="menu-btn">
+  <label onclick="showNav()" id="show_nav" for="click" class="menu-btn">
     <div class="menu-bar">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -134,16 +134,16 @@
     document.getElementById("mySidenav").classList.remove("openNavbar");
   }
 
-  let nav_menu_item = document.getElementById("nav_menu_item");
-  let show_nav = document.getElementById("show_nav");
+  function showNav() {
+    let nav_menu_item = document.getElementById("nav_menu_item");
+    let show_nav = document.getElementById("show_nav");
 
-  show_nav.addEventListener("click", function (e) {
     timecount += 1;
     if (timecount % 2 == 0) {
       nav_menu_item.style.right = "-100%";
     } else {
       nav_menu_item.style.right = "0";
     }
-    console.log(timecount);
-  });
+    // console.log(timecount);
+  }
 </script>
