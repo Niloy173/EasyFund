@@ -1,6 +1,10 @@
 .anouncement-section {
+  position: relative;
+  top: 50px;
+  background-color: #faf7f2;
   font-family: sans-serif;
   padding: 50px 0;
+  margin-top: 50px;
 }
 .anouncement-container {
   max-width: 1024px;
@@ -68,6 +72,7 @@
 }
 
 .text i {
+  color: white;
   font-weight: bold;
   font-size: 30px;
 }

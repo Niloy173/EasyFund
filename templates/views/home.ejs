@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/css/third_container.css">
     <link rel="stylesheet" href="/css/category.css" />
     <link rel="stylesheet" href="/css/discover.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <script src="https://unpkg.com/phosphor-icons"></script>
 <<<<<<< HEAD
 
@@ -145,7 +146,7 @@
 
 
 
-
+<%- include('../partials/category.ejs') %> 
 
 
 
@@ -195,7 +196,7 @@
   </div>
   <a class="section-container" href="/article/how_it_works.html">How EasyFund Works?</a>
 </section>
-<%- include('../partials/category.ejs') %> 
+
 
 <% if(Object.keys(ProjectData).length != 0){ %>
 
@@ -298,6 +299,7 @@
       </div>
     </div>
 
+    <%- include('../partials/footer.ejs') %> 
       
     
         <script defer src="/js/homepage/banner.js"></script>

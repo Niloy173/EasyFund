@@ -1,0 +1,24 @@
+.footer-container {
+  padding: 50px 10px;
+  justify-content: space-between;
+}
+.home {
+  padding: 20px 0;
+}
+.learn-more {
+  padding: 20px 0;
+}
+.about-us {
+  padding: 20px 0;
+}
+
+footer {
+  background-color: #f6f6f6;
+  height: 50vh;
+}
+
+@media (max-width: 575.98px) {
+  .footer-container {
+    display: block;
+  }
+}
