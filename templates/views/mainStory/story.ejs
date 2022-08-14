@@ -22,118 +22,32 @@
     <link rel="stylesheet" href="/css/usernavbar.css" />
   </head>
   <body>
-    <%- include("../../partials/navbar.ejs") %>; <%
-    ProjectInformation.forEach(element => { %>
-    <div class="user_story_page">
-      <div class="user_story_left_side">
+    <%- include("../../partials/navbar.ejs") %>;
+
+     <%ProjectInformation.forEach(element => { %>
+
+
+
+<section class="story section">
+  <div class="project-area">
+    <div class="head-container flex justify-center ">
+      <div class="left-area">
         <div class="user_story_picture">
           <img
             class="card-cover-img"
             src="data:image/<%=element.CoverPicture.contentType%>;base64,
-<%=element.CoverPicture.data.toString('base64')%>"
+            <%=element.CoverPicture.data.toString('base64')%>"
             alt="Sample"
             title="Cover picture of the story"
           />
         </div>
-        <div class="caption_of_story">
-          <p id="title"><%= element["StoryTitle"] %></p>
-        </div>
+        <p>Created at</p>
+        
+          <p class="caption_of_story" id="title"><%= element["StoryTitle"] %></p>
+       
 
-        <p
-          style="
-            margin: 30px 0 10px;
-            text-align: left;
-            font-weight: bold;
-            font-size: 23px;
-          "
-        >
-          people who supported :
-          <label id="profile_count"> <%= SupporterLength %></label>
-        </p>
-        <hr style=" width: 650px" />
-
-        <div style="display: flex" id="supporters" class="supporters">
-          <% if (SupporterProfile.length !=0) { %>
-          <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
-           <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
-          <a  href="#">
-            <img
-            style="
-              border-radius: 50%;
-              width: 70px;
-              height: 70px;
-              border: 1px solid black;
-              margin: 0 10px;
-            "
-            src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
-        <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
-            alt="supporter-profilePic"
-            title="<%= SupporterProfile[i].user_name %>"
-          />
-          </a>
-            <% } %>
-          </div>
-          <% } else { %>
-          <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
-            <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
-            <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
-           <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
-            <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
-           </div>
-          </div>
-          <% } %>
-        </div>
-
-        <p
-          style="
-            margin: 30px 0 15px 0;
-            text-align: left;
-            font-weight: bold;
-            font-size: 23px;
-          "
-        >
-          Story
-        </p>
-
-        <div class="story_teller">
-          <div class="user_profile">
-            <img
-              style="border-radius: 50%; width: 80px; border: 1px solid black"
-              src="data:image/<%=OwnerAvatar.contentType%>;base64,
-        <%=OwnerAvatar.data.toString('base64')%>"
-              alt="profilePic"
-            />
-          </div>
-          <div class="user_identity">
-            <p class="username"><%= Owner_name %></p>
-            <p class="identity"><%= Owner_university %></p>
-          </div>
-        </div>
-        <textarea
-          style="font-family: system-ui; font-size: 18px"
-          readonly
-          id="mainStory"
-          class="main_story"
-        >
-<%= element["MainStory"] %></textarea
-        >
-
-        <% if(AttachmentLength) { %> <% element.Attachments.forEach((file) => {
-        %>
-
-        <div class="gallery">
-          <img
-            src="data:image/<%=file.contentType%>;base64,
-          <%=file.data.toString('base64')%>"
-            alt="attachment-<%= file._id %>"
-            width="600"
-            height="500"
-          />
-        </div>
-
-        <% }) %> <% } %>
       </div>
-      <div class="user_story_right_side">
+      <div class="right-area">
         <div class="collected_money_section">
           <p class="amount_head">collected money</p>
           <p class="amount">
@@ -192,6 +106,58 @@
             Help by sharing
           </button>
         </div>
+      </div>
+    </div>
+    <div class="support-container flex gap justify-center">
+      <div class="left-area">
+        <p
+        style="
+          margin: 30px 0 10px;
+          text-align: left;
+          font-weight: bold;
+          font-size: 23px;
+        "
+      >
+        people who supported :
+        <label id="profile_count"> <%= SupporterLength %></label>
+      </p>
+      <hr style=" width: 100%; border: 1px solid black;" />
+
+      <div style="display: flex" id="supporters" class="supporters">
+        <% if (SupporterProfile.length !=0) { %>
+        <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
+         <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
+        <a  href="#">
+          <img
+          style="
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            border: 1px solid black;
+            margin: 0 10px;
+            object-fit: cover;
+
+          "
+          src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
+      <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
+          alt="supporter-profilePic"
+          title="<%= SupporterProfile[i].user_name %>"
+        />
+        </a>
+          <% } %>
+        </div>
+        <% } else { %>
+        <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
+          <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
+          <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
+         <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
+          <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
+         </div>
+        </div>
+        <% } %>
+      </div>
+      </div>
+      <div class="right-area">
         <div class="easy_fund">
           <div class="about_easy_fund">
             <div class="icon">
@@ -206,9 +172,80 @@
             deleniti. In reprehenderit eveniet asperiores?
           </p>
         </div>
+
       </div>
     </div>
-    <% }); %>
+
+    <div class="story-container flex justify-center column">
+      <p
+      style="
+        margin: 30px 0 15px 0;
+        text-align: left;
+        font-weight: bold;
+        font-size: 23px;
+      "
+    >
+      Story
+    </p>
+
+    <hr style=" width: 100%; border: 1px solid black;" />
+
+    <div class="story_teller">
+      <div class="user_profile">
+        <img
+          style="border-radius: 50%;object-fit: cover; width: 80px; height:80px; border: 1px solid black"
+          src="data:image/<%=OwnerAvatar.contentType%>;base64,
+    <%=OwnerAvatar.data.toString('base64')%>"
+          alt="profilePic"
+        />
+      </div>
+      <div class="user_identity">
+        <p class="username"><%= Owner_name %></p>
+        <p class="identity"><%= Owner_university %></p>
+      </div>
+    </div>
+
+    
+      <textarea
+      style="font-family: system-ui; font-size: 18px; width: 100%;"
+      readonly
+      id="mainStory"
+      class="main_story"
+    >
+<%= element["MainStory"] %></textarea
+    >
+    
+    
+
+    
+<div>
+  <% if(AttachmentLength) { %> <% element.Attachments.forEach((file) => {
+    %>
+  <div class="gallery">
+    <img
+      src="data:image/<%=file.contentType%>;base64,
+    <%=file.data.toString('base64')%>"
+      alt="attachment-<%= file._id %>"
+      width="600"
+      height="500"
+    />
+  </div>
+  <% }) %> <% } %>
+</div>
+    
+
+ 
+  </div>
+ 
+</div>
+<% }); %>
+    
+</section>
+
+  
+
+
+     
     <div id="Help_by_sharing" class="help_by_sharing">
       <p>Help by sharing</p>
       <div class="social_icon">
@@ -222,6 +259,7 @@
         <button id="copy-btn" onclick="CopyLink()">copy</button>
       </div>
     </div>
+   
     <script defer src="/js/mainstory.js"></script>
 
    

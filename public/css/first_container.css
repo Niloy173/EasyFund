@@ -103,7 +103,7 @@
     right: 10%;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 575px) {
   .top-left_ {
     padding: 0 20px;
   }
@@ -114,5 +114,15 @@
   .top-right_ h2 {
     padding: 5px 0;
     font-size: 35px;
+  }
+  .top-right_ button {
+    font-size: 15px;
+    padding: 8px 12px;
+  }
+  .top-right_ p {
+    padding-bottom: 5px;
+  }
+  .top-left_ {
+    top: 10%;
   }
 }
