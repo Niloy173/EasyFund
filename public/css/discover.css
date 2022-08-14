@@ -1,5 +1,5 @@
 .heading_part_discover {
-  background-color: #f2f2f2;
+  background-color: #f0faf7;
 }
 
 .content_header {
@@ -39,7 +39,7 @@
 /*-----------------*/
 
 .Summery {
-  margin: 50px 0;
+  margin: 100px 0 100px;
 }
 
 .Summery .Ques {
@@ -56,13 +56,13 @@
 
 .Summery a {
   text-decoration: none;
-  color: #000;
+  color: white;
 }
 
 .project_btn {
   padding: 15px 30px;
   font-size: 20px;
-  background-color: rgb(52, 212, 212);
+  background-color: teal;
   font-weight: bold;
   border: none;
   border-radius: 5px;

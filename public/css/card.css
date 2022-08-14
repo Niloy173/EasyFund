@@ -18,6 +18,14 @@ body {
   text-align: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
+.category-title {
+  padding: 20px 10px;
+}
+
 .card-container {
   border: 1px solid black;
   width: 250px;
@@ -93,7 +101,6 @@ progress::-webkit-progress-value {
 .card-list {
   flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
 }
 @media (max-width: 1399px) {
   .section-container {
