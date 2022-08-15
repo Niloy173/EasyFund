@@ -15,7 +15,10 @@ async function GetTheMainStory(req, res, next) {
     const [Attachments] = ProjectInformation.map((item) => item.Attachments);
     const [Supporter] = ProjectInformation.map((item) => item.Supporter);
     const [CreationDate] = ProjectInformation.map((item) => item.CreationDate);
-
+    const [TargetAmount] = ProjectInformation.map((item) => item.TargetAmount);
+    const [CurrentAmount] = ProjectInformation.map(
+      (item) => item.CurrentAmount
+    );
     //find out Owner information
     const OwnerInformation = await User.find({ _id: OwnerId });
     // console.log(OwnerInformation);
@@ -27,10 +30,14 @@ async function GetTheMainStory(req, res, next) {
       // any user logged in
       if (req.user.userId != OwnerId) {
         // support section enabled
-        OtherUser = "Support";
+        if (CurrentAmount < parseInt(TargetAmount)) {
+          OtherUser = "Support";
+        }
       }
     } else {
-      OtherUser = "Support";
+      if (CurrentAmount < parseInt(TargetAmount)) {
+        OtherUser = "Support";
+      }
     }
 
     // project url
