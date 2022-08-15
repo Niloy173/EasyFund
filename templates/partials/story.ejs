@@ -3,6 +3,7 @@
     <p>Project preview</p>
   </div>
 
+<<<<<<< HEAD
   <div class="user_story_page">
     <div class="user_story_left_side">
       <div class="user_story_picture">
@@ -19,6 +20,45 @@
       </div>
 
       <p
+=======
+  <section class="story-section">
+    <div class="project-area">
+      <div class="head-container flex justify-center">
+        <div class="left-area">
+          <div class="user_story_picture">
+            <img
+              id="ShowCover"
+              src="/coverPicture/<%= CoverPicture %>"
+              alt="CoverPhoto"
+              title="Cover Picture of The Story"
+            />
+          </div>
+          <p id="title"><%= StoryTitle %></p>
+        </div>
+        <div class="right-area">
+          <div class="collected_money_section">
+            <p class="amount_head">collected money</p>
+            <p class="amount">৳ <label style="font-size: 22px"> 0 </label></p>
+
+            <div class="progress">
+              <progress id="file" value="0" max="100">0%</progress>
+            </div>
+
+            <p
+              style="
+                margin: 10px 0;
+                color: rgb(134, 129, 129);
+                font-weight: bold;
+              "
+            >
+              Goal : ৳ <label id="goal"> <%= Amount %> </label>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="story-container flex justify-center column">
+        <p
+>>>>>>> 0097e2c (preview page solved)
         style="
           margin: 30px 0 20px;
           text-align: left;
@@ -28,11 +68,10 @@
       >
         Story
       </p>
-
       <div class="story_teller">
         <div class="user_profile">
           <img
-            style="border-radius: 50%; width: 80px; border: 1px solid black"
+          style="border-radius: 50%;object-fit: cover; width: 80px; height:80px; border: 1px solid black"
             src="data:image/<%=picture.contentType%>;base64,
             <%=picture.data.toString('base64')%>"
             alt="profilePic"
@@ -44,48 +83,35 @@
           <p class="identity"><%= university %></p>
         </div>
       </div>
-
-      <textarea readonly id="mainStory" class="main_story">
-<%= MainStory %></textarea
-      >
-
-      <% if(AttachmentLength) { %> <% Attachment.forEach((file) => { %>
-
-      <div class="gallery">
-        <Img
-          src="/projectAttachment/<%= file %>"
-          alt="<%= file %>"
-          width="600"
-          height="500"
-        />
+      <textarea
+      style="font-family: system-ui; font-size: 18px; width: 100%;"
+      readonly
+      id="mainStory"
+      class="main_story"
+    >
+    <%= MainStory %></textarea
+    >
+  
+      <div>
+        <% if(AttachmentLength) { %> <% Attachment.forEach((file) => { %>
+      
+          <div class="gallery">
+            <Img
+              src="/projectAttachment/<%= file %>"
+              alt="<%= file %>"
+              width="600"
+              height="500"
+            />
+          </div>
+    
+          <% }) %> <% } %>
       </div>
+         
 
-      <% }) %> <% } %>
     </div>
+  </section>
 
-    <div class="user_story_right_side">
-      <div class="collected_money_section">
-        <p class="amount_head">collected money</p>
-        <p class="amount">৳ <label style="font-size: 22px"> 0 </label></p>
-
-        <div class="progress">
-          <progress id="file" value="0" max="100">0%</progress>
-        </div>
-
-        <p style="margin: 10px 0; color: rgb(134, 129, 129); font-weight: bold">
-          Goal : ৳ <label id="goal"> <%= Amount %> </label>
-        </p>
-      </div>
-
-      <div class="remaining_days">
-        <span class="days"> Remaining Days : </span>
-        <label> <%= Validity %></label>
-        <span class="count">
-          <label id="days" style="font-weight: bold; color: #000"></label>
-        </span>
-      </div>
-    </div>
-  </div>
+ 
 
   <div class="button_container">
     <hr />
