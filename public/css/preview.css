@@ -271,7 +271,6 @@ progress::-webkit-progress-bar {
 }
 
 .button_container {
-  position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 1;

@@ -58,8 +58,8 @@ a {
 
 .progress {
   width: 100%;
-  height: 20px;
-  border: 1px solid black;
+  height: 10px;
+  border: initial;
 }
 progress::-webkit-progress-bar {
   background-color: #eeeeee;
