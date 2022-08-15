@@ -52,7 +52,7 @@ span {
 
 .personal-information {
   position: relative;
-  width: 500px;
+  max-width: 500px;
   margin: var(--mb-9) auto;
   padding: var(--mb-5) auto;
 }

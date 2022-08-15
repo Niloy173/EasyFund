@@ -12,15 +12,16 @@
     />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
-    <link rel="stylesheet" href="/css/common.css" />
+   
     <link rel="stylesheet" href="/css/category.css" />
     <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/discover.css">
 
     <script src="https://unpkg.com/phosphor-icons"></script>
   </head>
   <body>
 
-    <%- include("../../partials/navbar.ejs") %>;
+    <%- include("../../partials/navbar.ejs") %>
     <div class="heading_part_discover">
       <div class="content_header">
         <h2>Engineering projects</h2>
@@ -34,51 +35,57 @@
 
   
       <section class="second-container">
+        <div class="section-container">
 
-        <% if(Object.keys(data).length != 0){ %>
+          <% if(Object.keys(data).length != 0){ %>
       
-          <div class="card-list flex">
-          
-            <% data.forEach(element => { %>
-            <a href="/project/<%= element["_id"] %>">
-              <div class="card-container">
-                <img
-                src="data:image/<%=element.CoverPicture.contentType%>;base64,
-          <%=element.CoverPicture.data.toString('base64')%>"
-                    alt="Sample"
-                />
-      
-                <div class="title">
-                  <h3>
-                    <%= element["StoryTitle"] %>
-                  </h3>
-                </div>
-      
-                <div class="category flex">
-                  <i class="ph-stack-thin"></i>
-                  <span><%= element["Category"] %></span>
-                </div>
-                <div class="flex amount-percent">
-                  <span class="amount">৳ <%= element["TargetAmount"] %></span>
-                  <p class="percent" id="percentage"></p>
-                </div>
-                <progress
-                  max="<%= element["TargetAmount"] %>"
-                  value="<%= element["CurrentAmount"] %>"
-                  class="progress"
-                  data-v-ba5a48cc=""
-                ></progress>
-              </div>
-            </a>
-              <% }); %>
-          </div>
-          <% }  else { %>
-            <div class="second_container">
-              <p class="head"> Currently No Project Available</p>
-            </div>
+            <div class="card-list flex">
             
-            <% } %>
-      
+              <% data.forEach(element => { %>
+              <a href="/project/<%= element["_id"] %>">
+                <div class="card-container">
+                  <img
+                  src="data:image/<%=element.CoverPicture.contentType%>;base64,
+            <%=element.CoverPicture.data.toString('base64')%>"
+                      alt="Sample"
+                  />
+        
+                  <div class="title">
+                    <h3>
+                      <%= element["StoryTitle"] %>
+                    </h3>
+                  </div>
+        
+                  <div class="category flex">
+                    <i class="ph-stack-thin"></i>
+                    <span><%= element["Category"] %></span>
+                  </div>
+                  <div class="flex amount-percent">
+                    <span class="amount">৳ <%= element["TargetAmount"] %></span>
+                    <p class="percent" id="percentage"></p>
+                  </div>
+                  <progress
+                    max="<%= element["TargetAmount"] %>"
+                    value="<%= element["CurrentAmount"] %>"
+                    class="progress"
+                    data-v-ba5a48cc=""
+                  ></progress>
+                </div>
+              </a>
+                <% }); %>
+            </div>
+            <% }  else { %>
+              <div class="second_container">
+                <p class="head"> Currently No Project Available</p>
+              </div>
+              
+              <% } %>
+        
+
+
+        </div>
+
+       
       
       </section>
 
