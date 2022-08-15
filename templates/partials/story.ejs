@@ -1,9 +1,218 @@
-<form id="PreviewForm" method="post">
+<!-- <form id="PreviewForm" method="post">
   <div class="dashboard">
     <p>Project preview</p>
-  </div>
+  </div> -->
 
-  <div class="user_story_page">
+<secti   git pon class="story section">
+  <div class="project-area">
+    <div class="head-container flex justify-center">
+      <div class="left-area">
+        <div class="user_story_picture">
+          <img
+            class="card-cover-img"
+            id="ShowCover"
+            src="/coverPicture/<%= CoverPicture %>"
+            alt="CoverPhoto"
+            title="Cover Picture of The Story"
+          />
+        </div>
+
+        <p id="title" class="caption_of_story"><%= StoryTitle %></p>
+      </div>
+
+      <div class="right-area">
+        <div class="collected_money_section">
+          <p class="amount_head">collected money</p>
+          <p class="amount">৳ <label style="font-size: 22px"> 0 </label></p>
+
+          <div class="progress">
+            <progress id="file" value="0" max="100">0%</progress>
+          </div>
+
+          <p
+            style="margin: 10px 0; color: rgb(134, 129, 129); font-weight: bold"
+          >
+            Goal : ৳ <label id="goal"> <%= Amount %> </label>
+          </p>
+        </div>
+
+        <div class="remaining_days">
+          <span class="days"> Remaining Days : </span>
+          <label> <%= Validity %></label>
+          <span class="count">
+            <label id="days" style="font-weight: bold; color: #000"></label>
+          </span>
+        </div>
+
+        <!-- <% if( OtherUser != undefined) { %>
+          <div id="support-box" class="support_section">
+            <div  class="support_option">
+              <p>
+                <a
+                  style="text-decoration: none; color: aliceblue"
+                  href="/project/<%= element['_id'] %>/payment-information"
+                >
+                  ৳ <%= OtherUser %>
+                </a>
+              </p>
+            </div>
+            <p
+              style="
+                text-align: left;
+                padding: 8px;
+                font-weight: bold;
+                color: #000;
+              "
+            >
+              you can use payment section
+            </p>
+            <div class="payment_section">
+              <img src="/img/bkash.jpg" alt="bkash" />
+              <img src="/img/bkash.jpg" alt="bkash" />
+              <img src="/img/bkash.jpg" alt="bkash" />
+            </div>
+          </div>
+          <% } %>
+          <div class="sharing_section">
+            <button style="color: #12af9a !important" onclick="ScrollDown()">
+              Help by sharing
+            </button>
+          </div> -->
+      </div>
+    </div>
+    <!-- <div class="support-container flex gap justify-center">
+        <div class="left-area">
+          <p
+          style="
+            margin: 30px 0 10px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 23px;
+          "
+        >
+          people who supported :
+          <label id="profile_count"> <%= SupporterLength %></label>
+        </p>
+        <hr style=" width: 100%; border: 1px solid black;" />
+  
+        <div style="display: flex" id="supporters" class="supporters">
+          <% if (SupporterProfile.length !=0) { %>
+          <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
+           <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
+    <!-- <a  href="#">
+            <img
+            style="
+              border-radius: 50%;
+              width: 70px;
+              height: 70px;
+              border: 1px solid black;
+              margin: 0 10px;
+              object-fit: cover;
+  
+            "
+            src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
+        <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
+            alt="supporter-profilePic"
+            title="<%= SupporterProfile[i].user_name %>"
+          />
+          </a>
+            <% } %>
+          </div>
+          <% } else { %>
+          <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
+            <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
+            <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
+           <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
+            <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
+           </div>
+          </div>
+          <% } %>
+        </div>
+        </div>
+        <div class="right-area">
+          <div class="easy_fund">
+            <div class="about_easy_fund">
+              <div class="icon">
+                <span class="material-icons"> public </span>
+              </div>
+              <div style="padding: 5px 10px" class="text">
+                <span style="font-weight: bold"> What is Easy Fund ?</span>
+              </div>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. menda
+              deleniti. In reprehenderit eveniet asperiores?
+            </p>
+          </div>
+  
+        </div>
+      </div> -->
+    -->
+
+    <div class="story-container flex justify-center column">
+      <p
+        style="
+          margin: 30px 0 15px 0;
+          text-align: left;
+          font-weight: bold;
+          font-size: 23px;
+        "
+      >
+        Story
+      </p>
+
+      <hr style="width: 100%; border: 1px solid black" />
+
+      <div class="story_teller">
+        <div class="user_profile">
+          <img
+            style="
+              border-radius: 50%;
+              object-fit: cover;
+              width: 80px;
+              height: 80px;
+              border: 1px solid black;
+            "
+            src="data:image/<%=picture.contentType%>;base64,
+          <%=picture.data.toString('base64')%>"
+            alt="profilePic"
+          />
+        </div>
+        <div class="user_identity">
+          <p class="username"><%= fullname %></p>
+          <p class="identity"><%= university %></p>
+        </div>
+      </div>
+
+      <textarea
+        style="font-family: system-ui; font-size: 18px; width: 100%"
+        readonly
+        id="mainStory"
+        class="main_story"
+      >
+        <%= MainStory %></textarea
+      >
+
+      <div>
+        <% if(AttachmentLength) { %> <% Attachment.forEach((file) => { %>
+
+        <div class="gallery">
+          <Img
+            src="/projectAttachment/<%= file %>"
+            alt="<%= file %>"
+            width="600"
+            height="500"
+          />
+        </div>
+
+        <% }) %> <% } %>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</section>
+
+<!-- <div class="user_story_page">
     <div class="user_story_left_side">
       <div class="user_story_picture">
         <img
@@ -99,5 +308,5 @@
         <button type="submit">complete</button>
       </div>
     </div>
-  </div>
-</form>
+  </div> -->
+<!-- </form> -->
