@@ -20,94 +20,116 @@
       <p>Project preview</p>
     </div>
 
-    <div class="user_story_page">
-      <div class="user_story_left_side">
-        <div class="user_story_picture">
-          <img
-            id="ShowCover"
-            src="data:image/<%=CoverPicture.contentType%>;base64,
+    <section class="story-section">
+      <div class="project-area">
+        <div class="head-container flex justify-center">
+          <div class="left-area">
+            <div class="user_story_picture">
+              <img
+                class="card-cover-img"
+                src="data:image/<%=CoverPicture.contentType%>;base64,
             <%=CoverPicture.data.toString('base64')%>"
-            alt="CoverPhoto"
-            title="Cover Picture of The Story"
-          />
-        </div>
+                alt="Sample"
+                title="Cover picture of the story"
+              />
+            </div>
+            <p>Created at</p>
 
-        <div class="caption_of_story">
-          <p id="title"><%= StoryTitle %></p>
-        </div>
-
-        <p
-          style="
-            margin: 30px 0 20px;
-            text-align: left;
-            font-weight: bold;
-            font-size: 23px;
-          "
-        >
-          Story
-        </p>
-
-        <div class="story_teller">
-          <div class="user_profile">
-            <img
-              style="border-radius: 50%; width: 80px; border: 1px solid black"
-              src="data:image/<%=picture.contentType%>;base64,
-              <%=picture.data.toString('base64')%>"
-              alt="profilePic"
-            />
+            <p class="caption_of_story" id="title"><%= StoryTitle %></p>
           </div>
-
-          <div class="user_identity">
-            <p class="username"><%= fullname %></p>
-            <p class="identity"><%= university %></p>
+          <div class="right-area">
+            <div class="collected_money_section">
+              <p class="amount_head">collected money</p>
+              <p class="amount">
+                ৳
+                <label id="curr_amount" style="font-size: 22px">
+                  <%= Amount %>
+                </label>
+              </p>
+              <div class="progress">
+                <progress id="progress" value="0" max="100"></progress>
+              </div>
+              <p
+                style="
+                  margin: 10px 0;
+                  color: rgb(134, 129, 129);
+                  font-weight: bold;
+                "
+              >
+                Goal : ৳ <label id="goal"> <%= TargetAmount %></label>
+              </p>
+            </div>
+            <div class="remaining_days">
+              <span class="days"> Remaining Days : </span>
+              <label id="project_validity"> <%= Validity %></label>
+              <span class="count">
+                <label id="days" style="font-weight: bold; color: #000"></label>
+              </span>
+            </div>
           </div>
         </div>
 
-        <textarea readonly id="mainStory" class="main_story">
-  <%= MainStory %></textarea
-        >
-
-        <% if(Object.keys(Attachments).length !=0) { %> <%
-        Attachments.forEach((file) => { %>
-
-        <div class="gallery">
-          <Img
-            src="data:image/<%=file.contentType%>;base64,
-          <%=file.data.toString('base64')%>"
-            alt="<%= file %>"
-            width="600"
-            height="500"
-          />
-        </div>
-
-        <% }) %> <% } %>
-      </div>
-
-      <div class="user_story_right_side">
-        <div class="collected_money_section">
-          <p class="amount_head">collected money</p>
-          <p class="amount">৳ <label style="font-size: 22px"> 0 </label></p>
-
-          <div class="progress">
-            <progress id="file" value="0" max="100">0%</progress>
-          </div>
-
+        <div class="story-container flex justify-center column">
           <p
-            style="margin: 10px 0; color: rgb(134, 129, 129); font-weight: bold"
+            style="
+              margin: 30px 0 15px 0;
+              text-align: left;
+              font-weight: bold;
+              font-size: 23px;
+            "
           >
-            Goal : ৳ <label id="goal"> <%= Amount %> </label>
+            Story
           </p>
-        </div>
 
-        <div class="remaining_days">
-          <span class="days"> Remaining Days : </span>
-          <label> <%= Validity %></label>
-          <span class="count">
-            <label id="days" style="font-weight: bold; color: #000"></label>
-          </span>
+          <hr style="width: 100%; border: 1px solid black" />
+
+          <div class="story_teller">
+            <div class="user_profile">
+              <img
+                style="
+                  border-radius: 50%;
+                  object-fit: cover;
+                  width: 80px;
+                  height: 80px;
+                  border: 1px solid black;
+                "
+                src="data:image/<%=picture.contentType%>;base64,
+    <%=picture.data.toString('base64')%>"
+                alt="profilePic"
+              />
+            </div>
+            <div class="user_identity">
+              <p class="username"><%= fullname %></p>
+              <p class="identity"><%= university %></p>
+            </div>
+          </div>
+
+          <textarea
+            style="font-family: system-ui; font-size: 18px; width: 100%"
+            readonly
+            id="mainStory"
+            class="main_story"
+          >
+<%= MainStory%></textarea
+          >
+
+          <div>
+            <% if(Object.keys(Attachments).length !=0) { %> <%
+            Attachments.forEach((file) => { %>
+            <div class="gallery">
+              <img
+                src="data:image/<%=file.contentType%>;base64,
+    <%=file.data.toString('base64')%>"
+                alt="attachment-<%= file%>"
+                width="600"
+                height="500"
+              />
+            </div>
+            <% }) %> <% } %>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="button_container">
       <hr />
