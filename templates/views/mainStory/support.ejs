@@ -46,6 +46,7 @@
           <h2>Required Data</h2>
         </div>
         <div class="card-body">
+          <% if(Object.keys(UserInfo).length === 0){ %>
           <form  method="post">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
@@ -103,6 +104,73 @@
   
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
+
+          <% } else { %>
+
+            <form  method="post">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input readonly name="cus_name" class="form-control" id="name" value="<%=UserInfo.fullname%>" />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  readonly
+                  type="email"
+                  name="cus_email"
+                  class="form-control"
+                  id="email"
+                  value="<%= UserInfo.email%>"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input required name="cus_phone" class="form-control" id="phone" min="11"
+                value="<%=UserInfo.phone%>"
+                />
+              </div>
+  
+              <div class="mb-3">
+                <label for="amount" class="form-label">Address</label>
+                <input
+                  required
+                  name="address"
+                  type="text"
+                  step="0.01"
+                  class="form-control"
+                  id="address"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input
+                  required
+                  name="amount"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  class="form-control"
+                  id="amount"
+                />
+              </div>
+              
+             
+              <div class="mb-3">
+                <label for="desc" class="form-label">Currency</label>
+                <select name="currency" class="form-select">
+                  <option selected value="BDT">BDT</option>
+                  <!-- <option value="USD">USD</option> -->
+                </select>
+              </div>
+  
+             
+    
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+
+            <% } %>
         </div>
       </div>
 

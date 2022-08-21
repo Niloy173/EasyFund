@@ -117,9 +117,8 @@
 #mainStory {
   resize: none;
   overflow: auto;
-  height: 250px;
   margin: 20px 0;
-  padding: 10px 5px;
+  padding: 10px 0px;
   font-size: 15px;
   border: none;
   background-color: transparent;
@@ -286,6 +285,42 @@ progress::-webkit-progress-bar {
   padding: 20px 0;
   background-color: #f2f2f2;
 }
+
+.flex_container .btn {
+  width: 1024px;
+  padding: auto;
+}
+
+.suggested_btn {
+  width: 100%;
+  text-align: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #f2f2f2;
+  font-weight: 600;
+  border: none;
+}
+
+#success {
+  display: none;
+}
+#success button {
+  background-color: teal;
+}
+#failure {
+  display: none;
+}
+
+#failure button {
+  background-color: red;
+  opacity: 0.6;
+}
+#funded {
+  display: none;
+}
+#funded button {
+  background-color: cadetblue;
+}
 .flex_container .right_btn_complete {
   width: 50%;
 }
@@ -353,6 +388,20 @@ progress::-webkit-progress-bar {
   cursor: pointer;
 }
 
+.project-ended-message {
+  margin: 10px 0;
+  display: none;
+  justify-content: center;
+}
+
+.project-ended-message button {
+  border: none;
+  background: none;
+  font-size: 17px;
+  padding: 12px 10px;
+  color: gray;
+  font-weight: bold;
+}
 .easy_fund {
   margin: 45px 0;
 
@@ -441,6 +490,15 @@ div.gallery img {
   padding: 10px 12px;
   text-decoration: none;
   font-weight: bold;
+}
+
+.more-supporters {
+  margin: 0 10px;
+}
+
+.more-supporters i {
+  font-size: 60px;
+  cursor: pointer;
 }
 
 @media (max-width: 1399px) {

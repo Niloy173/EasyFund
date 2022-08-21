@@ -7,23 +7,32 @@ const {
 } = require("../../middlewares/common/decorateHtmlResponse");
 const { AuthCheck } = require("../../middlewares/common/LoginCheck");
 const {
-  RenderSingleProject,
+  RenderProject,
   AccptedProject,
   RecjectedProject,
+  AddSuccessToken,
+  AddFailureToken,
+  AddFundedToken,
 } = require("../../controllers/admin/singleStory");
 
 const router = express.Router();
 
 router.get(
   "/:id",
-  decorateHtmlResponse("story page"),
+  decorateHtmlResponse("preview page"),
   AuthCheck,
-  RenderSingleProject
+  RenderProject
 );
 
 router.post("/:id/accept", AuthCheck, AccptedProject);
 
 router.post("/:id/reject", AuthCheck, RecjectedProject);
+
+router.post("/:id/success", AuthCheck, AddSuccessToken);
+
+router.post("/:id/failure", AuthCheck, AddFailureToken);
+
+router.post("/:id/funded", AuthCheck, AddFundedToken);
 
 module.exports = {
   router,

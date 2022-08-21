@@ -9,6 +9,9 @@ const { logout } = require("../controllers/userend/logout");
 
 const { GetProfileAvatar } = require("../helpers/profileAvatar");
 const { GetMeAllProjectCard } = require("../controllers/common/allprojectCard");
+const {
+  GetMeAllNotification,
+} = require("../controllers/userend/GetNotification");
 /*----------*/
 
 const router = express.Router();
@@ -22,6 +25,8 @@ router.get(
 );
 
 router.delete("/", logout);
+
+router.get("/notification/:userId", GetMeAllNotification);
 
 module.exports = {
   router,

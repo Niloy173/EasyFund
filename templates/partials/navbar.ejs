@@ -10,6 +10,13 @@
         <a href="/general">Start a project</a>
       </li>
 
+      <li>
+        <i
+          onclick="openNotificationWindow(`<%=userInformation.userId%>`)"
+          class="ph-bell-ringing-fill notification"
+        ></i>
+      </li>
+
       <li class="image" onclick="opennav()" id="box_sign">
         <img
           src="data:image/<%=profileImage.contentType%>;base64,
@@ -65,6 +72,38 @@
   <a href="#">Privacy & Policy</a>
 
   <a onclick="logout()" href="#">Sign out</a>
+</div>
+
+<div id="notification_window" class="notification-window">
+  <span
+    style="
+      text-align: center;
+      font-size: 17px;
+      position: absolute;
+      top: 10px;
+      font-weight: bold;
+      left: 20px;
+    "
+  >
+    Notifications
+  </span>
+
+  <span style="float: right">
+    <i
+      onclick="close_notification()"
+      class="ph-x-circle-fill close_notification"
+    ></i>
+  </span>
+
+  <div class="line_draw"></div>
+
+  <div id="status" class="product-status" style="display: block">
+    <p style="text-align: center" class="msg">
+      there is no notification for you
+    </p>
+  </div>
+
+  <div id="notification_messages" class="notification-container"></div>
 </div>
 
 <% }else{ %>
@@ -125,6 +164,60 @@
     setTimeout(() => {
       window.location.replace("/");
     }, 1000);
+  }
+
+  async function openNotificationWindow(userId) {
+    const messageFailureToast = Toastify({
+      text: "Error loading notifications",
+      duration: 2000,
+    });
+
+    const container = document.querySelector("#notification_messages");
+    const response = await fetch(`/notification/${userId}`, {
+      method: "GET",
+    });
+
+    const result = await response.json();
+    document.getElementById("notification_window").style.display = "block";
+    container.innerHTML = "";
+
+    if (!result.errors && result.Info) {
+      const { Info } = result;
+
+      if (Object.keys(Info.notifications).length != 0) {
+        document.getElementById("status").style.display = "none";
+
+        Info.notifications.forEach((element) => {
+          const id = element.ProjectId;
+          const message = element.Message;
+          const date_time = element.date_time;
+
+          const parent_div = document.createElement("div");
+          parent_div.className = `${element._id} each-notification`;
+
+          const msg_txt = document.createElement("div");
+          msg_txt.className = "msg_txt";
+          msg_txt.innerHTML = `${message}`;
+
+          const msg_time = document.createElement("div");
+          msg_time.className = "msg_time";
+          msg_time.innerHTML = `${moment(date_time).fromNow()}`;
+
+          parent_div.appendChild(msg_txt);
+          parent_div.appendChild(msg_time);
+
+          container.insertAdjacentElement("beforeend", parent_div);
+        });
+      } else {
+        document.getElementById("status").style.display = "block";
+      }
+    } else {
+      messageFailureToast.showToast();
+    }
+  }
+
+  function close_notification() {
+    document.getElementById("notification_window").style.display = "none";
   }
 
   function opennav() {

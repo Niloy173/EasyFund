@@ -33,7 +33,6 @@
                 title="Cover picture of the story"
               />
             </div>
-            <p>Created at</p>
 
             <p class="caption_of_story" id="title"><%= StoryTitle %></p>
           </div>
@@ -151,11 +150,11 @@
         document.getElementById("mainStory").scrollHeight + "px";
     });
 
-    async function AcceptProject() {
+    function AcceptProject() {
       const current_url = window.location.href.split("/");
       const projectId = current_url[current_url.length - 1];
 
-      fetch(`/admin-pannel/project/${projectId}/accept`, {
+      fetch(`/admin-pannel/preview/${projectId}/accept`, {
         method: "POST",
       });
 
@@ -164,11 +163,11 @@
       }, 1000);
     }
 
-    async function RejectProject() {
+    function RejectProject() {
       const current_url = window.location.href.split("/");
       const projectId = current_url[current_url.length - 1];
 
-      fetch(`/admin-pannel/project/${projectId}/reject`, {
+      fetch(`/admin-pannel/preview/${projectId}/reject`, {
         method: "POST",
       });
 

@@ -107,7 +107,7 @@ app.use("/engineering", EngineeringRoute.router);
 
 /* admin route goes here */
 app.use("/admin-pannel", adminRoute.router);
-app.use("/admin-pannel/project", projectFromadminRoute.router);
+app.use("/admin-pannel/preview", projectFromadminRoute.router);
 app.use("/admin-pannel", ShowingAllProjectRoute.router);
 
 // for the error handler

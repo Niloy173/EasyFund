@@ -18,10 +18,10 @@
 
       <% if(Object.keys(data).length != 0){ %>
     
-        <div class="card-list flex">
+        <div class="card-list flex justify-center">
         
           <% data.forEach(element => { %>
-          <a href="/admin-pannel/all-projects/<%= element["_id"] %>">
+          <a href="/admin-pannel/all-projects">
             <div class="card-container">
               <img
               src="data:image/<%=element.CoverPicture.contentType%>;base64,
