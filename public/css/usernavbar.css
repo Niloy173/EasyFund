@@ -28,7 +28,7 @@ hr {
 #navbar .logo {
   font-size: 30px;
   font-weight: 600;
-  width: 40%;
+  width: 30%;
   cursor: pointer;
 }
 .logo a {
@@ -48,12 +48,69 @@ hr {
   justify-content: space-around;
 }
 
-#navbar ul li:nth-child(1),
-#navbar ul li:nth-child(2) {
-  margin: 20px 15px 20px 15px;
+.notification {
+  margin-top: 25px;
+  font-size: 30px;
 }
 
-#navbar ul li:nth-child(2) img {
+#notification_window {
+  width: 20%;
+  height: 200px;
+  overflow: auto;
+  display: none;
+  position: fixed;
+  top: 11%;
+  right: 18%;
+  margin: auto;
+  z-index: 99;
+  background-color: #f2f2f2;
+}
+
+#notification_window::-webkit-scrollbar {
+  width: 10px;
+}
+
+#notification_window::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#notification_window::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#notification_window::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.line_draw {
+  height: 40px;
+  width: 100%;
+  border-width: 0;
+  background-color: rgb(235, 162, 79);
+}
+
+.close_notification {
+  text-decoration: none;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-size: 25px;
+  margin-left: 40px;
+  cursor: pointer;
+  color: rgb(19, 19, 19);
+  font-weight: bold;
+}
+.product-status {
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#navbar ul li:nth-child(1),
+#navbar ul li:nth-child(3) {
+  margin: 20px 10px 20px 10px;
+}
+
+#navbar ul li:nth-child(3) img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -122,6 +179,23 @@ hr {
 .dropdown:hover .dropdown-content {
   margin-top: 10px;
   display: block;
+}
+
+.each-notification {
+  width: 100%;
+  padding: 12px 0;
+  text-decoration: none;
+  background: #f2f2f2;
+}
+.each-notification .msg_txt {
+  color: #000;
+  margin: 10px 12px;
+}
+.each-notification .msg_time {
+  color: #333;
+  font-size: 15px;
+  margin: 5px;
+  float: right;
 }
 
 @media screen and (max-width: 1068px) {

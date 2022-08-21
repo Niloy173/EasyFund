@@ -76,6 +76,10 @@
   font-weight: bold;
   font-size: 30px;
 }
+
+.text i:hover {
+  opacity: 0.6;
+}
 @media (max-width: 767px) {
   .header-anouncement h3 {
     font-size: 18px;

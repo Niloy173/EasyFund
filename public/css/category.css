@@ -24,6 +24,10 @@
 .category-div a {
   display: block;
 }
+.category-div a:hover {
+  opacity: 0.8;
+}
+
 .category-div i {
   color: teal;
   font-size: 80px;

@@ -47,12 +47,15 @@
 .top-right_ button {
   padding: 12px 16px;
   background-color: teal;
-
   font-size: 18px;
   border-radius: 8px;
   border: none;
   margin: 10px 0;
   cursor: pointer;
+}
+
+.top-right_ button:hover {
+  opacity: 0.9;
 }
 
 .top-left_ .para {
