@@ -55,6 +55,10 @@ const ProjectSchema = mongoose.Schema(
       default: [],
     },
 
+    token: {
+      type: String, // wheither success or failure or funded
+    },
+
     CreationDate: {
       type: Date,
       required: true,

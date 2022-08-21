@@ -8,7 +8,7 @@ const submitBtn = document.getElementById("next");
 
 function fixDate() {
   let dateobj = new Date();
-  let CurrDate = dateobj.getDate() + 1;
+  let CurrDate = dateobj.getDate();
   let currMonth = dateobj.getMonth() + 2;
   let currYear = dateobj.getUTCFullYear();
 

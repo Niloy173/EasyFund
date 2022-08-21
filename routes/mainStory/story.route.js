@@ -32,6 +32,7 @@ router.get(
 router.get(
   "/:id/payment-information",
   decorateHtmlResponse("Payment page"),
+  DecodeInformation,
   GetSupportPage
 );
 

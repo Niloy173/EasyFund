@@ -5,6 +5,7 @@ const SSLCommerzPayment = require("sslcommerz-lts");
 
 const { Project } = require("../../models/ProjectSchema");
 const { Transaction } = require("../../models/TransactionDB");
+const { NotificationModel } = require("../../models/NotificationSchema");
 
 function RenderThePaymentGateWay(req, res, next) {
   const { cus_name, cus_email, cus_phone, address, amount, currency } =
@@ -143,6 +144,15 @@ async function SuccessFulPaymentTrans(req, res, next) {
 
     newTransaction.save();
 
+    const notification = new NotificationModel({
+      OwnerId: CurrentProject[0].OwnerId,
+      Message: `Someone has supported your project
+              <a style="color : #0000EE; font-weight: bold; text-decoration : none;" href="/project/${projectId}">here</a>
+      `,
+    });
+
+    notification.save();
+
     const UpdatedAmount = await Project.updateOne(
       { _id: projectId },
       {
@@ -155,7 +165,7 @@ async function SuccessFulPaymentTrans(req, res, next) {
     );
 
     // send back to the project
-    console.log(projectURL);
+    // console.log(projectURL);
     res.redirect(projectURL);
   } catch (error) {
     // console.log(error.message);

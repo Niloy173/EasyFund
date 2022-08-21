@@ -1,0 +1,347 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/comment.css">
+    <link rel="stylesheet" href="/css/preview.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/usernavbar.css" />
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="/js/toastify.js"></script>
+    <script src="/js/moment.js"></script>
+  </head>
+  <body>
+    <%- include("../../partials/navbar.ejs") %>
+
+   
+<section class="story section">
+
+  <%ProjectInformation.forEach(element => { %>
+ <div class="project-area">
+   <div class="head-container flex justify-center ">
+     <div class="left-area">
+        <div class="user_story_picture">
+          <figure>
+           
+            <img
+              class="card-cover-img"
+              src="data:image/<%=element.CoverPicture.contentType%>;base64,
+              <%=element.CoverPicture.data.toString('base64')%>"
+              alt="Sample"
+              title="Cover picture of the story"
+            />
+            <figcaption> 
+              <div class="transparent_bg">
+                <p class="bottom-right">Created at <span id="creationDate"><%= month %>/<%= date %>/<%= year %></span></p>
+              </div>
+               
+              </figcaption>
+        </figure>
+        
+          </div>
+       
+
+        
+          <p class="caption_of_story" id="title"><%= element["StoryTitle"] %></p>
+        </div>
+        <div class="right-area">
+            <div class="collected_money_section">
+              <p class="amount_head">collected money</p>
+              <p class="amount">
+                ৳
+                <label id="curr_amount" style="font-size: 22px">
+                  <%= element["CurrentAmount"] %>
+                </label>
+              </p>
+              <div class="progress">
+                <progress id="progress" value="0" max="100"></progress>
+              </div>
+              <p
+                style="margin: 10px 0; color: rgb(134, 129, 129); font-weight: bold"
+              >
+                Goal : ৳ <label id="goal"> <%= element["TargetAmount"] %></label>
+              </p>
+            </div>
+            <div class="remaining_days">
+              <span class="days"> Remaining Days : </span>
+              <label id="project_validity"> <%= element["Validity"] %></label>
+              <span class="count">
+                <label id="days" style="font-weight: bold; color: #000"></label>
+              </span>
+            </div>
+            <% if( OtherUser != undefined) { %>
+            <div id="support-box" class="support_section">
+              <div  class="support_option">
+                <p>
+                  <a
+                    style="text-decoration: none; color: aliceblue"
+                    href="/project/<%= element['_id'] %>/payment-information"
+                  >
+                    ৳ <%= OtherUser %>
+                  </a>
+                </p>
+              </div>
+              <p
+                style="
+                  text-align: left;
+                  padding: 8px;
+                  font-weight: bold;
+                  color: #000;
+                "
+                   >
+                   you can use payment section
+                 </p>
+                 <div class="payment_section">
+                   <img src="/img/bkash.jpg" alt="bkash" />
+                   <img src="/img/bkash.jpg" alt="bkash" />
+                   <img src="/img/bkash.jpg" alt="bkash" />
+                 </div>
+               </div>
+               <% } %>
+               <div class="sharing_section">
+                 <button style="color: #12af9a !important" onclick="ScrollDown()">
+                    Help by sharing
+                </button>
+              </div>
+
+              <div id="project_end_message" class="project-ended-message">
+                <button>This project has finished !  </button> 
+              </div>
+            </div>
+        </div>
+        <div class="support-container flex gap justify-center">
+            <div class="left-area">
+              <p
+              style="
+                margin: 30px 0 10px;
+                text-align: left;
+                font-weight: bold;
+                font-size: 23px;
+              "
+            >
+              people who supported :
+              <label id="profile_count"> <%= SupporterLength %></label>
+            </p>
+            <hr style=" width: 100%; border: 1px solid black;" />
+            <div style="display: flex" id="supporters" class="supporters">
+              <% if (SupporterProfile.length !=0) { %>
+              <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
+               <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
+              <a  href="#">
+                <img
+                style="
+                  border-radius: 50%;
+                  width: 70px;
+                  height: 70px;
+                  border: 1px solid black;
+                  margin: 0 10px;
+                  object-fit: cover;
+                "
+                src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
+            <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
+                alt="supporter-profilePic"
+                title="<%= SupporterProfile[i].user_name %>"
+              />
+              </a>
+                <% } %>
+
+                <span class="more-supporters">
+                 
+                    <i onclick="open_window()" class="ph-dots-three-outline-fill"></i>
+             
+                </span>
+              </div>
+              <% } else { %>
+              <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
+                <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
+                <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
+               <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
+                <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
+               </div>
+              </div>
+              <% } %>
+            </div>
+            </div>
+            <div class="right-area">
+                <div class="easy_fund">
+                    <div class="about_easy_fund">
+                      <div class="icon">
+                        <span class="material-icons"> public </span>
+                    </div>
+                    <div style="padding: 5px 10px" class="text">
+                      <span style="font-weight: bold"> What is Easy Fund ?</span>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. menda
+                    deleniti. In reprehenderit eveniet asperiores?
+                </p>
+              </div>
+            </div>
+        </div>
+        <div class="story-container flex justify-center column">
+            <p
+            style="
+              margin: 30px 0 15px 0;
+              text-align: left;
+              font-weight: bold;
+              font-size: 23px;
+            "
+          >
+            Story
+          </p>
+          <hr style=" width: 100%; border: 1px solid black;" />
+          <div class="story_teller">
+            <div class="user_profile">
+              <img
+                style="border-radius: 50%;object-fit: cover; width: 80px; height:80px; border: 1px solid black"
+                src="data:image/<%=OwnerAvatar.contentType%>;base64,
+          <%=OwnerAvatar.data.toString('base64')%>"
+                alt="profilePic"
+              />
+            </div>
+            <div class="user_identity">
+              <p class="username"><%= Owner_name %></p>
+              <p class="identity"><%= Owner_university %></p>
+            </div>
+          </div>
+          
+            <textarea
+            style="font-family: system-ui; font-size: 18px; width: 100%;"
+            readonly
+            id="mainStory"
+            class="main_story"
+          >
+      <%= element["MainStory"] %></textarea
+          >
+          
+          
+          
+      <div>
+        <% if(AttachmentLength) { %> <% element.Attachments.forEach((file) => {
+          %>
+        <div class="gallery">
+          <img
+            src="data:image/<%=file.contentType%>;base64,
+          <%=file.data.toString('base64')%>"
+            alt="attachment-<%= file._id %>"
+            width="600"
+            height="500"
+          />
+        </div>
+        <% }) %> <% } %>
+      </div>
+          
+       
+        </div>
+
+
+        <section class="comment story-container">
+          <p
+          style="
+            margin: 30px 0 15px 0;
+            text-align: left;
+            font-weight: bold;
+            font-size: 23px;
+          "
+        >
+          COMMENTS
+        </p>
+        <hr style=" width: 100%; border: 1px solid black;" />
+          <div class="comment_container">
+            <div class="comment_view">
+              <div class="comment_section">
+                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
+    
+                <div class="user_part">
+                  <h1>SMITH</h1>
+    
+                  <p class="User_comment">Some msgs from the useres</p>
+                </div>
+              </div>
+    
+              <div class="comment_section">
+                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
+    
+                <div class="user_part">
+                  <h1>SMITH</h1>
+                  <p class="User_comment">
+                    Some msgs from the useres Some msgs from the useres Some msgs
+                    from the useres Some msgs from the useres
+                  </p>
+                </div>
+              </div>
+              <div class="comment_section">
+                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
+    
+                <div class="user_part">
+                  <h1>SMITH</h1>
+                  <p class="User_comment">
+                    Some msgs from the useres Some msgs from the useres Some msgs
+                    from the useres Some msgs from the useres
+                  </p>
+                </div>
+              </div>
+            </div>
+    
+            <div class="comment_post">
+              <form action="">
+                <input
+                  class="comment_field"
+                  placeholder="Add your comment"
+                  type="text"
+                /><input class="send_btn" type="submit" />
+              </form>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+      </div>
+      <% }); %>
+
+      <div id="Help_by_sharing" class="help_by_sharing">
+        <p>Help by sharing</p>
+        <div class="social_icon">
+            <i class="fa fa-facebook"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-twitter"></i>
+      </div>
+      <div class="copy_link">
+        <input readonly id="project-link" type="links/" value="<%= RequestedUrl
+        %>"" width="70%" />
+        <button id="copy-btn" onclick="CopyLink()">copy</button>
+    </div>
+  </div>
+
+      </section>
+     
+  <script defer src="/js/mainstory.js"></script>
+</body>
+</html>

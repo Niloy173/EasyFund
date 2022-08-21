@@ -21,7 +21,6 @@ async function GetTheMainStory(req, res, next) {
     );
     //find out Owner information
     const OwnerInformation = await User.find({ _id: OwnerId });
-    // console.log(OwnerInformation);
 
     // for the support Button show or not
     // except the owner everyone can support
@@ -30,24 +29,22 @@ async function GetTheMainStory(req, res, next) {
       // any user logged in
       if (req.user.userId != OwnerId) {
         // support section enabled
-        if (CurrentAmount < parseInt(TargetAmount)) {
-          OtherUser = "Support";
-        }
-      }
-    } else {
-      if (CurrentAmount < parseInt(TargetAmount)) {
         OtherUser = "Support";
       }
+    } else {
+      OtherUser = "Support";
     }
 
     // project url
     let RequestedUrl = `${process.env.APP_URL}` + req.originalUrl;
 
     const SupporterProfile = [];
+    let counter = 3;
     if (Supporter) {
       // traverse each object
-      Supporter.forEach(async (id) => {
-        const supportId = id;
+
+      for (let index = 0; index < Supporter.length; index++) {
+        const supportId = Supporter[index];
 
         // get the profile from user database;
         const CurrentUserProfile = await User.find({
@@ -58,7 +55,12 @@ async function GetTheMainStory(req, res, next) {
         const user_name = CurrentUserProfile[0].fullname || "";
 
         SupporterProfile.push({ profileImage, user_name });
-      });
+        counter--;
+
+        if (counter === 0) {
+          break;
+        }
+      }
     }
 
     setTimeout(() => {

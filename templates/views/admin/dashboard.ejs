@@ -28,37 +28,37 @@
 
       <div class="all_card">
 
-        <div class="Pending_project card">
+        <div onclick="OpenPendingProjects(this)" class="Pending_project card active_border">
 
           <p>Project Pending</p>
           <span><%= PendingNumber %></span>
         </div>
 
-        <div class="Runing_project card">
+        <div onclick="OpenRuningProjects(this)"  class="Runing_project card">
 
           <p>Runing Project</p>
           <span><%= RuningNumber %></span>
         </div>
 
 
-        <div class="Total_transac card">
+        <div onclick="OpenSuccessFulProjects(this)"  class="Total_transac card">
 
           <p>Total Transaction</p>
-          <span>৳50611</span>
+          <span>৳<%= TotalTransacSum %></span>
         </div>
 
       </div>
 
     </section>
 
-    <section class="second-container">
+    <section id="PendingDiv" class="second-container">
 
       <% if(Object.keys(data).length != 0){ %>
     
-        <div class="card-list flex">
+        <div class="card-list flex justify-center">
         
           <% data.forEach(element => { %>
-          <a href="/admin-pannel/project/<%= element["_id"] %>">
+          <a href="/admin-pannel/preview/<%= element["_id"]%>">
             <div class="card-container">
               <img
               src="data:image/<%=element.CoverPicture.contentType%>;base64,
@@ -103,8 +103,115 @@
     
     
     </section>
+
+    <section id="RuningDiv" class="second-container">
+
+      <% if(Object.keys(RuningProject).length != 0){ %>
+    
+        <div class="card-list flex justify-center">
+        
+          <% RuningProject.forEach(element => { %>
+          <a href="/admin-pannel/preview/<%= element["_id"]%>">
+            <div class="card-container">
+              <img
+              src="data:image/<%=element.CoverPicture.contentType%>;base64,
+        <%=element.CoverPicture.data.toString('base64')%>"
+                  alt="Sample"
+              />
+    
+              <div class="title">
+                <h3>
+                  <%= element["StoryTitle"] %>
+                </h3>
+              </div>
+    
+              <div class="category flex">
+                <i class="ph-stack-thin"></i>
+                <span><%= element["Category"] %></span>
+              </div>
+              <div class="flex amount-percent">
+                <span class="amount">৳ <%= element["TargetAmount"] %></span>
+                <p class="percent" id="percentage"></p>
+              </div>
+              <progress
+                max="<%= element["TargetAmount"] %>"
+                value="<%= element["CurrentAmount"] %>"
+                class="progress"
+                data-v-ba5a48cc=""
+              ></progress>
+            </div>
+          </a>
+            <% }); %>
+        </div>
+        <% } else{ %>
+
+          <div class="message">
+            <p >Currently There is no Runing  project Available.</p>
+
+
+          </div>
+          
+
+       <%  } %>
+    
+    
+    </section>
+
+    <section id="SuccessDiv" class="second-container">
+
+      <% if(Object.keys(TransacProject).length != 0){ %>
+    
+        <div class="card-list flex justify-center">
+        
+          <% TransacProject.forEach(element => { %>
+          <a href="/admin-pannel/preview/<%= element["_id"] %>">
+            <div class="card-container">
+              <img
+              src="data:image/<%=element.CoverPicture.contentType%>;base64,
+        <%=element.CoverPicture.data.toString('base64')%>"
+                  alt="Sample"
+              />
+    
+              <div class="title">
+                <h3>
+                  <%= element["StoryTitle"] %>
+                </h3>
+              </div>
+    
+              <div class="category flex">
+                <i class="ph-stack-thin"></i>
+                <span><%= element["Category"] %></span>
+              </div>
+              <div class="flex amount-percent">
+                <span class="amount">৳ <%= element["TargetAmount"] %></span>
+                <p class="percent" id="percentage"></p>
+              </div>
+              <progress
+                max="<%= element["TargetAmount"] %>"
+                value="<%= element["CurrentAmount"] %>"
+                class="progress"
+                data-v-ba5a48cc=""
+              ></progress>
+            </div>
+          </a>
+            <% }); %>
+        </div>
+        <% } else{ %>
+
+          <div class="message">
+            <p >Currently There is no Successful project.Keep Supporting</p>
+
+
+          </div>
+          
+
+       <%  } %>
+    
+    
+    </section>
   </body>
   <script defer src="/js/homepage/percentage.js"></script>
+  <script defer src="/js/admin/slider.js"></script>
   <script>
     function logout() {
     fetch("/admin-pannel/dashboard", {

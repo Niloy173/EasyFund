@@ -9,6 +9,11 @@ async function GetSupportPage(req, res, next) {
       .reverse()[1];
 
     // get the user information if he/she logged in
+    let CurrentUserInfo = {};
+
+    if (req.user) {
+      CurrentUserInfo = await User.findOne({ _id: req.user.userId });
+    }
 
     // get the title and coverpicture
     const CurrentProjectData = await Project.findOne({ _id: curentProject_Id });
@@ -16,6 +21,8 @@ async function GetSupportPage(req, res, next) {
     res.status(200).render("mainStory/support", {
       CoverPicture: CurrentProjectData.CoverPicture,
       StoryTitle: CurrentProjectData.StoryTitle,
+
+      UserInfo: CurrentUserInfo,
     });
   } catch (error) {
     // console.log(error.message);
