@@ -146,8 +146,8 @@ async function SuccessFulPaymentTrans(req, res, next) {
 
     const notification = new NotificationModel({
       OwnerId: CurrentProject[0].OwnerId,
-      Message: `Someone has supported your project
-              <a style="color : #0000EE; font-weight: bold; text-decoration : none;" href="/project/${projectId}">here</a>
+      Message: `Someone has supported your 
+              <a style="color : #0000EE; font-weight: bold; text-decoration : none;" href="/project/${projectId}">project</a>
       `,
     });
 
@@ -180,7 +180,11 @@ async function NotificationAfterTrans(req, res, next) {
 
 async function FailedPaymentTrans(req, res, next) {
   // console.log(req.body);
-  res.status(200).send("Failed");
+  const url = `${process.env.APP_URL}`.replace(/\/+$/, "") + req.originalUrl;
+  const projectId = url.split("/").reverse()[2];
+  const projectURL = `${process.env.APP_URL}project/${projectId}`;
+
+  res.redirect(projectURL);
 }
 
 async function CancelPaymentTrans(req, res, next) {

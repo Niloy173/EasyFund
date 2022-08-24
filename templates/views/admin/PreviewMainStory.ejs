@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/preview.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
+     <script src="https://unpkg.com/phosphor-icons"></script>
   </head>
   <body>
    ;
@@ -26,6 +27,8 @@
    <div class="head-container flex justify-center ">
      <div class="left-area">
         <div class="user_story_picture">
+          <figure>
+           
             <img
               class="card-cover-img"
               src="data:image/<%=element.CoverPicture.contentType%>;base64,
@@ -33,9 +36,15 @@
               alt="Sample"
               title="Cover picture of the story"
             />
+            <figcaption> 
+              <div class="transparent_bg">
+                <p class="bottom-right">Created at <span id="creationDate"><%= month %>/<%= date %>/<%= year %></span></p>
+              </div>
+               
+              </figcaption>
+        </figure>
+        
           </div>
-          <p class="bottom-right">Created at <span id="creationDate"><%= month %>/<%= date %>/<%= year %></span></p>
-
         
           <p class="caption_of_story" id="title"><%= element["StoryTitle"] %></p>
         </div>
@@ -65,6 +74,10 @@
               </span>
             </div>
            
+            <div id="project_end_message" class="project-ended-message">
+              <button>This project has finished !  </button> 
+            </div>
+          
              
             </div>
         </div>
@@ -103,6 +116,12 @@
               />
               </a>
                 <% } %>
+
+                <span class="more-supporters">
+                 
+                  <i class="ph-dots-three-outline-fill"></i>
+           
+              </span>
               </div>
               <% } else { %>
               <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
@@ -130,7 +149,7 @@
                
               </div>
 
-            
+        
 
             </div>
         </div>

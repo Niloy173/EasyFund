@@ -1,14 +1,11 @@
 let slides_img = document.getElementsByClassName("singleSlide");
 let SLideInd = 0;
-let timecount = 0;
-let i;
-
 showSlide(); // for automactic image sliding
 
 function showSlide() {
   // var dot_img = document.getElementsByClassName("dot");
 
-  for (i = 0; i < slides_img.length; i++) {
+  for (let i = 0; i < slides_img.length; i++) {
     slides_img[i].style.display = "none";
   }
   SLideInd += 1;

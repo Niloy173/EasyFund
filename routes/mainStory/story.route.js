@@ -18,6 +18,8 @@ const {
   CancelPaymentTrans,
 } = require("../../controllers/mainStory/payment");
 
+const { PostSingleComment } = require("../../controllers/mainStory/comment");
+
 /* app object */
 const router = express.Router();
 
@@ -62,6 +64,8 @@ router.post(
   DecodeInformation,
   CancelPaymentTrans
 );
+
+router.post("/:id/comment", DecodeInformation, PostSingleComment);
 module.exports = {
   router,
 };

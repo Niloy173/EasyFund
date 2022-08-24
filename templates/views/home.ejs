@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="/css/third_container.css" />
     <link rel="stylesheet" href="/css/discover.css" />
     <link rel="stylesheet" href="/css/category.css" />
-
     <link rel="stylesheet" href="/css/footer.css"/>
     
     <script src="https://unpkg.com/phosphor-icons"></script>
@@ -64,12 +63,14 @@
   <%=element.CoverPicture.data.toString('base64')%>"
             alt="Sample"
         />
+       
 
         <div class="title">
           <h3>
             <%= element["StoryTitle"] %>
           </h3>
         </div>
+       
 
         <div class="category flex">
           <i class="ph-stack-thin"></i>
@@ -77,7 +78,7 @@
         </div>
         <div class="flex amount-percent">
           <span class="amount">৳ <%= element["TargetAmount"] %></span>
-          <p class="percent" id="percentage">60%</p>
+          <p class="percent" id="percentage"></p>
         </div>
         <progress
           max="<%= element["TargetAmount"] %>"
@@ -224,7 +225,7 @@
           </div>
           <div class="flex amount-percent">
             <span class="amount">৳ <%= element["TargetAmount"] %></span>
-            <p class="percent" id="percentage">60%</p>
+            <p class="percent" id="percentage"></p>
           </div>
           <progress
             max="<%= element["TargetAmount"] %>"
@@ -272,6 +273,8 @@
                 <%= element["StoryTitle"] %>
               </h3>
             </div>
+
+          
     
             <div class="category flex">
               <i class="ph-stack-thin"></i>
@@ -279,7 +282,7 @@
             </div>
             <div class="flex amount-percent">
               <span class="amount">৳ <%= element["TargetAmount"] %></span>
-              <p class="percent" id="percentage">60%</p>
+              <p class="percent" id="percentage"></p>
             </div>
             <progress
               max="<%= element["TargetAmount"] %>"

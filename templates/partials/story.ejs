@@ -8,14 +8,20 @@
       <div class="head-container flex justify-center">
         <div class="left-area">
           <div class="user_story_picture">
-            <img
+          
+
+            <figure>
+           
+              <img
               id="ShowCover"
               src="/coverPicture/<%= CoverPicture %>"
               alt="CoverPhoto"
               title="Cover Picture of The Story"
             />
+             
+          </figure>
           </div>
-          <p id="title"><%= StoryTitle %></p>
+          <p class="caption_of_story"><%= StoryTitle %></p>
         </div>
         <div class="right-area">
           <div class="collected_money_section">
@@ -97,7 +103,19 @@
       </div>
 
 
+      <div class="important-red-msg">
+        <p>
+          *** When you're creating a project, we hope you're aware of providing vaild
+          Information moreover you do trust this system and beside that your project
+          will be under monetizations for the next 24 hours. If your story gets
+          accepted, It'll be under your project list Otherwise you should try it
+          out again ***
+        </p>
+      </div>
+
+
     </div>
+
   </section>
 
   <div class="button_container">

@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
     <script src="https://unpkg.com/phosphor-icons"></script>
-    <script src="/js/toastify.js"></script>
-    <script src="/js/moment.js"></script>
+    <script  src="/js/toastify.js"></script>
+    <script  src="/js/moment.js"></script>
   </head>
   <body>
     <%- include("../../partials/navbar.ejs") %>
@@ -73,14 +73,20 @@
               </p>
             </div>
             <div class="remaining_days">
-              <span class="days"> Remaining Days : </span>
-              <label id="project_validity"> <%= element["Validity"] %></label>
+              
+              <% if(element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining !=0){ %>
+                <span class="days"> Remaining Days : </span>
+                <label id="project_validity"> <%= DaysRemaining %></label>
+              <% }else{ %>
+
+                <!-- meesage -->
+             <% } %>
               <span class="count">
                 <label id="days" style="font-weight: bold; color: #000"></label>
               </span>
             </div>
-            <% if( OtherUser != undefined) { %>
-            <div id="support-box" class="support_section">
+            <% if((element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining != 0) && OtherUser != undefined) { %>
+            <div id="support_box" class="support_section">
               <div  class="support_option">
                 <p>
                   <a
@@ -114,9 +120,13 @@
                 </button>
               </div>
 
-              <div id="project_end_message" class="project-ended-message">
-                <button>This project has finished !  </button> 
-              </div>
+              <% if(element["CurrentAmount"] >= element["TargetAmount"] || DaysRemaining === 0  ){ %>
+
+                <div id="project_end_message" class="project-ended-message">
+                  <button>This project has finished !  </button> 
+                </div>
+
+              <%} %>
             </div>
         </div>
         <div class="support-container flex gap justify-center">
@@ -157,7 +167,7 @@
 
                 <span class="more-supporters">
                  
-                    <i onclick="open_window()" class="ph-dots-three-outline-fill"></i>
+                    <i class="ph-dots-three-outline-fill"></i>
              
                 </span>
               </div>
@@ -246,7 +256,13 @@
         </div>
 
 
-        <section class="comment story-container">
+        <% if(Object.keys(userInformation).length !=0){ %>
+
+          <section class="comment story-container">
+
+        
+
+         
           <p
           style="
             margin: 30px 0 15px 0;
@@ -258,68 +274,71 @@
           COMMENTS
         </p>
         <hr style=" width: 100%; border: 1px solid black;" />
+        <% if(Comments.length !=0) { %>
           <div class="comment_container">
+
             <div class="comment_view">
+
+            <% Comments.forEach(element => { %>
+
               <div class="comment_section">
-                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
+                <img src="data:image/<%=element.comment.profileImage.contentType%>;base64,
+        <%=element.comment.profileImage.data.toString('base64')%>" alt="" />
     
                 <div class="user_part">
-                  <h1>SMITH</h1>
+                  <% if(element.role === "user")
+                  { %>
+                    <h1><%= element.comment["username"] %></h1>
+                 <%  }else{ %>
+
+                    <h1><%= element.comment["username"] %><span class="creator"> (creator)</span></h1>
+                <%  } %>
     
-                  <p class="User_comment">Some msgs from the useres</p>
+                  <p class="User_comment"><%= element.comment["message"] %></p>
                 </div>
               </div>
+              
+           <%  }); %>
     
-              <div class="comment_section">
-                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
-    
-                <div class="user_part">
-                  <h1>SMITH</h1>
-                  <p class="User_comment">
-                    Some msgs from the useres Some msgs from the useres Some msgs
-                    from the useres Some msgs from the useres
-                  </p>
-                </div>
-              </div>
-              <div class="comment_section">
-                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
-    
-                <div class="user_part">
-                  <h1>SMITH</h1>
-                  <p class="User_comment">
-                    Some msgs from the useres Some msgs from the useres Some msgs
-                    from the useres Some msgs from the useres
-                  </p>
-                </div>
-              </div>
             </div>
     
-            <div class="comment_post">
-              <form action="">
+           
+         
+       
+
+        <% } else { %>
+
+          
+    
+        <div class="no-comment">
+          <p>No Comments Available</p>
+        </div>
+          
+
+
+          <% } %>
+
+          <% if(element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining != 0){ %>
+
+          <div id="comment_post" class="comment_post">
+              <form  id="comment-box" action="" method="post">
                 <input
                   class="comment_field"
                   placeholder="Add your comment"
                   type="text"
-                /><input class="send_btn" type="submit" />
+                  name="message"
+                  required
+                /><input class="send_btn" type="submit" onclick="PostComment()" />
               </form>
             </div>
-          </div>
-        </section>
 
+            <% } %>
 
+             </div>
 
+      </section>
 
-
-
-
-
-
-
-
-
-
-
-
+       <%  } %>
 
 
        
@@ -343,5 +362,57 @@
       </section>
      
   <script defer src="/js/mainstory.js"></script>
+  <script>
+
+    const form = document.querySelector("#comment-box");
+
+    try {
+
+
+    function PostComment(){
+      
+      form.onsubmit = async function(e){
+
+      e.preventDefault();
+      const CurrentUrl = window.location.href;
+      
+      const formData = new FormData(form);
+
+     const plainFormData = Object.fromEntries(formData.entries());
+     const JsonData = JSON.stringify(plainFormData);
+
+      const fetchOption = {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              Accept: "application/json",
+            },
+            body: JsonData,
+          };
+
+      const response = await fetch(`${CurrentUrl}/comment`,fetchOption);
+
+      const result = await response.json();
+
+      // if(result.errors){
+      //   FailureToast.showToast();
+      // }else{
+      //   SuccessFulToast.showToast();
+      // }
+      
+      window.location.replace(CurrentUrl);
+ 
+ 
+    }
+  }
+      
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).send(error.message);
+      
+    }
+    
+    
+  </script>
 </body>
 </html>

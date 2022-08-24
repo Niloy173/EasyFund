@@ -7,17 +7,24 @@
     <title><%= title %></title>
 
     <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css"
+  />
+
+    <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
-   
     <link rel="stylesheet" href="/css/category.css" />
     <link rel="stylesheet" href="/css/card.css" />
     <link rel="stylesheet" href="/css/discover.css">
+    <link rel="stylesheet" href="/css/footer.css"/>
 
     <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="/js/toastify.js"></script>
+    <script src="/js/moment.js"></script>
   </head>
   <body>
 
@@ -39,7 +46,7 @@
 
           <% if(Object.keys(data).length != 0){ %>
       
-            <div class="card-list flex">
+            <div class="card-list flex justify-center">
             
               <% data.forEach(element => { %>
               <a href="/project/<%= element["_id"] %>">
@@ -104,6 +111,9 @@
       </div>
     </div>
 
-    <script src="/js/navbarSlide.js"></script>
+    <%- include('../../partials/footer.ejs') %> 
+
+  <script defer src="/js/homepage/percentage.js"></script>
+
   </body>
 </html>
