@@ -6,13 +6,25 @@
 
 .comment_view {
   height: 80%;
-  padding: 10px;
+  padding: 10px 0px;
+}
+.comment_section:last-child {
+  border: none;
 }
 
 .comment_section {
-  padding: 20px;
+  border-bottom: 1px groove rgb(94, 93, 93);
+  padding: 20px 0;
   gap: 10px;
   display: flex;
+}
+.slick-next {
+  right: 0;
+}
+.slick-next:before,
+.slick-prev:before {
+  font-size: 30px;
+  color: teal;
 }
 
 .comment_section img {
@@ -33,6 +45,10 @@
   padding-right: 50px;
 }
 
+.comment_field:focus {
+  outline: none;
+}
+
 .comment_title {
   padding-bottom: 8px;
 }
@@ -41,6 +57,6 @@
   border: none;
   background-color: teal;
   color: white;
-  padding: 20px 30px;
-  height: 55px;
+  padding: 0px 30px;
+  height: 50px;
 }

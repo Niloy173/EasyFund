@@ -131,6 +131,7 @@
   margin-bottom: 20px;
 }
 .collected_money_section {
+  text-align: center;
   padding: 40px 0 20px 0;
 }
 .collected_money_section .amount_head {
