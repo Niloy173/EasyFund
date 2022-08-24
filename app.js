@@ -52,6 +52,12 @@ const userProjectRoute = require("./routes/userend/userProject.route");
 /* all cageory route file included here */
 const BusinessRoute = require("./routes/categories/business.route");
 const EngineeringRoute = require("./routes/categories/engineering.route");
+const MedicalRoute = require("./routes/categories/medical.route");
+const SocialRoute = require("./routes/categories/social.route");
+const OthersRoute = require("./routes/categories/others.route");
+const AgricultureRoute = require("./routes/categories/agriculture.route");
+const ArtsRoute = require("./routes/categories/arts.route");
+const CommunityRoute = require("./routes/categories/community.route");
 
 /*---------------*/
 
@@ -104,6 +110,12 @@ app.use("/user-project", userProjectRoute.router);
 /* category route path goes here */
 app.use("/business", BusinessRoute.router);
 app.use("/engineering", EngineeringRoute.router);
+app.use("/medical", MedicalRoute.router);
+app.use("/social", SocialRoute.router);
+app.use("/others", OthersRoute.router);
+app.use("/agriculture", AgricultureRoute.router);
+app.use("/arts", ArtsRoute.router);
+app.use("/community", CommunityRoute.router);
 
 /* admin route goes here */
 app.use("/admin-pannel", adminRoute.router);

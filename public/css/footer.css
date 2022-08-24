@@ -70,7 +70,15 @@ footer {
   font-size: 16px;
   margin: 10px 0 12px 0;
   cursor: pointer;
+}
+
+.container p a {
   color: #ddd;
+  text-decoration: none;
+}
+
+.container p:hover {
+  opacity: 0.8;
 }
 
 .footer_section .third_column {
@@ -136,6 +144,7 @@ footer {
   font-size: 18px;
   margin: 0 8px;
   color: white;
+  cursor: pointer;
 }
 .fa:hover {
   /* border: 1px solid rgb(255, 226, 226); */
@@ -162,6 +171,7 @@ footer {
 .ending_part p {
   font-size: 15px;
   text-align: center;
+  padding-bottom: 25px;
 }
 
 .hr {

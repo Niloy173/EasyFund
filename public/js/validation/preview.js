@@ -12,6 +12,7 @@ function BackPressed() {
       window.location.href = "/general";
     } else {
       // do nothing
+      window.location.href = "/preview";
     }
   }
 }

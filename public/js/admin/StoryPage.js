@@ -1,5 +1,6 @@
 const CreationDate = document.getElementById("creationDate");
 const Validity = document.getElementById("project_validity");
+const ProjectEndMessage = document.getElementById("project_end_message");
 
 /* this functionality determines how much amount the selected project already gained */
 const target_amount = parseInt(document.getElementById("goal").innerHTML);
@@ -26,8 +27,7 @@ const SuccessBtn = document.getElementById("success");
 const FailureBtn = document.getElementById("failure");
 const FundedBtn = document.getElementById("funded");
 
-CountDays();
-function CountDays() {
+(function () {
   const ProjectDate = CreationDate.innerText.split("/");
   const CurrentDate = new Date();
 
@@ -52,9 +52,11 @@ function CountDays() {
       ? parseInt(Validity.innerText) - Days
       : 0;
 
+  if (parseInt(Validity.innerText) === 0 || curr_amount >= target_amount) {
+    ProjectEndMessage.style.display = "flex";
+  }
   if (parseInt(Validity.innerText) >= 0 && CurrentAmount >= TargetAmount) {
     // days remaining or ended though project's successful
-    console.log("success");
     SuccessBtn.style.display = "block";
   } else if (
     parseInt(Validity.innerText) == 0 &&
@@ -67,7 +69,7 @@ function CountDays() {
     // project failure
     FailureBtn.style.display = "block";
   }
-}
+})();
 
 SuccessBtn.addEventListener("click", function () {
   const current_url = window.location.href.split("/");

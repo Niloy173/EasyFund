@@ -5,6 +5,10 @@ const submitBtn = document.getElementById("next");
 const file_input = document.getElementById("file-input"); // for selecting images
 const content_image = document.getElementById("content-image"); // image Gallery container
 
+// console.log(document.body.offsetHeight);
+document.querySelector(".popup_window").style.height =
+  document.body.offsetHeight + "px";
+
 // // preventing refresh form submission
 // window.onbeforeunload = (e) => {
 //   e.preventDefault();
@@ -89,4 +93,11 @@ for (let index = 0; index < error_div.length; index++) {
   error_div[index].addEventListener("click", function () {
     this.parentNode.remove();
   });
+}
+
+function OpenModal() {
+  document.querySelector(".popup_window").style.display = "flex";
+}
+function CloseModal() {
+  document.querySelector(".popup_window").style.display = "none";
 }

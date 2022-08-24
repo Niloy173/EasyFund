@@ -25,13 +25,15 @@
         <div class="head-container flex justify-center">
           <div class="left-area">
             <div class="user_story_picture">
-              <img
-                class="card-cover-img"
-                src="data:image/<%=CoverPicture.contentType%>;base64,
+              <figure>
+                <img
+                  class="card-cover-img"
+                  src="data:image/<%=CoverPicture.contentType%>;base64,
             <%=CoverPicture.data.toString('base64')%>"
-                alt="Sample"
-                title="Cover picture of the story"
-              />
+                  alt="Sample"
+                  title="Cover picture of the story"
+                />
+              </figure>
             </div>
 
             <p class="caption_of_story" id="title"><%= StoryTitle %></p>

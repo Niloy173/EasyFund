@@ -83,6 +83,7 @@
       top: 10px;
       font-weight: bold;
       left: 20px;
+      color: white;
     "
   >
     Notifications
@@ -156,6 +157,7 @@
 <% } %>
 
 <script>
+  let timecount = 0;
   function logout() {
     fetch("/", {
       method: "DELETE",
