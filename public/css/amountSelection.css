@@ -24,19 +24,19 @@
 }
 
 .selected_project_info .project-cover {
-  flex: 10%;
+  flex: 20%;
 }
 .selected_project_info .project-title {
   flex: 80%;
 }
 .project-title p {
-  font-size: 12px;
+  font-size: 15px;
   padding: 20px 0;
 }
 
 .project-cover img {
-  width: 80px;
-  height: 50px;
+  width: 100px;
+  height: 80px;
 }
 
 .amount-selection .select {
@@ -90,7 +90,6 @@
 .amount-selection .small-support-hint {
   margin: 10px 10px;
   background-color: #f2f2f2;
-  opacity: 0.7;
   padding: 10px 14px;
   border: 1px groove #ccc;
 }
@@ -104,6 +103,7 @@
 .small-support-hint li {
   margin: 5px 0;
   padding: 0 12px;
+  color: #000;
 }
 
 .amount-selection .rules {
@@ -141,7 +141,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.selected {
-  background-color: rgb(2, 185, 185);
-  color: #f2f2f2;
+input:hover {
+  border: 1px solid var(--fourth-color);
 }

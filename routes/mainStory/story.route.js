@@ -18,6 +18,11 @@ const {
   CancelPaymentTrans,
 } = require("../../controllers/mainStory/payment");
 
+const {
+  doSupportFormValidation,
+  doValidateSupportInformation,
+} = require("../../middlewares/formValidation/support_form");
+
 const { PostSingleComment } = require("../../controllers/mainStory/comment");
 
 /* app object */
@@ -40,7 +45,10 @@ router.get(
 
 router.post(
   "/:id/payment-information",
+  decorateHtmlResponse("Payment page"),
   DecodeInformation,
+  doSupportFormValidation,
+  doValidateSupportInformation,
   RenderThePaymentGateWay
 );
 router.post(

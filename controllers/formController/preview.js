@@ -63,6 +63,7 @@ async function PostPreviewProject(req, res, next) {
     ProjectInfo.Category = CurrentProjectData.Category;
     ProjectInfo.TargetAmount = CurrentProjectData.TargetAmount;
     ProjectInfo.CurrentAmount = 0;
+    ProjectInfo.token = "Pending";
     ProjectInfo.Supporter = [];
     ProjectInfo.Validity = CurrentProjectData.Validity;
     ProjectInfo.StoryTitle = CurrentProjectData.StoryTitle;
