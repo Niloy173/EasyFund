@@ -101,7 +101,7 @@
                   </div>
                   <p
                     style="
-                      text-align: left;
+                      text-align: center;
                       padding: 8px;
                       font-weight: bold;
                       color: #000;
@@ -111,8 +111,8 @@
                      </p>
                      <div class="payment_section">
                        <img src="/img/bkash.jpg" alt="bkash" />
-                       <img src="/img/bkash.jpg" alt="bkash" />
-                       <img src="/img/bkash.jpg" alt="bkash" />
+                       <img src="/img/nogod.jpg" alt="bkash" />
+                       <img src="/img/rocket.jpg" alt="bkash" />
                      </div>
                    </div>
                    <% } %>
@@ -252,7 +252,7 @@
               
            
             </div>
-            <% if(Object.keys(userInformation).length !=0){ %>
+           
               <section class="comment story-container">
             
              
@@ -302,6 +302,8 @@
             </div>
               
               <% } %>
+              <% if(Object.keys(userInformation).length !=0){ %>
+                
               <% if(element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining != 0){ %>
               <div id="comment_post" class="comment_post">
                   <form  id="comment-box" action="" method="post">
@@ -334,7 +336,7 @@
             <button id="copy-btn" onclick="CopyLink()">copy</button>
         </div>
       </div>
-          </section>
+       </section>
          
       <script defer src="/js/mainstory.js"></script>
       <script>
@@ -372,7 +374,7 @@
       }
           
         } catch (error) {
-          console.log(error.message);
+          // console.log(error.message);
           res.status(500).send(error.message);
           
         }
