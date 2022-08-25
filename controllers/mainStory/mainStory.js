@@ -71,7 +71,7 @@ async function GetTheMainStory(req, res, next) {
         : 0;
 
     const SupporterProfile = [];
-    let counter = 3;
+    // let counter = 3;
     if (Supporter) {
       // traverse each object
       for (let index = 0; index < Supporter.length; index++) {
@@ -86,11 +86,11 @@ async function GetTheMainStory(req, res, next) {
         const user_name = CurrentUserProfile[0].fullname || "";
 
         SupporterProfile.push({ profileImage, user_name });
-        counter--;
+        // counter--;
 
-        if (counter === 0) {
-          break;
-        }
+        // if (counter === 0) {
+        //   break;
+        // }
       }
     }
 

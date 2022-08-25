@@ -7,6 +7,7 @@ async function PostSingleComment(req, res, next) {
   try {
     const projectId = req.originalUrl.split("/").reverse()[1];
     const msg = req.body.message;
+    console.log(msg);
 
     const ProjectInfo = await Project.findOne({ _id: projectId }).select(
       "OwnerId"

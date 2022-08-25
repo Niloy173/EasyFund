@@ -5,13 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-<<<<<<< HEAD
-=======
+
+
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
   
->>>>>>> 07ad6bb585213c684d25eef772355e1c35798ad7
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css"
@@ -32,28 +41,6 @@
     <%- include("../../partials/navbar.ejs") %>
 
    
-<<<<<<< HEAD
-<section class="story section">
-
-  <%ProjectInformation.forEach(element => { %>
- <div class="project-area">
-   <div class="head-container flex justify-center ">
-     <div class="left-area">
-        <div class="user_story_picture">
-          <figure>
-           
-            <img
-              class="card-cover-img"
-              src="data:image/<%=element.CoverPicture.contentType%>;base64,
-              <%=element.CoverPicture.data.toString('base64')%>"
-              alt="Sample"
-              title="Cover picture of the story"
-            />
-            <figcaption> 
-              <div class="transparent_bg">
-                <p class="bottom-right">Created at <span id="creationDate"><%= month %>/<%= date %>/<%= year %></span></p>
-              </div>
-=======
     <section class="story section">
 
       <%ProjectInformation.forEach(element => { %>
@@ -62,7 +49,6 @@
          <div class="left-area">
             <div class="user_story_picture">
               <figure>
->>>>>>> 07ad6bb585213c684d25eef772355e1c35798ad7
                
                 <img
                   class="card-cover-img"
@@ -73,7 +59,7 @@
                 />
                 <figcaption> 
                   <div class="transparent_bg">
-                    <p class="bottom-right">Created at <span id="creationDate"><%= month %>/<%= date %>/<%= year %></span></p>
+                    <p class="bottom-right">Created at <span id="creationDate"><%= new Date([month,date,year].join("/")).toLocaleDateString("en-US",{ day:"numeric", month:"long", year:"numeric"})%></span></p>
                   </div>
                    
                   </figcaption>
@@ -156,57 +142,66 @@
                 </div>
             </div>
             <div class="support-container flex gap justify-center">
-                <div class="left-area">
-                  <p
+              <div class="left-area">
+                <p
+                style="
+                  margin: 30px 0 10px;
+                  text-align: left;
+                  font-weight: bold;
+                  font-size: 23px;
+                "
+              >
+                people who supported :
+                <label id="profile_count"> <%= SupporterLength %></label>
+              </p>
+              <hr style=" width: 100%; border: 1px solid black;" />
+  
+  
+  
+              <div  id="supporters" class="supporters">
+                <% if (SupporterProfile.length !=0) { %>
+                <div style="height: 120px; padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile   ">
+                 <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
+                <a class="item"  href="#">
+                  <img
                   style="
-                    margin: 30px 0 10px;
-                    text-align: left;
-                    font-weight: bold;
-                    font-size: 23px;
+                    border-radius: 50%;
+                    width: 70px;
+                    height: 70px;
+                    border: 1px solid black;
+                    margin: 0 10px;
+                    object-fit: cover;
                   "
-                >
-                  people who supported :
-                  <label id="profile_count"> <%= SupporterLength %></label>
-                </p>
-                <hr style=" width: 100%; border: 1px solid black;" />
-                <div style="display: flex" id="supporters" class="supporters">
-                  <% if (SupporterProfile.length !=0) { %>
-                  <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
-                   <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
-                  <a  href="#">
-                    <img
-                    style="
-                      border-radius: 50%;
-                      width: 70px;
-                      height: 70px;
-                      border: 1px solid black;
-                      margin: 0 10px;
-                      object-fit: cover;
-                    "
-                    src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
-                <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
-                    alt="supporter-profilePic"
-                    title="<%= SupporterProfile[i].user_name %>"
-                  />
-                  </a>
-                    <% } %>
-                    <span class="more-supporters">
-                     
-                        <i class="ph-dots-three-outline-fill"></i>
-                 
-                    </span>
-                  </div>
-                  <% } else { %>
-                  <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
-                    <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
-                    <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
-                   <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
-                    <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
-                   </div>
-                  </div>
+                  src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
+              <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
+                  alt="supporter-profilePic"
+                  title="<%= SupporterProfile[i].user_name %>"
+                />
+                </a>
                   <% } %>
+  
+                  <!-- <span class="more-supporters">
+                   
+                      <i onclick="open_window()" class="ph-dots-three-outline-fill"></i>
+               
+                  </span> -->
+                
                 </div>
+      
+              
+                
+                
+                <% } else { %>
+                <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
+                  <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
+                  <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
+                 <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
+                  <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
+                 </div>
                 </div>
+                <% } %>
+              </div>
+              </div>
                 <div class="right-area">
                     <div class="easy_fund">
                         <div class="about_easy_fund">
@@ -294,44 +289,6 @@
               COMMENTS
             </p>
             <hr style=" width: 100%; border: 1px solid black;" />
-<<<<<<< HEAD
-            <div style="display: flex" id="supporters" class="supporters">
-              <% if (SupporterProfile.length !=0) { %>
-              <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
-               <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
-              <a  href="#">
-                <img
-                style="
-                  border-radius: 50%;
-                  width: 70px;
-                  height: 70px;
-                  border: 1px solid black;
-                  margin: 0 10px;
-                  object-fit: cover;
-                "
-                src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
-            <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
-                alt="supporter-profilePic"
-                title="<%= SupporterProfile[i].user_name %>"
-              />
-              </a>
-                <% } %>
-
-                <span class="more-supporters">
-                 
-                    <i onclick="open_window()" class="ph-dots-three-outline-fill"></i>
-             
-                </span>
-              </div>
-              <% } else { %>
-              <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
-                <p  style="text-align: center; font-size: 17px;">Let's be the first one to help!</p>
-                <p style="text-align: center; font-size: 14px; margin: 15px 0;">By sharing more people will know about the project, and it will be more likely to be supported.</p>
-               <div style="display: flex; justify-content : center; font-size: 16px;" class="share-option">
-                <a style="color: #12af9a!important;"  href="#Help_by_sharing"> Help by sharing</a>
-               </div>
-              </div>
-=======
             <% if(Comments.length !=0) { %>
               <div class="comment_container">
                 <div class="comment_view">
@@ -366,20 +323,25 @@
               <p>No Comments Available</p>
             </div>
               
->>>>>>> 07ad6bb585213c684d25eef772355e1c35798ad7
               <% } %>
               <% if(Object.keys(userInformation).length !=0){ %>
 
               <% if(element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining != 0){ %>
               <div id="comment_post" class="comment_post">
                   <form  id="comment-box" action="" method="post">
-                    <input
-                      class="comment_field"
-                      placeholder="Add your comment"
-                      type="text"
-                      name="message"
-                      required
-                    /><input class="send_btn" type="submit" onclick="PostComment()" />
+                    <div class="comment_post">
+                      <form action="">
+                        <div class="flex">
+                          <input
+                          class="comment_field"
+                          placeholder="Add your comment"
+                          type="text"
+                          name="message"
+                          required
+                        />
+                        <button class="send_btn" onclick="PostComment()"  >SEND</button>
+                        </div>
+               
                   </form>
                 </div>
                 <% } %>
@@ -403,6 +365,18 @@
         </div>
       </div>
        </section>
+
+
+
+
+
+
+
+
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
          
       <script defer src="/js/mainstory.js"></script>
       <script>
@@ -410,112 +384,10 @@
         try {
         function PostComment(){
           
-<<<<<<< HEAD
-       
-        </div>
-
-
-        <section class="comment story-container">
-          <p
-          style="
-            margin: 30px 0 15px 0;
-            text-align: left;
-            font-weight: bold;
-            font-size: 23px;
-          "
-        >
-          COMMENTS
-        </p>
-        <hr style=" width: 100%; border: 1px solid black;" />
-          <div class="comment_container">
-            <div class="comment_view">
-              <div class="comment_section">
-                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
-    
-                <div class="user_part">
-                  <h1>SMITH</h1>
-    
-                  <p class="User_comment">Some msgs from the useres</p>
-                </div>
-              </div>
-    
-              <div class="comment_section">
-                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
-    
-                <div class="user_part">
-                  <h1>SMITH</h1>
-                  <p class="User_comment">
-                    Some msgs from the useres Some msgs from the useres Some msgs
-                    from the useres Some msgs from the useres
-                  </p>
-                </div>
-              </div>
-              <div class="comment_section">
-                <img src="https://images8.alphacoders.com/560/560736.jpg" alt="" />
-    
-                <div class="user_part">
-                  <h1>SMITH</h1>
-                  <p class="User_comment">
-                    Some msgs from the useres Some msgs from the useres Some msgs
-                    from the useres Some msgs from the useres
-                  </p>
-                </div>
-              </div>
-            </div>
-    
-            <div class="comment_post">
-              <form action="">
-                <input
-                  class="comment_field"
-                  placeholder="Add your comment"
-                  type="text"
-                /><input class="send_btn" type="submit" />
-              </form>
-            </div>
-          </div>
-        </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-      </div>
-      <% }); %>
-
-      <div id="Help_by_sharing" class="help_by_sharing">
-        <p>Help by sharing</p>
-        <div class="social_icon">
-            <i class="fa fa-facebook"></i>
-        <i class="fa fa-instagram"></i>
-        <i class="fa fa-twitter"></i>
-      </div>
-      <div class="copy_link">
-        <input readonly id="project-link" type="links/" value="<%= RequestedUrl
-        %>"" width="70%" />
-        <button id="copy-btn" onclick="CopyLink()">copy</button>
-    </div>
-  </div>
-
-      </section>
-     
-  <script defer src="/js/mainstory.js"></script>
-=======
           form.onsubmit = async function(e){
           e.preventDefault();
-          const CurrentUrl = window.location.href;
+          const CurrentUrl =window.location.href.replace(/\/+$/, "");
+ console.log(CurrentUrl);
           
           const formData = new FormData(form);
          const plainFormData = Object.fromEntries(formData.entries());
@@ -528,6 +400,7 @@
                 },
                 body: JsonData,
               };
+         
           const response = await fetch(`${CurrentUrl}/comment`,fetchOption);
           const result = await response.json();
           // if(result.errors){
@@ -550,8 +423,47 @@
         
         
       </script>
-				
 
->>>>>>> 07ad6bb585213c684d25eef772355e1c35798ad7
+      
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+$('.supported_user_profile').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+
+				
+</script>
 </body>
 </html>

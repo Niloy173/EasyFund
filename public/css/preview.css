@@ -131,6 +131,19 @@
   text-align: justify;
   margin-bottom: 20px;
 }
+
+.slick-next:before,
+.slick-prev:before {
+  color: teal;
+  font-size: 30px;
+}
+.slick-next {
+  right: 0;
+}
+.slick-track {
+  width: 100%;
+}
+
 .collected_money_section {
   text-align: center;
   padding: 40px 0 20px 0;
