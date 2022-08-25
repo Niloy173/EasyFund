@@ -183,19 +183,18 @@ hr {
 
 .each-notification {
   width: 100%;
-  padding: 12px 0;
+  padding: 8px 4px;
   text-decoration: none;
   background: #f2f2f2;
 }
 .each-notification .msg_txt {
   color: #000;
-  margin: 10px 12px;
+  margin: 5px 12px;
 }
 .each-notification .msg_time {
-  color: #333;
+  color: gray;
   font-size: 15px;
-  margin: 5px;
-  float: right;
+  margin-left: 15px;
 }
 
 @media screen and (max-width: 1068px) {

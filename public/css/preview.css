@@ -367,10 +367,12 @@ progress::-webkit-progress-bar {
 
 .payment_section {
   display: flex;
+  justify-content: center;
   margin: 4px 10px;
 }
 .payment_section img {
   width: 60px;
+  height: 40px;
   border: 1px solid black;
   padding: 3px;
   margin: 0 10px;
