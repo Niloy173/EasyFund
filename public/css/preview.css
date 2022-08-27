@@ -137,8 +137,12 @@
   color: teal;
   font-size: 30px;
 }
+.slick-prev {
+  left: -35px;
+}
+
 .slick-next {
-  right: 0;
+  right: -20px;
 }
 .slick-track {
   width: 100%;
@@ -157,6 +161,15 @@
 .collected_money_section .amount {
   font-weight: bold;
   padding-bottom: 10px;
+}
+
+.supported_user_profile {
+  width: 95%;
+  height: 120px;
+  padding: 20px 0 10px 0;
+  -webkit-box-shadow: 0 0 1px 3px #000 inset;
+  -moz-box-shadow: 0 0 1px 3px #000 inset;
+  box-shadow: -1px 2px 8px 0px rgba(112, 112, 112, 0.75) inset;
 }
 
 .progress progress {

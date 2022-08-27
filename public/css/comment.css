@@ -114,7 +114,12 @@
   gap: 10px;
   display: flex;
 }
-
+.slick-track {
+  margin-left: 0;
+}
+.slick-slide {
+  width: 0;
+}
 .comment_section img {
   object-fit: cover;
   border-radius: 50%;

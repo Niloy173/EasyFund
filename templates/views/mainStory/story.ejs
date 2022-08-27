@@ -160,14 +160,14 @@
   
               <div  id="supporters" class="supporters">
                 <% if (SupporterProfile.length !=0) { %>
-                <div style="height: 120px; padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile   ">
+                <div id="support-profile" class="supported_user_profile   ">
                  <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
-                <a class="item"  href="#">
+                <a   href="#">
                   <img
                   style="
                     border-radius: 50%;
-                    width: 70px;
-                    height: 70px;
+                    width: 80px;
+                    height:80px;
                     border: 1px solid black;
                     margin: 0 10px;
                     object-fit: cover;
@@ -375,7 +375,7 @@
 
 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+       <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
          
       <script defer src="/js/mainstory.js"></script>
@@ -431,7 +431,7 @@ $('.supported_user_profile').slick({
   dots: true,
   infinite: false,
   speed: 300,
-  slidesToShow: 5,
+  slidesToShow:4 ,
   slidesToScroll: 1,
   responsive: [
     {
