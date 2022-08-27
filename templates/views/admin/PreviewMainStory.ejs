@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
 
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css"
@@ -16,10 +18,9 @@
     <link rel="stylesheet" href="/css/preview.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
-     <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="https://unpkg.com/phosphor-icons"></script>
   </head>
   <body>
-   ;
 
     <%FindStoryData.forEach(element => { %>
 <section class="story section">
@@ -38,7 +39,7 @@
             />
             <figcaption> 
               <div class="transparent_bg">
-                <p class="bottom-right">Created at <span id="creationDate"><%= month %>/<%= date %>/<%= year %></span></p>
+                <p class="bottom-right">Created at <span id="creationDate"><%= new Date([month,date,year].join("/")).toLocaleDateString("en-US",{ day:"numeric", month:"long", year:"numeric"})%></span></p>
               </div>
                
               </figcaption>
@@ -68,15 +69,17 @@
             </div>
             <div class="remaining_days">
               <span class="days"> Remaining Days : </span>
-              <label id="project_validity"> <%= element["Validity"] %></label>
+              <label id="project_validity"> <%= DaysRemaining %></label>
               <span class="count">
                 <label id="days" style="font-weight: bold; color: #000"></label>
               </span>
             </div>
            
-            <div id="project_end_message" class="project-ended-message">
-              <button>This project has finished !  </button> 
-            </div>
+            <% if(element["CurrentAmount"] >= element["TargetAmount"] || DaysRemaining === 0  ){ %>
+              <div id="project_end_message" class="project-ended-message">
+                <button>This project has finished !  </button> 
+              </div>
+            <%} %>
           
              
             </div>
@@ -95,11 +98,13 @@
               <label id="profile_count"> <%= SupporterLength %></label>
             </p>
             <hr style=" width: 100%; border: 1px solid black;" />
-            <div style="display: flex" id="supporters" class="supporters">
+            
+  
+            <div  id="supporters" class="supporters">
               <% if (SupporterProfile.length !=0) { %>
-              <div style="padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile">
+              <div style="height: 120px; padding: 20px 0 10px 0;" id="support-profile" class="supported_user_profile   ">
                <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
-              <a  href="#">
+              <a class="item"  href="#">
                 <img
                 style="
                   border-radius: 50%;
@@ -117,17 +122,22 @@
               </a>
                 <% } %>
 
-                <span class="more-supporters">
+                <!-- <span class="more-supporters">
                  
-                  <i class="ph-dots-three-outline-fill"></i>
-           
-              </span>
+                    <i onclick="open_window()" class="ph-dots-three-outline-fill"></i>
+             
+                </span> -->
+              
               </div>
+    
+            
+              
+              
               <% } else { %>
-              <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
-                <p  style="text-align: center; font-size: 17px;">Currently! No supporter Here</p>
-                
-              </div>
+                <div style="width: 100%; margin: 30px 0 10px 0; " class="some_suggestion">
+                  <p  style="text-align: center; font-size: 17px;"> No supporters available </p>
+                  
+                </div>
               <% } %>
             </div>
             </div>
@@ -236,7 +246,49 @@
       </div>
     </div>
 
-   
-  <script defer src="/js/admin/StoryPage.js"></script>
+    <script defer src="/js/admin/StoryPage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+$('.supported_user_profile').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+
+				
+</script>
+
+
 </body>
 </html>

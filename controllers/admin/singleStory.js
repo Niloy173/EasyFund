@@ -39,12 +39,41 @@ async function RenderProject(req, res, next) {
     const FindStoryData = await Project.find({ _id: projectId });
 
     const [OwnerId] = FindStoryData.map((item) => item.OwnerId);
+    const [Validity] = FindStoryData.map((item) => item.Validity);
     const [Supporter] = FindStoryData.map((item) => item.Supporter);
     const [Attachments] = FindStoryData.map((item) => item.Attachments);
     const [CreationDate] = FindStoryData.map((item) => item.CreationDate);
     const [token] = FindStoryData.map((item) => item.token);
 
     const GetOwnerInfo = await User.findOne({ _id: OwnerId });
+
+    // Finding remaining days from today
+    const ProjectDate =
+      new Date(CreationDate).toLocaleDateString().split("/")[0] +
+      "/" +
+      new Date(CreationDate).toLocaleDateString().split("/")[1] +
+      "/" +
+      new Date(CreationDate).toLocaleDateString().split("/")[2];
+
+    const CurrentDate = new Date();
+
+    const NewDate = new Date(ProjectDate);
+
+    const UTC1 = Date.UTC(
+      CurrentDate.getFullYear(),
+      CurrentDate.getMonth(),
+      CurrentDate.getDate()
+    );
+    const UTC2 = Date.UTC(
+      NewDate.getFullYear(),
+      NewDate.getMonth(),
+      NewDate.getDate()
+    );
+
+    const DaysRemaining =
+      parseInt(Validity) - Math.floor((UTC1 - UTC2) / (3600 * 24 * 1000)) > 0
+        ? parseInt(Validity) - Math.floor((UTC1 - UTC2) / (3600 * 24 * 1000))
+        : 0;
 
     const SupporterProfile = [];
     if (Object.keys(Supporter).length != 0) {
@@ -68,6 +97,7 @@ async function RenderProject(req, res, next) {
       res.render("admin/PreviewMainStory", {
         FindStoryData,
         token,
+        DaysRemaining,
         AttachmentLength: Attachments.length,
         SupporterLength: SupporterProfile.length,
         SupporterProfile,
@@ -154,7 +184,7 @@ async function AddSuccessToken(req, res, next) {
       { _id: projectId },
       {
         $set: {
-          token: "success",
+          token: "Success!",
         },
       },
       { new: true, useFindAndModify: false }
@@ -175,7 +205,7 @@ async function AddFailureToken(req, res, next) {
       { _id: projectId },
       {
         $set: {
-          token: "failure",
+          token: "Failure!",
         },
       },
       { new: true, useFindAndModify: false }
@@ -196,7 +226,7 @@ async function AddFundedToken(req, res, next) {
       { _id: projectId },
       {
         $set: {
-          token: "funded",
+          token: "Funded!",
         },
       },
       { new: true, useFindAndModify: false }

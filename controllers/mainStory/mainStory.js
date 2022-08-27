@@ -40,7 +40,8 @@ async function GetTheMainStory(req, res, next) {
     }
 
     // project url
-    let RequestedUrl = `${process.env.APP_URL}` + req.originalUrl;
+    let RequestedUrl =
+      `${process.env.APP_URL}`.replace(/\/+$/, "") + req.originalUrl;
 
     // Finding remaining days from today
     const ProjectDate =
@@ -71,7 +72,6 @@ async function GetTheMainStory(req, res, next) {
         : 0;
 
     const SupporterProfile = [];
-    // let counter = 3;
     if (Supporter) {
       // traverse each object
       for (let index = 0; index < Supporter.length; index++) {
@@ -86,11 +86,6 @@ async function GetTheMainStory(req, res, next) {
         const user_name = CurrentUserProfile[0].fullname || "";
 
         SupporterProfile.push({ profileImage, user_name });
-        // counter--;
-
-        // if (counter === 0) {
-        //   break;
-        // }
       }
     }
 

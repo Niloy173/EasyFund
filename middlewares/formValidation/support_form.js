@@ -6,20 +6,6 @@ const createError = require("http-errors");
 const { Project } = require("../../models/ProjectSchema");
 const { User } = require("../../models/UserSchema");
 const doSupportFormValidation = [
-  check("cus_name")
-    .isLength({ min: 1, max: 25 })
-    .withMessage("name is required or lengthy")
-    .isAlpha("en-US", { ignore: " -" })
-    .withMessage("name must not contain anything other than alphabet")
-    .trim(),
-
-  check("cus_email")
-    .exists()
-    .withMessage("Email is required")
-    .isEmail()
-    .withMessage("Not an valid email address")
-    .trim(),
-
   check("cus_phone")
     .isMobilePhone("bn-BD", {
       strictMode: true,
@@ -27,11 +13,6 @@ const doSupportFormValidation = [
     .withMessage(
       "Mobile number must be a valid Bangladeshi mobile number (+880)"
     ),
-
-  check("address")
-    .isLength({ min: 1 })
-    .withMessage("Address is required")
-    .trim(),
 
   check("amount")
     .isLength({ min: 1 })

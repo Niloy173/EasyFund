@@ -21,13 +21,30 @@
         <div class="card-list flex justify-center">
         
           <% data.forEach(element => { %>
-          <a href="/admin-pannel/all-projects">
+          <a href="/admin-pannel/all-projects/<%= element["_id"] %>">
             <div class="card-container">
-              <img
+              <div class="cover_with_token">
+                <img
               src="data:image/<%=element.CoverPicture.contentType%>;base64,
         <%=element.CoverPicture.data.toString('base64')%>"
                   alt="Sample"
               />
+             <% if(element["token"] != "Pending"){ %>
+      
+              <% if(element["token"] === "Success!"){%>
+                <button class="sky_blue"><%= element["token"]%></button>
+              <%}%>
+      
+              <% if(element["token"] === "Failure!"){%>
+                <button class="indigo" ><%= element["token"]%></button>
+              <%}%>
+      
+              <% if(element["token"] === "Funded!"){%>
+                <button class="yellow"><%= element["token"]%></button>
+              <%}%>
+      
+             <%} %>
+              </div>
     
               <div class="title">
                 <h3>

@@ -8,8 +8,7 @@ const { Transaction } = require("../../models/TransactionDB");
 const { NotificationModel } = require("../../models/NotificationSchema");
 
 function RenderThePaymentGateWay(req, res, next) {
-  const { cus_name, cus_email, cus_phone, address, amount, currency } =
-    req.body;
+  const { cus_phone, feedback, amount, currency } = req.body;
 
   let userId;
   if (req.user) {
@@ -33,12 +32,12 @@ function RenderThePaymentGateWay(req, res, next) {
     product_category: "Project",
     product_profile: "Project-Identity",
     card_no: userId,
-    cus_name: cus_name,
-    cus_email: cus_email,
-    cus_add1: address,
-    cus_add2: address,
-    cus_city: address,
-    cus_state: address,
+    cus_name: "User name",
+    cus_email: "user@gmail.com",
+    cus_add1: "Dhaka",
+    cus_add2: "Dhaka",
+    cus_city: "Dhaka",
+    cus_state: "Dhaka",
     cus_postcode: "1000",
     cus_country: "Bangladesh",
     cus_phone: cus_phone,

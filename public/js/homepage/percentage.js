@@ -12,13 +12,21 @@ function Calculate_percentage(TargetMoney, currMoney) {
 const all_card = document.querySelectorAll(".card-container");
 
 for (let index = 0; index < all_card.length; index++) {
-  // console.log(all_card[index].children);
+  let TargetAmount = 0,
+    CurrentAmount = 0;
 
-  console.log(all_card[index].children[3].children[0].innerHTML);
-  console.log(all_card[index].children[4].value);
-  const TargetAmount = all_card[index].children[3];
+  if (all_card[index].children.length === 6) {
+    /* when there is a token (success, failure, funded) exits, another
+    property added as child element otherwise it's as usual */
+    TargetAmount = all_card[index].children[4];
+    CurrentAmount = all_card[index].children[5];
+  } else {
+    TargetAmount = all_card[index].children[3];
+    CurrentAmount = all_card[index].children[4];
+  }
 
-  const CurrentAmount = all_card[index].children[4];
+  // console.log(TargetAmount.children[0].innerHTML.split(" ")[1]);
+  // console.log(CurrentAmount.value);
 
   const actual_per = Calculate_percentage(
     TargetAmount.children[0].innerHTML.split(" ")[1],

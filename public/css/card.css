@@ -39,6 +39,34 @@ body {
   padding: 10px;
 }
 
+/* new div approached */
+.cover_with_token {
+  position: relative;
+}
+
+.cover_with_token button {
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  padding: 5px 12px;
+  color: white;
+}
+
+.cover_with_token .sky_blue {
+  background-color: #00ced1;
+}
+
+.cover_with_token .yellow {
+  background-color: #ffd700;
+}
+
+.cover_with_token .indigo {
+  background-color: #4b0082;
+}
+/*--------*/
 .card-container img {
   width: 100%;
 }

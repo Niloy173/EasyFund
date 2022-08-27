@@ -7,7 +7,6 @@ async function PostSingleComment(req, res, next) {
   try {
     const projectId = req.originalUrl.split("/").reverse()[1];
     const msg = req.body.message;
-    console.log(msg);
 
     const ProjectInfo = await Project.findOne({ _id: projectId }).select(
       "OwnerId"
@@ -33,7 +32,7 @@ async function PostSingleComment(req, res, next) {
       // send a notification to the project owner
       const newNotification = new NotificationModel({
         OwnerId: ProjectInfo.OwnerId,
-        Message: `Someone has commented in your 
+        Message: `Someone has commented on your 
               <a style="color : #0000EE; font-weight: bold; text-decoration : none;" href="/project/${projectId}">project</a>
       `,
       });

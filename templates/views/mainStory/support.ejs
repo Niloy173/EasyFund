@@ -63,26 +63,6 @@
           
           <form id="Support"  method="post">
             <% if(Object.keys(UserInfo).length === 0){ %>
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input required name="cus_name" class="form-control" placeholder="eg: John wick" id="name" value="" />
-              
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input
-                required
-                type="email"
-                name="cus_email"
-                class="form-control"
-                id="email"
-                placeholder="eg: johnwick@yahoo.com"
-                
-              />
-
-              
-            </div>
-           
             
             <div class="mb-3">
               <label for="phone" class="form-label">Phone</label>
@@ -92,16 +72,15 @@
             </div>
 
             <div class="mb-3">
-              <label for="amount" class="form-label">Address</label>
-              <input
+              <label for="feedback" class="form-label">Send a supportive message to the owner of the project!</label>
+              <textarea
               
-                required
-                name="address"
+                name="feedback"
                 type="text"
                 class="form-control"
-                id="address"
-                placeholder="eg : Dhaka,Bangladesh"
-              />
+                id="feedback"
+                placeholder="eg : Do your best to make your dream come true"
+              ></textarea>
 
              
             </div>
@@ -143,49 +122,27 @@
 
           <% } else { %>
 
-            
-           
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input readonly name="cus_name" class="form-control" id="name" value="<%= UserInfo.fullname %>" />
-
-                <p class="error cus_name-error" style="display: none;"></p>
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input
-                  readonly
-                  type="email"
-                  name="cus_email"
-                  class="form-control"
-                  id="email"
-                  value="<%= UserInfo.email %>"
-                />
-
-                
-              </div>
+        
               <div class="mb-3">
                 <label for="phone" class="form-label">Phone</label>
-                <input readonly  name="cus_phone" class="form-control" id="phone" min="11" value="<%= UserInfo.phone %>" />
+                <input  name="cus_phone" class="form-control" id="phone" min="11" value="<%= UserInfo.phone %>" />
                 
                 
                 
               </div>
   
               <div class="mb-3">
-                <label for="amount" class="form-label">Address</label>
-                <input
-               
-                  required
-                  name="address"
+                <label for="feedback" class="form-label">Send a supportive message to the owner of the project!</label>
+                <textarea
+                
+                  name="feedback"
                   type="text"
-                  step="0.01"
                   class="form-control"
-                  id="address"
-                  placeholder="eg: Dhaka,Bangladesh"
-                />
-
-              
+                  id="feedback"
+                  placeholder="eg : Do your best to make your dream come true"
+                ></textarea>
+  
+               
               </div>
               <div class="mb-3">
                 <label for="amount" class="form-label">Amount</label>
