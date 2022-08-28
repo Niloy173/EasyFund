@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/OurStory.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/usernavbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <script src="/js/toastify.js"></script>
+    <script src="/js/moment.js"></script>
+  </head>
+  <body>
+    <%- include("../../partials/navbar.ejs") %>
+    <div class="about-container">
+      <div class="cover-picture">
+        <img src="/img/ourStory_cover.jpg" alt="cover" />
+        <div class="message-div color-1 h-1">
+          <h2 class="coverline">
+            Our mission is to help bring creative projects to life.
+          </h2>
+        </div>
+      </div>
+
+      <div class="about-us">
+        <p>
+          Easy fund is a part of crowdfunding, an approach to raise assets for a
+          particular reason or task by requesting an enormous number from
+          individuals to give cash, ordinarily in limited quantities, and
+          generally during a moderately brief timeframe, like a couple of month
+        </p>
+
+        <p>
+          Some of these creators, like Critical Role, TLC, and The Smithsonian
+          Institution already had huge fanbases. But many projects have been as
+          small-scale as a limited run of silent meditation vinyls or as
+          up-and-coming as early versions of Issa Rae's Insecure and Phoebe
+          Waller-Bridge’s Fleabag.
+        </p>
+
+        <p>
+          No matter what, creators always control how the work comes together—no
+          100-page grant applications, no donors demanding you modify your
+          message, no last-minute edits from investors. When backers chip in
+          funding and help spread the word, they too become part of these
+          independent works.
+        </p>
+      </div>
+
+      <div class="cover-picture">
+        <img src="/img/ourStory_cover2.jpg" alt="cover" />
+        <div class="message-div color-2 h-2">
+          <h2 class="headline">
+            EasyFund is one of those platforms that gives you space to work with
+            people who know you, love you, and support you.
+
+            <p class="team">-- Team Easy Fund</p>
+          </h2>
+        </div>
+      </div>
+
+      <div class="common-div common-bottom">
+        <div class="div-header">
+          <h3>Our Community</h3>
+        </div>
+
+        <div class="div-content">
+          <p>
+            Tapping into our community starts with activating your own. Most
+            successful projects build a snowball effect, winning over friends
+            and early supporters who then share the idea with their networks,
+            and signal their support to the wider EasyFund community. The
+            snowball can get pretty big.
+          </p>
+        </div>
+      </div>
+
+      <div class="common-div common-bottom">
+        <div class="div-header">
+          <h3>Our Team</h3>
+        </div>
+
+        <div class="div-content">
+          <p>
+            We're an independent company of about 10 people working together. We
+            spend our time designing and building EasyFund, forging community
+            around creative projects, and supporting the creative ecosystem
+            around us. We’re developers, designers, support specialists,
+            writers, musicians, painters, poets, gamers, robot-builders—you name
+            it.
+          </p>
+        </div>
+      </div>
+
+      <div class="main-story h-3 color-3 bottom-3">
+        <div class="founder">
+          <p>Our Story</p>
+          <p>as told by founder Md. Mushiur Rahman</p>
+        </div>
+
+        <div class="main-part">
+          <p>
+            “I was living in New Orleans in late 2001 and I wanted to bring a
+            pair of DJs down to play a show during the 2002 Jazz Fest. I found a
+            great venue and reached out to their management, but in the end the
+            show never happened—it was just too much money...”
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <%- include("../../partials/footer.ejs") %>
+  </body>
+</html>

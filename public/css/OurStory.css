@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.about-container {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.cover-picture img {
+  display: block;
+  width: 100%;
+}
+.color-1 {
+  background-color: rgb(255, 185, 80);
+  color: black;
+  font-weight: 600;
+}
+.color-2 {
+  background-color: #002230;
+  color: white;
+  font-weight: bold;
+}
+
+.h-1 {
+  height: 400px;
+}
+.h-2 {
+  height: 500px;
+}
+
+.message-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  transform: translate(-3%, -40%);
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.message-div h2 {
+  width: 60%;
+  text-align: center;
+}
+
+.coverline {
+  font-size: 3rem;
+}
+
+.headline {
+  font-size: 2.5rem;
+}
+
+.about-us {
+  width: 65%;
+  margin: 30px auto;
+  padding: 0 20px 50px 20px;
+}
+
+.about-us p {
+  font-size: 1.5rem;
+  margin: 25px 0;
+  line-height: 1.4;
+}
+
+.message-div .team {
+  display: block;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 40px 0;
+}
+
+.common-div {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.common-bottom {
+  margin-bottom: 50px;
+}
+.common-div .div-header {
+  margin: 20px 0;
+}
+.common-div .div-content {
+  margin: 20px 0;
+}
+
+.div-header h3 {
+  font-size: 3rem;
+}
+
+.div-content p {
+  width: 90%;
+  font-size: 1.5rem;
+  text-align: justify;
+  padding: 25px 0;
+  line-height: 1.5;
+}
+
+.main-story {
+  width: 80%;
+  margin: 0 auto;
+  transform: translate(-3%, -5%);
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  padding: 40px 0;
+}
+
+.h-3 {
+  height: 400px;
+}
+
+.main-story .founder {
+  width: 60%;
+  margin: 30px auto;
+  text-align: center;
+}
+.founder p {
+  font-size: 17px;
+  font-weight: normal;
+}
+.color-3 {
+  background-color: #2984ac;
+  color: white;
+}
+
+.main-story .main-part {
+  width: 40%;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.main-part p {
+  line-height: 1.4;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.bottom-3 {
+  margin-bottom: 80px;
+}

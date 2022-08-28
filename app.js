@@ -61,6 +61,10 @@ const CommunityRoute = require("./routes/categories/community.route");
 
 /*---------------*/
 
+/* footer content */
+const footerRoute = require("./routes/footer.route");
+/*-------------*/
+
 /* middleware */
 app.enable("case sensitive routing");
 app.use(express.static(staticPath));
@@ -121,6 +125,9 @@ app.use("/community", CommunityRoute.router);
 app.use("/admin-pannel", adminRoute.router);
 app.use("/admin-pannel/preview", projectFromadminRoute.router);
 app.use("/admin-pannel", ShowingAllProjectRoute.router);
+
+/* footer route path goes here */
+app.use("/easyfund", footerRoute.router);
 
 // for the error handler
 app.use(NotFoundHandler);
