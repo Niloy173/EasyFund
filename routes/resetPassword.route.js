@@ -98,7 +98,7 @@ router.post("/reset/:userId/:resetString", (req, res) => {
                 );
               })
               .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 res.json({
                   message: "Deleting password reset record failed",
                 });
@@ -136,9 +136,17 @@ router.post("/reset/:userId/:resetString", (req, res) => {
                             });
                         })
                         .catch((error) => {
-                          res.json({
-                            message: "Updating user password failed",
-                          });
+                          const message = "Updating user password failed";
+
+                          res.redirect(
+                            url.format({
+                              pathname: "/register/verified/",
+                              query: {
+                                error: true,
+                                message: message,
+                              },
+                            })
+                          );
                         });
                     })
                     .catch((error) => {
@@ -154,7 +162,7 @@ router.post("/reset/:userId/:resetString", (req, res) => {
                 }
               })
               .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 res.json({
                   message: "Comparing password reset strings failed",
                 });
@@ -215,7 +223,7 @@ router.post("/", (req, res) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         res.render("resetPassword", {
           message: "An error occured while checking the existing user",
         });
@@ -277,14 +285,14 @@ const sendResetEmail = ({ _id, email }, res) => {
                   );
                 })
                 .catch((error) => {
-                  console.log(error);
+                  // console.log(error);
                   res.render("resetPassword", {
                     message: "Password reset email Failed",
                   });
                 });
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
               res.render("resetPassword", {
                 message:
                   "An error occured while saving the password reset data",
@@ -292,14 +300,14 @@ const sendResetEmail = ({ _id, email }, res) => {
             });
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
           res.render("resetPassword", {
             message: "An error occured while hashing the password",
           });
         });
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       res.render("resetPassword", {
         message: "An error occured clearing reset records failed",
       });
