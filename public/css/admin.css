@@ -64,16 +64,16 @@
 }
 
 .Pending_project {
-  background-image: url("/img/pending.jpg");
+  background-image: url("/img/Pending.jpg");
   background-size: cover;
 }
 .Runing_project {
-  background-image: url("/img/transac_number.jpg");
+  background-image: url("/img/Transac_number.jpg");
   background-size: cover;
 }
 
 .Total_transac {
-  background-image: url("/img/runing.jpg");
+  background-image: url("/img/Runing.jpg");
   background-size: cover;
 }
 

@@ -63,7 +63,11 @@ const RoleBaseAuthorize = function (req, res, next) {
   if (req.user.role === "admin") {
     next();
   } else {
-    res.send("You're not authorized to access this url");
+    res.render("error", {
+      title: "Error page",
+      status: 400,
+      message: "You're not authorized to access this url",
+    });
   }
 };
 
