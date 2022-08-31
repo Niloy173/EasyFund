@@ -232,7 +232,7 @@ router.post("/", (req, res) => {
 });
 
 const sendResetEmail = ({ _id, email }, res) => {
-  const redirectUrl = "http://localhost:3000/";
+  const redirectUrl = `${process.env.APP_URL}`;
 
   const resetString = uuidv4() + _id;
 
