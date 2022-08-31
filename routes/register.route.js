@@ -228,12 +228,10 @@ router.post("/", decorateHtmlResponse("register"), async (req, res) => {
     res.render("register", {
       message: "Field is empty",
     });
-    // }else if(email.split("@")[1] != "diu.edu.bd"){
-
-    //   res.render("register",{
-
-    //     message : "Invalid email address"
-    //    })
+  } else if (email.split("@")[1] != "diu.edu.bd") {
+    res.render("register", {
+      message: "Invalid email address",
+    });
   } else if (password.length < 8) {
     res.render("register", {
       message: "please provide at least 8 character password",

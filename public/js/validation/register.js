@@ -1,7 +1,7 @@
 function CheckEmail(obj) {
   if (obj.value.split("@")[1] != "diu.edu.bd") {
     document.getElementById("msg").innerText =
-      "please provide vaild email address";
+      "provide your university  email address";
     document.getElementById("msg").style.display = "block";
   } else {
     document.getElementById("msg").style.display = "none";
