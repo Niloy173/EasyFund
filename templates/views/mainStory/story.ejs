@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="/css/preview.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/usernavbar.css" />
+    <link rel="stylesheet" href="/css/footer.css"/>
+
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="/js/toastify.js"></script>
     <script src="/js/moment.js"></script>
@@ -150,7 +152,7 @@
                   margin: 30px 0 10px;
                   text-align: left;
                   font-weight: bold;
-                  font-size: 23px;
+                
                 "
               >
                 people who supported :
@@ -276,10 +278,10 @@
               
            
             </div>
-           
-              <section class="comment story-container">
+
+            <section class="comment story-container">
+              
             
-             
               <p
               style="
                 margin: 30px 0 15px 0;
@@ -291,68 +293,94 @@
               COMMENTS
             </p>
             <hr style=" width: 100%; border: 1px solid black;" />
-            <% if(Comments.length !=0) { %>
-              <div class="comment_container">
+            
+            <div id="comment_container" class="comment_container">
+            <% if(projectComments.length !=0) { %>
+
                 <div class="comment_view">
-                <% Comments.forEach(element => { %>
-                  <div class="comment_section">
-                    <img src="data:image/<%=element.comment.profileImage.contentType%>;base64,
-            <%=element.comment.profileImage.data.toString('base64')%>" alt="" />
-        
+
+                  <% projectComments.forEach(element => { %>
+
+                    <div class="comment_section">
+                      <img src="data:image/<%=element.profileImage.contentType%>;base64,
+                    <%=element.profileImage.data.toString('base64')%>" alt="single-comment" />
+
                     <div class="user_part">
-                      <% if(element.role === "user")
-                      { %>
-                        <h1><%= element.comment["username"] %></h1>
-                     <%  }else{ %>
-                        <h1><%= element.comment["username"] %><span class="creator"> (creator)</span></h1>
-                    <%  } %>
+                      
+                      <% if(element.role === "user"){ %>
+                        <h1><%= element.fullname %></h1>
+                      <% } else { %>
+                        <h1><%= element.fullname %><span class="creator"> (creator)</span></h1>
+                      <%} %>
+
+                      <p class="User_comment"><%= element.message %></p>
+                      </div>
         
-                      <p class="User_comment"><%= element.comment["message"] %></p>
                     </div>
-                  </div>
+
+                  <% }) %>
                   
-               <%  }); %>
-        
                 </div>
-        
-               
-             
-           
-            <% } else { %>
+
               
-        
-            <div class="no-comment">
+              
+           
+
+            
+            <% } else { %>
+
+              
+            <div id="no-comment" class="no-comment">
               <p>No Comments Available</p>
             </div>
-              
-              <% } %>
-              <% if(Object.keys(userInformation).length !=0){ %>
 
-              <% if(element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining != 0){ %>
-              <div id="comment_post" class="comment_post">
-                  <form  id="comment-box" action="" method="post">
-                    <div class="comment_post">
-                      <form action="">
-                        <div class="flex">
-                          <input
-                          class="comment_field"
-                          placeholder="Add your comment"
-                          type="text"
-                          name="message"
-                          required
-                        />
-                        <button class="send_btn" onclick="PostComment()"  >SEND</button>
-                        </div>
-               
-                  </form>
-                </div>
-                <% } %>
-                 </div>
-          </section>
-           <%  } %>
+           <% } %>
+
+          </div>
+
+           <% if(Object.keys(userInformation).length !=0){ %>
+
+          <% if(element["CurrentAmount"] < element["TargetAmount"] && DaysRemaining != 0){ %>
+          <div id="comment_post" class="comment_post">
+              <form  id="comment-box" action="" method="post">
+                <div class="comment_post">
+                 
+                    <div class="flex">
+                      <input
+                      id="comment"
+                      class="comment_field"
+                      placeholder="Add your comment"
+                      type="text"
+                      name="message"
+                      required
+                      autocomplete="off"
+                    />
+                    <input type="submit" value="SEND" class="send_btn" />
+                    </div>
+          
+                
+              </div>
+              </form>
+            <% } %>
+            </div>
+
+            <%  } %>
+            
+            
+            
+            
+            
+              </section>
+           
+             
+
+          
            
           </div>
           <% }); %>
+
+
+
           <div id="Help_by_sharing" class="help_by_sharing">
             <p>Help by sharing</p>
             <div class="social_icon">
@@ -372,7 +400,7 @@
 
 
 
-
+       <%- include('../../partials/footer.ejs') %> 
 
 
 
@@ -381,15 +409,19 @@
 
          
       <script defer src="/js/mainstory.js"></script>
-      <script>
-        const form = document.querySelector("#comment-box");
+      <script >
+       
+
         try {
-        function PostComment(){
+
+        const form = document.querySelector("#comment-box");
+        const comment_container = document.querySelector("#comment_container");
+        
+     
           
           form.onsubmit = async function(e){
           e.preventDefault();
           const CurrentUrl =window.location.href.replace(/\/+$/, "");
- console.log(CurrentUrl);
           
           const formData = new FormData(form);
          const plainFormData = Object.fromEntries(formData.entries());
@@ -405,21 +437,108 @@
          
           const response = await fetch(`${CurrentUrl}/comment`,fetchOption);
           const result = await response.json();
-          // if(result.errors){
-          //   FailureToast.showToast();
-          // }else{
-          //   SuccessFulToast.showToast();
-          // }
+        
+          if(! result.errors && result.comment)
           
-          window.location.replace(CurrentUrl);
+          {
+            const {comment,role} = result.comment;
+            const {profileImage,username} = comment;
+
+         
+            const BinaryImageData = profileImage.data["data"];
+
+            let binary = '';
+            let bytes = new Uint8Array(BinaryImageData);
+            let len = bytes.byteLength;
+
+            for (let index = 0; index < len; index++) {
+              binary += String.fromCharCode(bytes[index]);
+              
+            }
+            
+            
+            const imageData = btoa(BinaryImageData);
+            const message = comment.message;
+            const name = username;
+
+        
+            
+            
+
+            // parent comment section
+            const comment_section = document.createElement("div");
+            comment_section.className = "comment_section";
+
+            // div to cover username and usermessage
+            const user_part = document.createElement("div");
+            user_part.className = "user_part";
+
+
+            // create the image tag;
+            var img = new Image();
+            img.src = `data:image/${profileImage.contentType};base64,${btoa(binary)}`;
+            img.alt = "single-comment";
+
+            // create a h1 for username;
+            const h1 = document.createElement("h1");
+            const pTag = document.createElement("p");
+
+            // message to save in ptag
+            pTag.className = "User_comment";
+            pTag.innerHTML = message;
+
+            if(role === "creator")
+            {
+              const span = document.createElement("span");
+              span.className = "creator";
+              span.innerHTML = ` (creator)`;
+              h1.innerHTML = name;
+              h1.append(span);
+            }else{
+              h1.innerHTML = username;
+            }
+
+            user_part.appendChild(h1);
+            user_part.appendChild(pTag);
+
+            comment_section.appendChild(img);
+            comment_section.appendChild(user_part);
+
+
+           
+
+            
+
+            if(comment_container.children[0].id === "no-comment")
+            {
+              //comment view
+              const comment_view = document.createElement("div");
+              comment_view.className = "comment_view";
+
+              comment_view.appendChild(comment_section);
+              
+              document.getElementById("no-comment").style.display = "none";
+              comment_container.appendChild(comment_view);
+
+            }else{
+              
+              document.querySelector(".comment_view").insertAdjacentElement("beforeend",comment_section);
+            }
+
+            
+
+           document.getElementById("comment").value = "";
+            
+          }
+       
      
      
         }
-      }
+      
           
         } catch (error) {
-          // console.log(error.message);
-          res.status(500).send(error.message);
+           console.log(error.message);
+          
           
         }
         

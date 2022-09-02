@@ -2,6 +2,7 @@ const { User } = require("../../models/UserSchema");
 const { Project } = require("../../models/ProjectSchema");
 const { CommentModel } = require("../../models/CommentSchema");
 const mongoose = require("mongoose");
+const createError = require("http-errors");
 
 async function GetTheMainStory(req, res, next) {
   try {
@@ -90,31 +91,51 @@ async function GetTheMainStory(req, res, next) {
     }
 
     // find out if their is any comments in this project;
+    const projectComments = [];
 
-    const Comments = await CommentModel.find({ projectId: projectId });
+    const Comments = await CommentModel.find({ projectId: projectId }).sort({
+      createdAt: 1,
+    });
 
-    setTimeout(() => {
-      res.status(200).render("mainStory/story", {
-        ProjectInformation,
-        OtherUser,
-        RequestedUrl,
-        DaysRemaining,
-        Owner_name: OwnerInformation[0].fullname,
-        OwnerAvatar: OwnerInformation[0].profileImage,
-        Owner_university: OwnerInformation[0].university_Name,
-        AttachmentLength: Attachments.length,
-        SupporterLength: SupporterProfile.length,
-        SupporterProfile,
-        Comments,
+    if (Comments) {
+      for (let index = 0; index < Comments.length; index++) {
+        const id = Comments[index].comment["id"];
+        const UserInfo = await User.findOne(
+          { _id: mongoose.Types.ObjectId(id) },
+          { fullname: 1, profileImage: 1 }
+        );
 
-        // For the celender
-        month: new Date(CreationDate).toLocaleDateString().split("/")[0],
-        date: new Date(CreationDate).toLocaleDateString().split("/")[1],
-        year: new Date(CreationDate).toLocaleDateString().split("/")[2],
-      });
-    }, 1000);
+        const fullname = UserInfo.fullname;
+        const profileImage = UserInfo.profileImage;
+        const message = Comments[index].comment["message"];
+        const role = Comments[index].role;
+
+        projectComments.push({ fullname, profileImage, message, role });
+      }
+    }
+
+    res.status(200).render("mainStory/story", {
+      ProjectInformation,
+      OtherUser,
+      RequestedUrl,
+      DaysRemaining,
+      Owner_name: OwnerInformation[0].fullname,
+      OwnerAvatar: OwnerInformation[0].profileImage,
+      Owner_university: OwnerInformation[0].university_Name,
+      AttachmentLength: Attachments.length,
+      SupporterLength: SupporterProfile.length,
+      SupporterProfile,
+      projectComments,
+
+      // For the celender
+      month: new Date(CreationDate).toLocaleDateString().split("/")[0],
+      date: new Date(CreationDate).toLocaleDateString().split("/")[1],
+      year: new Date(CreationDate).toLocaleDateString().split("/")[2],
+    });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+
+    throw createError(error.message);
   }
 }
 

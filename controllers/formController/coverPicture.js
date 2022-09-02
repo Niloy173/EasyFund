@@ -19,7 +19,7 @@ async function GetRenderCover(req, res, next) {
 
 function PostRenderCover(req, res, next) {
   const pathName = path.join(__dirname + "/../" + "/../public/coverPicture/");
-  new ImageUploader(pathName, 10000000).upload.single("avatar")(
+  new ImageUploader(pathName, 2 * 1024 * 1024).upload.single("avatar")(
     req,
     res,
     (err) => {

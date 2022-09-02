@@ -25,6 +25,7 @@ const checkEnableButton = () => {
     title.value &&
     story.value &&
     file_input.files[0] &&
+    file_input.files.length <= 3 &&
     title.value.length <= 60 &&
     story.value.length > 0
   );

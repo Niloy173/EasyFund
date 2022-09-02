@@ -23,8 +23,21 @@ body {
   justify-content: space-between;
   padding: 20px;
 }
+
+.image-section .with-title {
+  text-align: center;
+}
+
+.with-title span a {
+  text-decoration: none;
+}
+.with-title span {
+  display: none;
+}
+
 .image-section img {
   width: 80px;
+  height: 80px;
   display: block;
   margin: 0 12px;
 }
@@ -87,4 +100,40 @@ body {
 .b_footer li {
   margin: 10px 5px;
   font-size: 17px;
+}
+
+@media screen and (max-width: 1235px) {
+  .sidenav {
+    display: none;
+  }
+  .with-title span {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 969px) {
+  .document {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .document {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .document {
+    width: 100%;
+  }
+
+  .image-section img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .b_footer ul {
+    margin-left: 0;
+  }
 }

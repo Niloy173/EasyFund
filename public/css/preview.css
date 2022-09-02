@@ -132,6 +132,9 @@
   margin-bottom: 20px;
 }
 
+.left-area p {
+  font-size: 23px;
+}
 .slick-next:before,
 .slick-prev:before {
   color: teal;
@@ -474,7 +477,7 @@ progress::-webkit-progress-bar {
 .copy_link input {
   padding: 10px 16px;
   font-size: 18px;
-  width: 30%;
+  width: 400px;
 }
 .copy_link button {
   padding: 10px 18px;
@@ -598,6 +601,21 @@ figcaption {
 }
 
 @media (max-width: 575.98px) {
+  .show_middle {
+    width: 100%;
+  }
+  .copy_link {
+    display: block;
+  }
+  .copy_link input {
+    width: 60%;
+  }
+  .left-area p {
+    font-size: 20px;
+  }
+  div.gallery {
+    width: 110px;
+  }
 }
 @media (max-width: 456px) {
 }

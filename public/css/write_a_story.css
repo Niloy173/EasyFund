@@ -81,3 +81,29 @@ body {
   padding: 5px 12px;
   margin: 0 10px 0 0;
 }
+
+@media screen and (max-width: 1235px) {
+  .document {
+    width: 100%;
+  }
+
+  .cover-image {
+    width: 100%;
+  }
+  .cover-image img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .important_points {
+    display: block;
+  }
+
+  .important_points .right_side {
+    width: 100%;
+  }
+  .important_points .left_side {
+    width: 100%;
+  }
+}

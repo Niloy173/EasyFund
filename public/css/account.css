@@ -75,3 +75,9 @@ input[type="text"] {
 img.avatar {
   width: 120px;
 }
+@media screen and (max-width: 500px) {
+  form {
+    width: 100%;
+    margin: 20px 0;
+  }
+}
