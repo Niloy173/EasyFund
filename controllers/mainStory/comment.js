@@ -54,7 +54,7 @@ async function PostSingleComment(req, res, next) {
     NewComment.save();
 
     res.status(200).json({
-      message: "success",
+      comment: NewComment,
     });
   } catch (error) {
     res.status(500).json({

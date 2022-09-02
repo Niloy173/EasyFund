@@ -75,12 +75,9 @@ hr {
 }
 
 #notification_window::-webkit-scrollbar-thumb {
-  background: rgb(255, 255, 255);
+  background: gray;
 }
 
-#notification_window::-webkit-scrollbar-thumb:hover {
-  background: rgb(255, 255, 255);
-}
 .line_draw {
   height: 40px;
   width: 100%;
@@ -198,10 +195,16 @@ hr {
 }
 
 @media screen and (max-width: 1068px) {
-  #navbar ul {
+  #navbar ul li:nth-child(1) {
+    display: none;
+  }
+  #navbar ul li:nth-child(3) {
     display: none;
   }
 
+  #navbar ul li:nth-child(2) i {
+    display: contents;
+  }
   #navbar .logo {
     margin: 15px 0;
     width: 85%;
@@ -212,8 +215,17 @@ hr {
     margin: 15px auto;
     font-size: 30px;
   }
+
+  #notification_window {
+    width: 300px;
+  }
 }
 
+@media screen and (max-width: 768px) {
+  #notification_window {
+    width: 280px;
+  }
+}
 .sidenav {
   height: 100%;
   width: 260px;
