@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <% if(userInformation && userInformation.useremail){ %>
 
 <nav id="navbar">
@@ -241,4 +242,14 @@
     }
     // console.log(timecount);
   }
+
+  $(document).scroll(function () {
+    var y = $(this).scrollTop();
+    if (y > 0) {
+      $("#notification_window").hide();
+    }
+    // } else {
+    //   $("#notification_window").fadeIn();
+    // }
+  });
 </script>

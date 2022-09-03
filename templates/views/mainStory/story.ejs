@@ -61,7 +61,7 @@
                 />
                 <figcaption> 
                   <div class="transparent_bg">
-                    <p class="bottom-right">Created at <span id="creationDate"><%= new Date([month,date,year].join("/")).toLocaleDateString("en-US",{ day:"numeric", month:"long", year:"numeric"})%></span></p>
+                    <p  style="font-size: 14px;" class="bottom-right">Created at <span id="creationDate"><%= new Date([month,date,year].join("/")).toLocaleDateString("en-US",{ day:"numeric", month:"long", year:"numeric"})%></span></p>
                   </div>
                    
                   </figcaption>
@@ -166,7 +166,7 @@
                 <% if (SupporterProfile.length !=0) { %>
                 <div id="support-profile" class="supported_user_profile   ">
                  <% for(var  i=0; i<SupporterProfile.length; i++)  {%>     <!--this will be changed later -->
-                <a   href="#">
+                <div class="user_profile_each">
                   <img
                   style="
                     border-radius: 50%;
@@ -179,9 +179,27 @@
                   src="data:image/<%=SupporterProfile[i].profileImage.contentType%>;base64,
               <%=SupporterProfile[i].profileImage.data.toString('base64')%>"
                   alt="supporter-profilePic"
-                  title="<%= SupporterProfile[i].user_name %>"
+                  
                 />
-                </a>
+
+                <!-- creating a tooltip on hover effect -->
+                <div class="tooltip_text">
+
+                  <% if(SupporterProfile[i].user_name != ""){ %>
+
+                    <h5><%= SupporterProfile[i].user_name %></h5>
+                  
+                  <%} else { %>
+
+                    <span>No information found</span>
+                    
+
+                    <% } %>
+                  
+                  
+                </div>
+
+              </div>
                   <% } %>
   
                   <!-- <span class="more-supporters">
