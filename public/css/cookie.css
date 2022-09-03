@@ -114,3 +114,71 @@
 .question-div span a {
   text-decoration: none;
 }
+
+@media screen and (max-width: 1069px) {
+  .paragraph {
+    width: 70%;
+  }
+  .line-green {
+    width: 70%;
+  }
+  .common-div {
+    width: 70%;
+  }
+  .question-div {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .paragraph {
+    width: 75%;
+  }
+  .line-green {
+    width: 75%;
+  }
+  .common-div {
+    width: 75%;
+  }
+  .question-div {
+    width: 75%;
+  }
+
+  .main-header h1 {
+    font-size: 2.89rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .paragraph {
+    width: 100%;
+    padding: 0 15px;
+  }
+  .line-green {
+    width: 100%;
+    padding: 0 15px;
+  }
+  .common-div {
+    width: 100%;
+    padding: 0 15px;
+  }
+  .question-div {
+    width: 100%;
+    padding: 0 30px;
+  }
+  .main-header h1 {
+    font-size: 2rem;
+  }
+  .one-fourth-line::after {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .main-header h1 {
+    font-size: 1.5rem;
+  }
+  .question-div span {
+    font-size: 1rem;
+  }
+}

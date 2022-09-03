@@ -125,3 +125,28 @@
   padding: 12px 0;
   font-size: 1.1222rem;
 }
+@media screen and (max-width: 1269px) {
+  .paragraph {
+    width: 70%;
+  }
+  .single-line {
+    width: 70%;
+  }
+  .common-div {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 575px) {
+  .paragraph {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .single-line {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .common-div {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
