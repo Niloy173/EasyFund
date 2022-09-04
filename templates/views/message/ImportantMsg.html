@@ -64,6 +64,21 @@
         -webkit-animation-name: swing;
         animation-name: swing;
       }
+      a {
+        font-weight: bold;
+        color: black;
+        border-bottom: 2px solid;
+        text-decoration: none;
+      }
+
+      @media screen and (max-width: 575px) {
+        div {
+          width: 100%;
+        }
+        h2 {
+          width: 100%;
+        }
+      }
     </style>
   </head>
 
@@ -85,7 +100,7 @@
       </svg>
       <h3>Check Your Email For Confirmation.</h3>
 
-      <p>@EasyFund | welcome</p>
+      <p>@EasyFund | <a href="/">Home</a></p>
     </div>`;
 
     document.body.style.backgroundColor = "#064e3b";

@@ -109,8 +109,15 @@ async function GetTheMainStory(req, res, next) {
         const profileImage = UserInfo.profileImage;
         const message = Comments[index].comment["message"];
         const role = Comments[index].role;
+        const createdAt = Comments[index].createdAt;
 
-        projectComments.push({ fullname, profileImage, message, role });
+        projectComments.push({
+          fullname,
+          profileImage,
+          message,
+          role,
+          createdAt,
+        });
       }
     }
 

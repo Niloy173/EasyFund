@@ -212,3 +212,17 @@
     padding: 10px 0;
   }
 }
+
+@media screen and (max-width: 575px) {
+  .comment_section img {
+    width: 45px;
+    height: 45px;
+  }
+  .User_comment {
+    padding: 5px 0;
+    font-size: 15px;
+  }
+  .user_part h1 {
+    font-size: 17px;
+  }
+}
