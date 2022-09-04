@@ -9,9 +9,9 @@ window.setTimeout(function () {
     document.getElementById("mainStory").scrollHeight + "px";
 });
 
-function ScrollDown() {
-  window.scrollTo(0, document.body.scrollHeight);
-}
+// function ScrollDown() {
+//   window.scrollTo(0, document.body.scrollHeight);
+// }
 
 function CopyLink() {
   const checker = document

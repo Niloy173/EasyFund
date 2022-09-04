@@ -35,7 +35,33 @@ router.get("/reset/:userId/:resetString", (req, res) => {
   ResetPassword.find({ userId })
     .then((result) => {
       if (result.length > 0) {
-        res.render("confirmResetPassword");
+        const { expiresAt } = result[0];
+
+        // checking for expired reset string
+        if (expiresAt < Date.now()) {
+          ResetPassword.deleteOne({ userId })
+            .then(() => {
+              const message = "password reset link has been expired";
+              res.redirect(
+                url.format({
+                  pathname: "/register/verified/",
+                  query: {
+                    error: true,
+                    message: message,
+                  },
+                })
+              );
+            })
+            .catch((error) => {
+              // console.log(error);
+              res.json({
+                message: "Deleting password reset record failed",
+              });
+            });
+        } else {
+          // valid link to change password
+          res.render("confirmResetPassword");
+        }
       } else {
         const message =
           "Password already reset recently.please try again later or send another request from forget password";
@@ -76,17 +102,63 @@ router.post("/reset/:userId/:resetString", (req, res) => {
       .then((result) => {
         if (result.length > 0) {
           // password reset record exists so we proceed
+          // password reset record hasn't been expired
+          // compare the hashed reset string
 
-          const { expiresAt } = result[0];
           const hashedResetString = result[0].resetString;
 
-          // checking for expired reset string
+          bcrypt
+            .compare(resetString, hashedResetString)
+            .then((result) => {
+              if (result) {
+                bcrypt
+                  .hash(password, 10)
+                  .then((hashedNewPassword) => {
+                    // update the user model
+                    // go through the password and update it
 
-          if (expiresAt < Date.now()) {
-            ResetPassword.deleteOne({ userId })
-              .then(() => {
-                const message =
-                  "password reset link has been expired.Try again";
+                    User.updateOne(
+                      { _id: userId },
+                      { password: hashedNewPassword }
+                    )
+                      .then(() => {
+                        // update completed . Now clear out the reset record.
+                        ResetPassword.deleteOne({ userId })
+                          .then(() => {
+                            // bothe user record and reset record updated
+                            console.log("Successfully reset the password");
+                            res.redirect("/login"); // go back to login page
+                          })
+                          .catch((error) => {
+                            res.json({
+                              message: "Removing record faied to delete",
+                            });
+                          });
+                      })
+                      .catch((error) => {
+                        const message = "Updating user password failed";
+
+                        res.redirect(
+                          url.format({
+                            pathname: "/register/verified/",
+                            query: {
+                              error: true,
+                              message: message,
+                            },
+                          })
+                        );
+                      });
+                  })
+                  .catch((error) => {
+                    res.json({
+                      message: "An error occured while hashing the password",
+                    });
+                  });
+              } else {
+                // exitsing record but incorrect reset string
+
+                const message = "Password already reset recently";
+
                 res.redirect(
                   url.format({
                     pathname: "/register/verified/",
@@ -96,78 +168,14 @@ router.post("/reset/:userId/:resetString", (req, res) => {
                     },
                   })
                 );
-              })
-              .catch((error) => {
-                // console.log(error);
-                res.json({
-                  message: "Deleting password reset record failed",
-                });
+              }
+            })
+            .catch((error) => {
+              // console.log(error);
+              res.json({
+                message: "Comparing password reset strings failed",
               });
-          } else {
-            // password reset record hasn't been expired
-            // compare the hashed reset string
-
-            bcrypt
-              .compare(resetString, hashedResetString)
-              .then((result) => {
-                if (result) {
-                  bcrypt
-                    .hash(password, 10)
-                    .then((hashedNewPassword) => {
-                      // update the user model
-                      // go through the password and update it
-
-                      User.updateOne(
-                        { _id: userId },
-                        { password: hashedNewPassword }
-                      )
-                        .then(() => {
-                          // update completed . Now clear out the reset record.
-                          ResetPassword.deleteOne({ userId })
-                            .then(() => {
-                              // bothe user record and reset record updated
-                              console.log("Successfully reset the password");
-                              res.redirect("/login"); // go back to login page
-                            })
-                            .catch((error) => {
-                              res.json({
-                                message: "Removing record faied to delete",
-                              });
-                            });
-                        })
-                        .catch((error) => {
-                          const message = "Updating user password failed";
-
-                          res.redirect(
-                            url.format({
-                              pathname: "/register/verified/",
-                              query: {
-                                error: true,
-                                message: message,
-                              },
-                            })
-                          );
-                        });
-                    })
-                    .catch((error) => {
-                      res.json({
-                        message: "An error occured while hashing the password",
-                      });
-                    });
-                } else {
-                  // exitsing record but incorrect reset string
-                  res.json({
-                    message: "Invalid password reset details passed",
-                  });
-                }
-              })
-              .catch((error) => {
-                // console.log(error);
-                res.json({
-                  message: "Comparing password reset strings failed",
-                });
-              });
-          }
+            });
         } else {
           // password reset record doesn't exist
           // well this block doesn't need anymore

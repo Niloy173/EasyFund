@@ -134,8 +134,8 @@
                    </div>
                    <% } %>
                    <div class="sharing_section">
-                     <button style="color: #12af9a !important" onclick="ScrollDown()">
-                        Help by sharing
+                     <button>
+                        <a style="color: #12af9a !important; text-decoration: none;" href="#Help_by_sharing">Help by sharing</a>
                     </button>
                   </div>
                   <% if(element["CurrentAmount"] >= element["TargetAmount"] || DaysRemaining === 0  ){ %>
@@ -428,19 +428,21 @@
          
       <script defer src="/js/mainstory.js"></script>
       <script >
-       
 
         try {
 
         const form = document.querySelector("#comment-box");
         const comment_container = document.querySelector("#comment_container");
         
-     
-          
           form.onsubmit = async function(e){
           e.preventDefault();
-          const CurrentUrl =window.location.href.replace(/\/+$/, "");
+          let CurrentUrl ="";
           
+          if(window.location.href.includes("#")){
+            CurrentUrl = window.location.href.split("#")[0].replace(/\/+$/, "");
+          }else{
+            CurrentUrl = window.location.href.replace(/\/+$/, "");
+          }
           const formData = new FormData(form);
          const plainFormData = Object.fromEntries(formData.entries());
          const JsonData = JSON.stringify(plainFormData);
@@ -497,7 +499,7 @@
             img.src = `data:image/${profileImage.contentType};base64,${btoa(binary)}`;
             img.alt = "single-comment";
 
-            // create a h1 for username;
+            // create all necessary tag;
             const h1 = document.createElement("h1");
             const pTag = document.createElement("p");
 
