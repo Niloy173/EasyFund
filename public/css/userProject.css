@@ -10,6 +10,14 @@
   padding: 30px 40px;
 }
 
+.border-line::after {
+  content: " ";
+  display: block;
+  width: 100%;
+  border-bottom: 0.5px dotted black;
+  opacity: 0.25;
+}
+
 .create-your-project button {
   padding: 30px 80px;
   background: #fff;
@@ -183,4 +191,65 @@
   color: #000000;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+  .main-project {
+    width: 100%;
+  }
+  .main-project .project-container {
+    display: block;
+  }
+  .project-container .project-cover {
+    width: 100%;
+  }
+  .project-cover img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+  }
+  .project-container .project-details {
+    width: 100%;
+  }
+  .project-container .project-amount-details {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .create-your-project {
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 571px) {
+  .create-your-project a {
+    font-size: 1.33rem;
+  }
+  .project-details h3 {
+    font-size: 1.1333rem;
+  }
+  .main-project .project_lookup {
+    padding: 10px 0;
+  }
+  .project_lookup a {
+    font-size: 1.01rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .create-your-project {
+    padding: 0;
+  }
+  .create-your-project a {
+    font-size: 1rem;
+  }
+
+  .project-container .project-amount-details {
+    display: block;
+  }
+  .project-details h3 {
+    font-size: 15px;
+  }
 }
