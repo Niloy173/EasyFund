@@ -1,6 +1,7 @@
 const { check, validationResult } = require("express-validator");
 
 const { User } = require("../../models/UserSchema");
+const createError = require("http-errors");
 
 const doValidatePersonal = [
   check("fullname")
@@ -13,15 +14,44 @@ const doValidatePersonal = [
   check("department")
     .isLength({ min: 1 })
     .withMessage("department is required")
-    .isAlpha("en-US", { ignore: " -" })
-    .withMessage("fullname must not contain anything other than alphabet")
+    .custom((value) => {
+      if (
+        ![
+          "CSE",
+          "EEE",
+          "BBA",
+          "BBS",
+          "BRE",
+          "BTHM",
+          "BE",
+          "CIS",
+          "SWE",
+          "ESDM",
+          "MCT",
+          "GED",
+          "ITM",
+          "ETE",
+          "TE",
+          "ARCHT",
+          "CE",
+          "PHARM",
+          "NFE",
+          "ENG",
+          "LLB",
+        ].includes(value)
+      ) {
+        throw createError("please! write a valid department");
+      } else {
+        return true;
+      }
+    })
     .trim(),
 
   check("universityname")
     .isLength({ min: 1 })
     .withMessage("university name is required")
     .isAlpha("en-US", { ignore: " -" })
-    .withMessage("fullname must not contain anything other than alphabet")
+    .withMessage("universityname must not contain anything other than alphabet")
     .trim(),
 
   check("universityid")
@@ -38,9 +68,11 @@ const doValidatePersonal = [
     )
     .custom(async (value) => {
       try {
-        const user = await User.findOne({ mobile: value });
+        const user = await User.find({
+          $and: [{ phone: value }, { role: { $ne: "admin" } }],
+        });
 
-        if (user.length > 1) {
+        if (Object.keys(user).length > 0) {
           throw createError("Mobile already is use!");
         }
       } catch (error) {
