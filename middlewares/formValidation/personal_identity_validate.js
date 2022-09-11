@@ -72,7 +72,7 @@ const doValidatePersonal = [
           $and: [{ phone: value }, { role: { $ne: "admin" } }],
         });
 
-        if (Object.keys(user).length > 1) {
+        if (Object.keys(user).length > 0) {
           throw createError("Mobile already is use!");
         }
       } catch (error) {
