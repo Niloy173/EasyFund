@@ -141,8 +141,9 @@ async function GetTheMainStory(req, res, next) {
     });
   } catch (error) {
     // console.log(error);
+    res.status(500).send(error);
 
-    throw createError(error.message);
+    // throw createError(error.message);
   }
 }
 
