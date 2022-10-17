@@ -232,6 +232,10 @@ router.post("/", decorateHtmlResponse("register"), async (req, res) => {
     //   res.render("register", {
     //     message: "Invalid email address",
     //   });
+  } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    res.render("register", {
+      message: "Invalid email address",
+    });
   } else if (password.length < 8) {
     res.render("register", {
       message: "please provide at least 8 character password",
