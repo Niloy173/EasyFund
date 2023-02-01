@@ -11,7 +11,6 @@
   width: 100%;
   align-items: center;
   flex-wrap: wrap;
-  position: relative;
   box-shadow: 0 3px 4px rgba(146, 161, 175, 0.15);
 }
 #navbar_ .logo {
@@ -107,9 +106,7 @@
 }
 
 .closebtn_ {
-  display: flex;
-  justify-content: end;
-  font-size: 1.2rem;
+  display: none;
 }
 @media (max-width: 700px) {
   #navbar_ .logo {
@@ -148,7 +145,7 @@
   }
 
   #navbar_ ul {
-    position: absolute;
+    position: fixed;
     top: 90px;
     right: -100%;
     color: rgb(19, 18, 18);
@@ -171,10 +168,10 @@
     /* transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
   }
 
-  .closebtn {
-    display: block;
-    text-align: right;
-    font-size: 18px;
+  .closebtn_ {
+    display: flex;
+    justify-content: end;
+    font-size: 2rem;
   }
   #navbar_ ul li:not(:first-child) a:hover {
     border: 1px groove #f2f2f2;
