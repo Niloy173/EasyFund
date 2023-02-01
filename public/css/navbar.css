@@ -11,7 +11,7 @@
   width: 100%;
   align-items: center;
   flex-wrap: wrap;
-
+  position: relative;
   box-shadow: 0 3px 4px rgba(146, 161, 175, 0.15);
 }
 #navbar_ .logo {
@@ -106,8 +106,10 @@
   margin-top: 10px;
 }
 
-.closebtn {
-  display: none;
+.closebtn_ {
+  display: flex;
+  justify-content: end;
+  font-size: 1.2rem;
 }
 @media (max-width: 700px) {
   #navbar_ .logo {
@@ -146,7 +148,7 @@
   }
 
   #navbar_ ul {
-    position: fixed;
+    position: absolute;
     top: 90px;
     right: -100%;
     color: rgb(19, 18, 18);

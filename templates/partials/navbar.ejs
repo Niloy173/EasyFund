@@ -123,8 +123,8 @@
   <div class="nav_menu_item">
     <ul id="nav_menu_item">
       <li>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-          >&times; close</a
+        <a href="javascript:void(0)" class="closebtn_" onclick="closeNav()"
+          >&times;</a
         >
       </li>
       <li class="dropdown">
@@ -158,7 +158,8 @@
 <% } %>
 
 <script>
-  let timecount = 0;
+  // let timecount = 0;
+  let nav_menu_item = document.getElementById("nav_menu_item");
   function logout() {
     fetch("/", {
       method: "DELETE",
@@ -231,22 +232,26 @@
   }
 
   function showNav() {
-    let nav_menu_item = document.getElementById("nav_menu_item");
-    let show_nav = document.getElementById("show_nav");
+    // let show_nav = document.getElementById("show_nav");
 
-    timecount += 1;
-    if (timecount % 2 == 0) {
-      nav_menu_item.style.right = "-100%";
-    } else {
-      nav_menu_item.style.right = "0";
-    }
+    // timecount += 1;
+    // if (timecount % 2 == 0) {
+    //   nav_menu_item.style.right = "-100%";
+    // } else {
+    nav_menu_item.style.right = "0%";
+    // }
     // console.log(timecount);
+  }
+
+  function closeNav() {
+    nav_menu_item.style.right = "-100%";
   }
 
   $(document).scroll(function () {
     var y = $(this).scrollTop();
     if (y > 0) {
       $("#notification_window").hide();
+      nav_menu_item.style.right = "-100%";
     }
     // } else {
     //   $("#notification_window").fadeIn();
