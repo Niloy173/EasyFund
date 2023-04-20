@@ -194,7 +194,7 @@ router.post("/reset/:userId/:resetString", (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", decorateHtmlResponse("reset"), (req, res) => {
   let { email } = req.body;
 
   if (email == "") {

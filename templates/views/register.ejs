@@ -74,8 +74,10 @@
             <div class="wthree-text">
               <label class="anim">
                 <span
-                  >I Agree To The <a href="#">Terms & Conditions </a> And
-                  <a href="#"> Privacy Policy</a></span
+                  >I Agree To The
+                  <a href="/article/how_it_works.html">Terms & Conditions </a>
+                  And
+                  <a href="/easyfund/privacy&policy"> Privacy Policy</a></span
                 >
               </label>
               <div class="clear"></div>
@@ -87,7 +89,7 @@
       </div>
       <!-- copyright -->
       <div class="colorlibcopy-agile">
-        <p>© 2022 Easy Fund. All rights reserved</p>
+        <p>© <span id="year"></span> Easy Fund. All rights reserved</p>
       </div>
       <!-- //copyright -->
       <ul class="colorlib-bubbles">
@@ -106,5 +108,9 @@
     <!-- //main -->
 
     <script defer src="/js/validation/register.js"></script>
+    <script>
+      const today = new Date().toLocaleDateString().split("/")[2];
+      document.getElementById("year").innerHTML = today;
+    </script>
   </body>
 </html>
