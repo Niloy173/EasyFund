@@ -73,7 +73,7 @@ admin is responsible whether the newly created project should go live or not thr
 - Design Architecture & Tools : **MVC Design pattern**, **Figma**
 - Template Engine : **Ejs**
 - Front-end Development : **Html**, **CSS3**, **Bootstrap**
-- Back-end Development : **Node JS**
+- Back-end Development : **Node JS**, **Express JS**
 - Database Design & Management : **MongoDB**
 - IDE : **Visual Studio**
 
